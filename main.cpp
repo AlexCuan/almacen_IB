@@ -19,12 +19,12 @@ void sub_menu_c();
 void sub_menu_d();*/
 void add_textiles(){
     limpiar_consola();
-    RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+    //RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
     ofstream salida("textiles.dat", ios::app);
     if (!salida){
         cout<<"No se pudo crear el archivo";
     }
-    salida << textil.descripcion<<'\n';
+    //salida << textil.descripcion<<'\n';
     salida.close();
 
 };
