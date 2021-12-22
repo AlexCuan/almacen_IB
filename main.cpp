@@ -49,7 +49,7 @@ void main_menu()
                 sub_menu_d();
                 break;
             default:
-                cout << "Please insert an integer between 1 and 2." << endl;
+                cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
         }
     }
