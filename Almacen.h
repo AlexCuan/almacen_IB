@@ -25,7 +25,7 @@ public:
 
 };
 
-class Producto {     // superclase prodcuto
+class RegistroProducto {     // superclase prodcuto
 public:
     string nombre;
     long codigo;
@@ -33,7 +33,7 @@ public:
     string paisOrigen;
     int cantidad;
 
-    Producto(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad) {
+    RegistroProducto(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad) {
         nombre = _nombre;
         codigo = _codigo;
         descripcion = _descripcion;
@@ -48,15 +48,15 @@ public:
 
 };
 
-class Textiles : public Producto {
+class RegistroTextiles : public RegistroProducto {
 public:
     string material;
     string sexo;
     char talla;
 
-    Textiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-             string _material, char _sexo, char _talla) : Producto(_nombre, _codigo, _descripcion, _paisOrigen,
-                                                                   _cantidad) {
+    RegistroTextiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
+                     string _material, char _sexo, char _talla) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen,
+                                                                           _cantidad) {
         material = _material;
         sexo = _sexo;
         talla = _talla;
@@ -70,15 +70,15 @@ public:
 
 };
 
-class Electrodomesticos : public Producto {
+class RegistroElectrodomesticos : public RegistroProducto {
 public:
     int tiempo; //tiempo en meses
     int voltaje;
     bool manual;
 
-    Electrodomesticos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                      int _tiempo, int _voltaje, bool _manual) : Producto(_nombre, _codigo, _descripcion, _paisOrigen,
-                                                                          _cantidad) {
+    RegistroElectrodomesticos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
+                              int _tiempo, int _voltaje, bool _manual) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen,
+                                                                                  _cantidad) {
         tiempo = _tiempo;
         voltaje = _voltaje;
         manual = _manual;
@@ -94,16 +94,16 @@ public:
 
 };
 
-class Alimentos : public Producto, public Date {
+class RegistroAlimentos : public RegistroProducto, public Date {
 public:
     string clasificacion;
     string empleado;
     long codigoEstiba;
     bool eliminado;
 
-    Alimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, int _dia, int _mes,
-              int _anio, string _clasificacion, string _empleado, long _codigoEstiba,
-              bool _eliminado) : Producto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad),
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, int _dia, int _mes,
+                      int _anio, string _clasificacion, string _empleado, long _codigoEstiba,
+                      bool _eliminado) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad),
                                  Date(_dia, _mes, _anio) {
         clasificacion = _clasificacion;
         empleado = _empleado;
