@@ -11,35 +11,41 @@ void main_menu();
 
 void sub_menu_a();
 
-void limpiar_consola(){
+void limpiar_consola() {
     system("clear");
 }
+
 /*void sub_menu_b();
 void sub_menu_c();
 void sub_menu_d();*/
-void add_textiles(){
-    limpiar_consola();
-    //RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
-    ofstream salida("textiles.dat", ios::app);
-    if (!salida){
-        cout<<"No se pudo crear el archivo";
+void add_textiles() {
+    /*limpiar_consola();
+    fstream salida("textiles.dat", ios::app || ios::in);
+    RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+    if (!salida) {
+        cout << "No se pudo crear el archivo";
     }
-    //salida << textil.descripcion<<'\n';
+    textil.imprimir(salida);
+    salida<<
     salida.close();
-
+*/
 };
 
-void add_appliances(){
+void add_appliances() {
     limpiar_consola();
+    ofstream salida("appliance.dat", ios::app);
+    if (!salida) {
+        cout << "No se pudo crear el archivo";
+    }
     RegistroElectrodomesticos electrodomestico;
     electrodomestico.add_register();
 
 };
 
-void add_food(){
+void add_food() {
     limpiar_consola();
-    RegistroAlimentos alimento;
-    alimento.add_register();
+    //RegistroAlimentos alimento;
+    //alimento.add_register();
 };
 
 void main_menu() {
@@ -47,7 +53,7 @@ void main_menu() {
     cout << "You are at main menu." << endl;
 
     while (true) {
-        cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer"<<endl;
+        cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
         cout << "3 -> Listar productos" << endl;
@@ -141,6 +147,12 @@ void sub_menu_a() {
 
 
 int main() {
-    main_menu();
+    /*fstream salida("textiles.dat");
+    //abrir demas archivos
+    add_textiles();
+    ContainerTextiles contenedor;
+    RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+    contenedor.add(&textil);
+    cout << contenedor.size_of_array;*/
     return 0;
 }
