@@ -11,12 +11,12 @@ const string almacen_electrodomesticos = "electrodomesticos.dat";
 const string almacen_alimentos = "alimentos.dat";
 void main_menu();
 void sub_menu_a();
-void sub_menu_b();
+/*void sub_menu_b();
 void sub_menu_c();
-void sub_menu_d();
-void function_a();
-void function_b();
-void function_c();
+void sub_menu_d();*/
+void add_textiles();
+void add_appliances();
+void add_food();
 
 void main_menu()
 {
@@ -39,7 +39,7 @@ void main_menu()
             case 1:
                 sub_menu_a();
                 break;
-            case 2:
+            /*case 2:
                 sub_menu_b();
                 break;
             case 3:
@@ -47,7 +47,7 @@ void main_menu()
                 break;
             case 4:
                 sub_menu_d();
-                break;
+                break;*/
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -61,10 +61,11 @@ void sub_menu_a()
 
     while(true)
     {
-        cout << "Select one of the following options:" << endl;
-        cout << "1 -> Function A" << endl;
-        cout << "2 -> Function B" << endl;
-        cout << "3 -> Back to main menu" << endl;
+        cout << "Seleccione la clasificacion del producto que desea adicionar:" << endl;
+        cout << "1 -> Textil" << endl;
+        cout << "2 -> Electrodomestico" << endl;
+        cout << "3 -> Alimenticio" << endl;
+        cout << "4 -> Menu principal"<<endl;
 
 
         int option;
@@ -73,12 +74,15 @@ void sub_menu_a()
         switch(option)
         {
             case 1:
-                function_a();
+                add_textiles();
                 break;
             case 2:
-                function_b();
+                add_appliances();
                 break;
             case 3:
+                add_food();
+                break;
+            case 4:
                 main_menu();
                 break;
             default:
@@ -88,7 +92,7 @@ void sub_menu_a()
     }
 }
 
-void sub_menu_b() {
+/*void sub_menu_b() {
     cout << "You are at sub menu B." << endl;
 
     while (true) {
@@ -112,7 +116,7 @@ void sub_menu_b() {
                 break;
         }
     }
-}
+}*/
 int main(){
     return 0;
 }
