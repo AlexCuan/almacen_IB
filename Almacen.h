@@ -34,7 +34,7 @@ public:
     string paisOrigen;
     int cantidad;
 
-    RegistroProducto();
+    RegistroProducto() {};
 
     RegistroProducto(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad) {
         nombre = _nombre;
@@ -68,7 +68,7 @@ public:
     string sexo;
     char talla;
 
-    RegistroTextiles();
+    RegistroTextiles() {};
 
     RegistroTextiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                      string _material, char _sexo, char _talla) : RegistroProducto(_nombre, _codigo, _descripcion,
@@ -104,7 +104,7 @@ public:
     int voltaje;
     bool manual;
 
-    RegistroElectrodomesticos();
+    RegistroElectrodomesticos() {};
 
     RegistroElectrodomesticos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                               int _tiempo, int _voltaje, bool _manual) : RegistroProducto(_nombre, _codigo,
@@ -124,6 +124,7 @@ public:
     }
 
     void add_register() {
+        RegistroProducto::add_register();
         string temp;
         cout << "Introduzca el tiempo: ";
         cin >> this->tiempo;
@@ -139,20 +140,19 @@ public:
     }
 };
 
-class RegistroAlimentos : public RegistroProducto, public Date {
+class RegistroAlimentos : public RegistroProducto { //, public Date
 public:
     string clasificacion;
     string empleado;
     long codigoEstiba;
     bool eliminado;
 
-    RegistroAlimentos();
+    RegistroAlimentos() {};
 
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, int _dia,
-                      int _mes,
-                      int _anio, string _clasificacion, string _empleado, long _codigoEstiba,
-                      bool _eliminado) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad),
-                                         Date(_dia, _mes, _anio) {
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, //int _dia, int _mes, int _anio,
+            string _clasificacion, string _empleado, long _codigoEstiba, bool _eliminado) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+                                         //Date(_dia, _mes, _anio)
+                                         {
         clasificacion = _clasificacion;
         empleado = _empleado; //To-Do : Reestructurar este atributo
         codigoEstiba = _codigoEstiba;
@@ -162,11 +162,12 @@ public:
 
     void imprimir(ostream &salida) {
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " "
-               << cantidad << " " << day << " " << month << " " << year << " " << clasificacion << " " << empleado
+               << cantidad <</*<< day << " " << month << " " << year <<*/ " " << clasificacion << " " << empleado
                << " " << codigoEstiba << " " << endl;
     }
 
     void add_register() {
+        RegistroProducto::add_register();
         string temp;
         cout << "Introduzca la clasificacion : ";
         cin >> this->clasificacion;
