@@ -12,6 +12,8 @@ const string almacen_alimentos = "alimentos.dat";
 void main_menu();
 void sub_menu_a();
 void sub_menu_b();
+void sub_menu_c();
+void sub_menu_d();
 void function_a();
 void function_b();
 void function_c();
@@ -22,9 +24,12 @@ void main_menu()
 
     while(true)
     {
-        cout << "Select one of the following options:" << endl;
-        cout << "1 -> Sub menu A" << endl;
-        cout << "2 -> Sub menu B" << endl;
+        cout << "Bienvenido al almacen rosca izquierda:" << endl<<"Que desea hacer";
+        cout << "1 -> Adicionar nuevos productos al almacen" << endl;
+        cout << "2 -> Extraer productos del almacen" << endl;
+        cout << "3 -> Listar productos" << endl;
+        cout << "4 -> Eliminar producto de tipo alimento"<<endl;
+
 
         int option;
 
@@ -36,6 +41,12 @@ void main_menu()
                 break;
             case 2:
                 sub_menu_b();
+                break;
+            case 3:
+                sub_menu_c();
+                break;
+            case 4:
+                sub_menu_d();
                 break;
             default:
                 cout << "Please insert an integer between 1 and 2." << endl;
