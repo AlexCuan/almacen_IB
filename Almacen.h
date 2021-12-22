@@ -115,7 +115,7 @@ public:
         manual = _manual;
     }
 
-    void imprimir(ostream &salida) {
+    void imprimir(fstream &salida) {
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen
                << " " << cantidad << " " << tiempo << " " << voltaje << " ";
 
@@ -149,10 +149,12 @@ public:
 
     RegistroAlimentos() {};
 
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, //int _dia, int _mes, int _anio,
-            string _clasificacion, string _empleado, long _codigoEstiba, bool _eliminado) : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
-                                         //Date(_dia, _mes, _anio)
-                                         {
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen,
+                      int _cantidad, //int _dia, int _mes, int _anio,
+                      string _clasificacion, string _empleado, long _codigoEstiba, bool _eliminado) : RegistroProducto(
+            _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+    //Date(_dia, _mes, _anio)
+    {
         clasificacion = _clasificacion;
         empleado = _empleado; //To-Do : Reestructurar este atributo
         codigoEstiba = _codigoEstiba;
@@ -160,7 +162,7 @@ public:
 
     }
 
-    void imprimir(ostream &salida) {
+    void imprimir(fstream &salida) {
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " "
                << cantidad <</*<< day << " " << month << " " << year <<*/ " " << clasificacion << " " << empleado
                << " " << codigoEstiba << " " << endl;
@@ -183,6 +185,73 @@ public:
             this->eliminado = false;
         }
     }
+};
+
+
+
+class ContainerTextiles {
+public:
+    int size_of_array = 4;
+    int counter = 0;
+    RegistroTextiles **in_memory_warehouse;
+
+    ContainerTextiles() {
+        in_memory_warehouse = new RegistroTextiles*[size_of_array];
+    }
+
+    void add(RegistroTextiles* new_entry)
+    {
+        if(counter == size_of_array)
+        {
+            cout << "Extending array..." << endl;
+
+            size_of_array *= 2;
+            RegistroTextiles** new_array = new RegistroTextiles*[size_of_array];
+
+            for(int i = 0; i < size_of_array/2; i++)
+            {
+                new_array[i] = in_memory_warehouse[i];
+            }
+
+            delete [] in_memory_warehouse;
+            in_memory_warehouse = new_array;
+        }
+        else
+        {
+            cout << "Added without extending." << endl;
+        }
+
+        in_memory_warehouse[counter] = new_entry;
+        counter++;
+    }
+};
+
+class ContainerElectrodomesticos {
+public:
+    int size_of_array;
+    int counter;
+    RegistroElectrodomesticos **in_memory_warehouse;
+
+    ContainerElectrodomesticos(int size_of_array, int counter) {
+        this->size_of_array = size_of_array;
+        this->counter = counter;
+        in_memory_warehouse = new RegistroElectrodomesticos*[size_of_array];
+    }
+
+};
+
+class ContainerAlimentos {
+public:
+    int size_of_array;
+    int counter;
+    RegistroAlimentos **in_memory_warehouse;
+
+    ContainerAlimentos(int size_of_array, int counter) {
+        this->size_of_array = size_of_array;
+        this->counter = counter;
+        in_memory_warehouse = new RegistroAlimentos*[size_of_array];
+    }
+
 };
 
 
