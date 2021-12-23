@@ -44,7 +44,7 @@ public:
 
     //virtual void agregar();
     // virtual void eliminar();
-    virtual void imprimir();
+    //virtual void imprimir();
 
 };
 
@@ -118,5 +118,4 @@ public:
                << " " << codigoEstiba << " " << endl;
     }
 };
-
 

@@ -24,15 +24,15 @@ class Contenedor{ // clase que contiene los metodos y atributos para trabajar co
         {
 
             max_size *= 2;
-            Producto** new_array = new productos*[max_size];
+            Producto** new_array = new Producto*[max_size];
 
             for(int i = 0; i < max_size/2; i++)
             {
                 new_array[i] = productos[i];
             }
 
-            delete [] departamentoTextiles;
-            departamentoTextiles = new_array;
+            delete [] productos;
+            productos = new_array;
         }
 
 
@@ -48,5 +48,7 @@ Contenedor productosTextiles = Contenedor(); //con esta instancia se crea un arr
 
 int main(){
 cout << "HOLA MUNDO";
+
+productosTextiles.add(new Textiles("nasobuco", 12334, "covid", "EtadosU", 1000, "Tela", 'F', 'X'));
     return 0;
 }
