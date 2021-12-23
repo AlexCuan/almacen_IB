@@ -1,54 +1,157 @@
-#include "Almacen.h"
-#include <iostream>
-#include <stdlib.h>
-#include <fstream>
 
+#include "Almacen.h"
+#include "iostream"
+#include "stdlib.h"
+#include <cstdlib>
+#include "fstream"
 
 using namespace std;
 
-class Contenedor{ // clase que contiene los metodos y atributos para trabajar con arreglos de de tipo textil alimento y electrodomestico
-    public:
-    Producto** productos; //arreglo donde se almacenaran los productos
-    int max_size;
-    int counter;
 
-    Contenedor(){
-               max_size = 2;
-               counter = 0;
-               productos = new Producto*[max_size];
+void main_menu();
 
+void sub_menu_a();
+
+void limpiar_consola() {
+    system("clear");
+}
+
+/*void sub_menu_b();
+void sub_menu_c();
+void sub_menu_d();*/
+void add_textiles() {
+    cout << "Introduce el nombre del producto: ";
+    string nombre;
+    cin >> nombre;
+    cout << "Introduce el codigo: ";
+    long codigo;
+    cin >> codigo;
+};
+
+void add_appliances() {
+    limpiar_consola();
+    ofstream salida("appliance.dat", ios::app);
+    if (!salida) {
+        cout << "No se pudo crear el archivo";
     }
-    void add(Producto* productoAdd)
-    {
-        if(counter == max_size)
-        {
-
-            max_size *= 2;
-            Producto** new_array = new Producto*[max_size];
-
-            for(int i = 0; i < max_size/2; i++)
-            {
-                new_array[i] = productos[i];
-            }
-
-            delete [] productos;
-            productos = new_array;
-        }
-
-
-        productos[counter] = productoAdd; //se agrega el nuevo producto
-        counter++;
-    }
-
+    RegistroElectrodomesticos electrodomestico;
+    electrodomestico.add_register();
 
 };
 
-Contenedor productosTextiles = Contenedor(); //con esta instancia se crea un arrglo para la clase textiles
+void add_food() {
+    limpiar_consola();
+    //RegistroAlimentos alimento;
+    //alimento.add_register();
+};
+
+void main_menu() {
+    limpiar_consola();
+    cout << "You are at main menu." << endl;
+
+    while (true) {
+        cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
+        cout << "1 -> Adicionar nuevos productos al almacen" << endl;
+        cout << "2 -> Extraer productos del almacen" << endl;
+        cout << "3 -> Listar productos" << endl;
+        cout << "4 -> Eliminar producto de tipo alimento" << endl;
 
 
-int main(){
-cout << "HOLA MUNDO";
+        int option;
 
-productosTextiles.add(new Textiles("nasobuco", 12334, "covid", "EtadosU", 1000, "Tela", 'F', 'X'));
+        cin >> option;
+        switch (option) {
+            case 1:
+                sub_menu_a();
+                break;
+                /*case 2:
+                    sub_menu_b();
+                    break;
+                case 3:
+                    sub_menu_c();
+                    break;
+                case 4:
+                    sub_menu_d();
+                    break;*/
+            default:
+                cout << "Por favor inserte un numero entre 1 y 4." << endl;
+                break;
+        }
+    }
+}
+
+void sub_menu_a() {
+    limpiar_consola();
+    cout << "You are at sub menu A." << endl;
+
+    while (true) {
+        cout << "Seleccione la clasificacion del producto que desea adicionar:" << endl;
+        cout << "1 -> Textil" << endl;
+        cout << "2 -> Electrodomestico" << endl;
+        cout << "3 -> Alimenticio" << endl;
+        cout << "4 -> Menu principal" << endl;
+
+
+        int option;
+
+        cin >> option;
+        switch (option) {
+            case 1:
+                add_textiles();
+                break;
+            case 2:
+                add_appliances();
+                break;
+            case 3:
+                add_food();
+                break;
+            case 4:
+                main_menu();
+                break;
+            default:
+                cout << "Please insert an integer between 1 and 3." << endl;
+                break;
+        }
+    }
+}
+
+/*void sub_menu_b() {
+    cout << "You are at sub menu B." << endl;
+    while (true) {
+        cout << "Select one of the following options:" << endl;
+        cout << "1 -> Function C" << endl;
+        cout << "2 -> Back to main menu" << endl;
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                function_c();
+                break;
+            case 2:
+                main_menu();
+                break;
+            default:
+                cout << "Please insert an integer between 1 and 2." << endl;
+                break;
+        }
+    }
+}*/
+
+
+
+int main() {
+    /*fstream salida("textiles.dat");
+    //abrir demas archivos
+    add_textiles();
+    ContainerTextiles contenedor;
+    RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+    contenedor.add(&textil);
+    cout << contenedor.size_of_array;*/
+
+    fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
+
+    //while()
+
+  
     return 0;
 }
