@@ -57,8 +57,10 @@ public:
         cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
         this->cantidad;
     };
-    // virtual void eliminar();
-    //virtual void imprimir();
+     virtual void imprimir(ostream &salida){
+            salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " " << cantidad;
+     }
+    
 
 };
 
@@ -92,8 +94,8 @@ public:
     }
 
     void imprimir(ostream &salida) {
-        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen
-               << " " << cantidad << " " << material << " " << sexo << " " << talla << endl;
+        RegistroProducto::imprimir(salida);
+        salida << cantidad << " " << material << " " << sexo << " " << talla << endl;
     }
 
 };
@@ -116,8 +118,8 @@ public:
     }
 
     void imprimir(fstream &salida) {
-        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen
-               << " " << cantidad << " " << tiempo << " " << voltaje << " ";
+        RegistroProducto :: imprimir(salida);
+        salida << cantidad << " " << tiempo << " " << voltaje << " ";
 
         salida << (manual == true) ? "Manual de usuario incluido\n" : "Sin manual de usuario\n";
 
@@ -170,20 +172,20 @@ public:
 
     void add_register() {
         RegistroProducto::add_register();
-        string temp;
+        //string temp; eso va en la parte de la funcion eliminar
         cout << "Introduzca la clasificacion : ";
         cin >> this->clasificacion;
         cout << "Introduzca el empleado : ";
         cin >> this->empleado;
         cout << "Introduzca el codigo de estiba: ";
         cin >> this->codigoEstiba;
-        cout << "Esta eliminado? : ";
+       /* cout << "Esta eliminado? : ";
         cin >> temp;
         if (temp == "si") {
             this->eliminado = true;
         } else {
             this->eliminado = false;
-        }
+        }*/
     }
 };
 
