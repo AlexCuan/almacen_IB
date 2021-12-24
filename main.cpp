@@ -7,7 +7,11 @@
 
 using namespace std;
 
-
+//fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
+/* if(!salidaTextiles) {
+        cerr << "No se pudo crear el archivo";
+        exit(1);
+    }*/ //da error no se xq
 void main_menu();
 
 void sub_menu_a();
@@ -19,31 +23,40 @@ void limpiar_consola() {
 /*void sub_menu_b();
 void sub_menu_c();
 void sub_menu_d();*/
+
 void add_textiles() {
-    cout << "Introduce el nombre del producto: ";
-    string nombre;
-    cin >> nombre;
-    cout << "Introduce el codigo: ";
-    long codigo;
-    cin >> codigo;
-};
+    limpiar_consola();
+    /*ofstream salidaTextiles("textiles.dat", ios::app);
+    if (!salidaTextiles) {
+        cout << "No se pudo crear el archivo";
+    }
+    RegistroTextiles textiles;
+    textiles.add_register();*/ /*este codigo debe ir al final de la ejecucion del
+    priograma en otra funcion.
+    Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
+
+}
 
 void add_appliances() {
-    limpiar_consola();
-    ofstream salida("appliance.dat", ios::app);
-    if (!salida) {
+  /*  limpiar_consola();
+    ofstream salidaAppliances("appliance.dat", ios::app);
+    if (!salidaAppliances) {
         cout << "No se pudo crear el archivo";
     }
     RegistroElectrodomesticos electrodomestico;
-    electrodomestico.add_register();
+    electrodomestico.add_register();*/
 
-};
+}
 
 void add_food() {
-    limpiar_consola();
-    //RegistroAlimentos alimento;
-    //alimento.add_register();
-};
+    /*limpiar_consola();
+    ofstream salidaAlimentos("alimentos.dat", ios::app);
+    if (!salidaAlimentos) {
+        cout << "No se pudo crear el archivo";
+    }
+    RegistroAlimentos alimento;
+    alimento.add_register();*/
+} // no lleva punto y coma eso es para las clases
 
 void main_menu() {
     limpiar_consola();
@@ -140,18 +153,19 @@ void sub_menu_a() {
 
 
 int main() {
-    /*fstream salida("textiles.dat");
-    //abrir demas archivos
+    cout << " hola mundo";
+    fstream salida("textiles.dat");
+    /*abrir demas archivos
     add_textiles();
     ContainerTextiles contenedor;
     RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
     contenedor.add(&textil);
     cout << contenedor.size_of_array;*/
 
-    fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
+    cout << " hola mundo";
 
     //while()
 
-  
+
     return 0;
 }
