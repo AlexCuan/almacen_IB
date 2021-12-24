@@ -7,11 +7,46 @@
 
 using namespace std;
 
-//fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
+ContainerTextiles textiles_departament = ContainerTextiles();
+fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
+ // se declara aqui para poder acceder desde cualquier bloque
 /* if(!salidaTextiles) {
         cerr << "No se pudo crear el archivo";
         exit(1);
     }*/ //da error no se xq
+void cargarTextiles(){ // funcion para cargar los datos del archivo
+    // atributos de la clase textiles
+    string _nombre;
+    long _codigo;
+    string _descripcion;
+    string _paisOrigen;
+    int _cantidad;
+    string _material;
+    string _sexo;
+    char _talla;
+    RegistroTextiles productoTextil;
+    while(!inOut_Textiles.eof()){
+        inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material
+        >> _sexo >> _talla; // lectura de un registro del archivo
+        /*esto debe implementarse en funciones (setter) en las clases RegistroTextiles etc, una 
+        para cada atributo*/
+        productoTextil.nombre = _nombre; 
+        productoTextil.codigo = _codigo;
+        productoTextil.descripcion = _descripcion;
+        productoTextil.paisOrigen = _paisOrigen;
+        productoTextil.cantidad = _cantidad;
+        productoTextil.material = _material;
+        productoTextil.sexo = _sexo;
+        productoTextil.talla = _talla;
+
+
+        textiles_departament.add(&productoTextil);
+
+        //  con esto en teoria debe quedar todos los elemetos del archivo de textiles 
+        //  cargados en el arreglo de la clase Container textiles
+    }
+
+}
 void main_menu();
 
 void sub_menu_a();
@@ -154,7 +189,7 @@ void sub_menu_a() {
 
 int main() {
     cout << " hola mundo";
-    fstream salida("textiles.dat");
+   // fstream salida("textiles.dat");
     /*abrir demas archivos
     add_textiles();
     ContainerTextiles contenedor;
