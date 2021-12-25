@@ -3,4 +3,4 @@ project(almacen_IB)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(almacen_IB main.cpp)
+add_executable(almacen_IB Containers.h main.cpp)
