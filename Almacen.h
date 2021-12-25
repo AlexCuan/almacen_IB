@@ -226,6 +226,15 @@ public:
         in_memory_warehouse[counter] = new_entry;
         counter++;
     }
+    void extract(int index, int cant)
+    {
+        counter--;
+
+        for(int i = index; i < counter; i++)
+        {
+            in_memory_warehouse[i] = in_memory_warehouse[i+1];
+        }
+    }
 };
 
 class ContainerElectrodomesticos {
