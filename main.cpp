@@ -9,12 +9,12 @@ using namespace std;
 
 ContainerTextiles textiles_departament = ContainerTextiles();
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
- // se declara aqui para poder acceder desde cualquier bloque
+// se declara aqui para poder acceder desde cualquier bloque
 /* if(!salidaTextiles) {
         cerr << "No se pudo crear el archivo";
         exit(1);
     }*/ //da error no se xq
-void cargarTextiles(){ // funcion para cargar los datos del archivo
+void cargarTextiles() { // funcion para cargar los datos del archivo
     // atributos de la clase textiles
     string _nombre;
     long _codigo;
@@ -25,12 +25,12 @@ void cargarTextiles(){ // funcion para cargar los datos del archivo
     string _sexo;
     char _talla;
     RegistroTextiles productoTextil;
-    while(!inOut_Textiles.eof()){
+    while (!inOut_Textiles.eof()) {
         inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material
-        >> _sexo >> _talla; // lectura de un registro del archivo
+                       >> _sexo >> _talla; // lectura de un registro del archivo
         /*esto debe implementarse en funciones (setter) en las clases RegistroTextiles etc, una 
         para cada atributo*/
-        productoTextil.nombre = _nombre; 
+        productoTextil.nombre = _nombre;
         productoTextil.codigo = _codigo;
         productoTextil.descripcion = _descripcion;
         productoTextil.paisOrigen = _paisOrigen;
@@ -47,6 +47,7 @@ void cargarTextiles(){ // funcion para cargar los datos del archivo
     }
 
 }
+
 void main_menu();
 
 void sub_menu_a();
@@ -73,13 +74,13 @@ void add_textiles() {
 }
 
 void add_appliances() {
-  /*  limpiar_consola();
-    ofstream salidaAppliances("appliance.dat", ios::app);
-    if (!salidaAppliances) {
-        cout << "No se pudo crear el archivo";
-    }
-    RegistroElectrodomesticos electrodomestico;
-    electrodomestico.add_register();*/
+    /*  limpiar_consola();
+      ofstream salidaAppliances("appliance.dat", ios::app);
+      if (!salidaAppliances) {
+          cout << "No se pudo crear el archivo";
+      }
+      RegistroElectrodomesticos electrodomestico;
+      electrodomestico.add_register();*/
 
 }
 
@@ -189,7 +190,7 @@ void sub_menu_a() {
 
 int main() {
     cout << " hola mundo";
-   // fstream salida("textiles.dat");
+    // fstream salida("textiles.dat");
     /*abrir demas archivos
     add_textiles();
     ContainerTextiles contenedor;
