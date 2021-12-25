@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string>
 
-ContainerTextiles textiles_departament = ContainerTextiles();
+ContainerTextiles textiles_departament;
 
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
 
@@ -70,17 +70,12 @@ void sub_menu_d();*/
 
 void add_textiles() {
     limpiar_consola();
+    //textiles.add_register();
+    RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+    textiles_departament.add(&textiles);
+    cout << textiles_departament.counter<<endl;
 
-    /*ofstream salidaTextiles("textiles.dat", ios::app);
-
-    if (!salidaTextiles) {
-        cout << "No se pudo crear el archivo";
-    }
-
-    RegistroTextiles textiles;
-
-    textiles.add_register();*/ /*este codigo debe ir al final de la ejecucion del programa en otra funcion.
-    Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
+    //Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
 
 }
 
