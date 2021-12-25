@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/almacen_IB.dir/main.cpp.o  -o almacen_IB 
