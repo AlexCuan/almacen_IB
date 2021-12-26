@@ -67,7 +67,15 @@ public:
         }
         return -1;
     }
-};
+    void list(){
+        for(int i = 0; i < counter; i++)
+        {
+            cout<<in_memory_warehouse[i]->nombre<<endl;
+        }
+    }
+}
+
+;
 
 class ContainerElectrodomesticos {
 public:
