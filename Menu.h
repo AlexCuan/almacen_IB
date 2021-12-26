@@ -72,8 +72,11 @@ void add_textiles() {
     limpiar_consola();
 //    RegistroTextiles textiles;
 //    textiles.add_register();
-    RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
-    textiles_departament.add(&textiles);
+//
+
+    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", 'M',
+                                                   'L'));
+
 
     //cout << textiles_departament.counter<<endl;
     //Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
@@ -108,22 +111,16 @@ void add_food() {
 
 void extract_textiles(){
     limpiar_consola();
-
     string nombre_producto;
     int cantidad = 1;
-    int indice = 0;
-
     cout<<"Introduzca el nombre del producto a extraer: ";
     cin>>nombre_producto;
 
-    //indice = textiles_departament.find_index(nombre_producto);
-    //La funcion esta bien, pero hay conflicto a la hora de usar ContainerTextiles.find_index()
-    //devuelve Process finished with exit code 139 (interrupted by signal 11: SIGSEGV) y
-    //Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
+    int indice = textiles_departament.find_index(nombre_producto);
 
-    cout<<"\nHay "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+    cout<<"Hay "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 
-    cout<<"\nIntroduzca la cantidad a extraer: ";
+    cout<<"Introduzca la cantidad a extraer: ";
     cin >>cantidad;
 
     textiles_departament.extract(indice, cantidad);
