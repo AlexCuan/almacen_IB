@@ -29,7 +29,7 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _paisOrigen;
     int _cantidad;
     string _material;
-    string _sexo;
+    char _sexo;
     char _talla;
 
 
