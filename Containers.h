@@ -9,6 +9,7 @@ public:
     int counter = 0;
     RegistroTextiles **in_memory_warehouse;
 
+
     ContainerTextiles() {
         in_memory_warehouse = new RegistroTextiles*[size_of_array];
     }
@@ -70,7 +71,8 @@ public:
     void list(){
         for(int i = 0; i < counter; i++)
         {
-            cout<<in_memory_warehouse[i]->nombre<<endl;
+           in_memory_warehouse[i]->imprimir(cout);
+           // esto sirve para llenar el regitro tambien
         }
     }
 }
@@ -145,6 +147,13 @@ public:
             }
         }
         return -1;
+    }
+    void list(){
+        for(int i = 0; i < counter; i++)
+        {
+            in_memory_warehouse[i]->imprimir(cout);
+            // esto sirve para llenar el regitro tambien
+        }
     }
 
 };
@@ -221,5 +230,12 @@ public:
             }
         }
         return -1;
+    }
+    void list(){
+        for(int i = 0; i < counter; i++)
+        {
+            in_memory_warehouse[i]->imprimir(cout);
+            // esto sirve para llenar el regitro tambien
+        }
     }
 };
