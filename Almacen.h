@@ -155,16 +155,11 @@ public:
 
     RegistroAlimentos() {};
 
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen,
-                      int _cantidad, //int _dia, int _mes, int _anio,
-                      string _clasificacion, string _empleado, long _codigoEstiba, bool _eliminado) : RegistroProducto(
-            _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, string _clasificacion)
+    : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
     //Date(_dia, _mes, _anio)
     {
         clasificacion = _clasificacion;
-        empleado = _empleado; //To-Do : Reestructurar este atributo
-        codigoEstiba = _codigoEstiba;
-        eliminado = _eliminado;
 
     }
 
