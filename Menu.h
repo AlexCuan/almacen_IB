@@ -81,7 +81,7 @@ void add_food() {
 void extract_textiles(){
     limpiar_consola();
     string nombre_producto;
-    int cantidad = 1;
+    int cantidad;
     cout<<"Introduzca el nombre del producto a extraer: ";
     cin>>nombre_producto;
 
@@ -93,15 +93,53 @@ void extract_textiles(){
     cin >>cantidad;
 
     textiles_departament.extract(indice, cantidad);
-    cout<<textiles_departament.in_memory_warehouse[indice]->cantidad;
+    cout<<"Operacion realizada con exito. Queda "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+}
+
+void extract_appliances(){
+    limpiar_consola();
+    string nombre_producto;
+    int cantidad;
+    cout<<"Introduzca el nombre del producto a extraer: ";
+    cin>>nombre_producto;
+
+    int indice = appliances_department.find_index(nombre_producto);
+
+    cout<<"Hay "<<appliances_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+
+    cout<<"Introduzca la cantidad a extraer: ";
+    cin >>cantidad;
+
+    appliances_department.extract(indice, cantidad);
+    cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+}
+
+void extract_food(){
+    limpiar_consola();
+    string nombre_producto;
+    int cantidad;
+    cout<<"Introduzca el nombre del producto a extraer: ";
+    cin>>nombre_producto;
+
+    int indice = food_department.find_index(nombre_producto);
+
+    cout<<"Hay "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+
+    cout<<"Introduzca la cantidad a extraer: ";
+    cin >>cantidad;
+
+    food_department.extract(indice, cantidad);
+    cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 }
 
 void main_menu() {
 
-    limpiar_consola();
-    cout << "You are at main menu." << endl;
+
 
     while (true) {
+        limpiar_consola();
+        cout << "You are at main menu." << endl;
+
         cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
@@ -171,9 +209,10 @@ void sub_menu_a() {
 
 void sub_menu_b() {
 
-    cout << "You are at sub menu B." << endl;
-
     while (true) {
+        limpiar_consola();
+        cout << "You are at main menu." << endl;
+
         cout << "Seleccione la clasificacion del producto que desea extraer:" << endl;
         cout << "1 -> Textil" << endl;
         cout << "2 -> Electrodomestico" << endl;
@@ -188,15 +227,15 @@ void sub_menu_b() {
             case 1:
                 extract_textiles();
             break;
-//            case 2:
-//                extract_appliances();
-//            break;
-//            case 3:
-//                extract_food();
-//            break;
-//            case 4:
-//                main_menu();
-//            break;
+            case 2:
+                extract_appliances();
+            break;
+            case 3:
+                extract_food();
+            break;
+            case 4:
+                main_menu();
+            break;
             default:
                 cout << "Please insert an integer between 1 and 4." << endl;
             break;
