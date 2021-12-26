@@ -32,26 +32,14 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _sexo;
     char _talla;
 
-    RegistroTextiles productoTextil;
 
     while (!inOut_Textiles.eof()) {
         // lectura de un registro del archivo
         inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo >> _talla;
 
-        /*esto debe implementarse en funciones (setter) en las clases RegistroTextiles etc, una
-        para cada atributo*/
 
-        productoTextil.nombre = _nombre;
-        productoTextil.codigo = _codigo;
-        productoTextil.descripcion = _descripcion;
-        productoTextil.paisOrigen = _paisOrigen;
-        productoTextil.cantidad = _cantidad;
-        productoTextil.material = _material;
-        productoTextil.sexo = _sexo;
-        productoTextil.talla = _talla;
-
-
-        textiles_departament.add(&productoTextil);
+        textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
+        _cantidad, _material, _sexo, _talla));
 
         //  con esto en teoria debe quedar todos los elemetos del archivo de textiles
         //  cargados en el arreglo de la clase Container textiles
