@@ -61,20 +61,99 @@ void sub_menu_d();*/
 void add_textiles() {
     limpiar_consola();
 
-    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", 'M',
-                                                   'L'));
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    string material;
+    char sexo;
+    char talla;
 
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca el material: ";
+    cin >> material;
+    cout << "Introduzca el sexo: ";
+    cin >> sexo;
+    cout << "Introduzca la talla: ";
+    cin >> talla;
+
+    textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
+                                                   talla));
 
 }
 
 void add_appliances() {
     limpiar_consola();
-    appliances_department.add(new RegistroElectrodomesticos("Refrigerador",5555, "Refrigerador para hacer hielito","China", 356,1,220,true));
+
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    int tiempo; //tiempo en meses
+    int voltaje;
+    bool manual;
+    string temp;
+
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca el tiempo: ";
+    cin >> tiempo;
+    cout << "Introduzca el voltaje: ";
+    cin >> voltaje;
+    cout << "Tiene manual ?: ";
+    cin >> temp;
+    if (temp == "si") {
+        manual = true;
+    } else {
+        manual = false;
+    }
+
+    appliances_department.add(new RegistroElectrodomesticos(nombre,codigo, descripcion,paisOrigen, cantidad,tiempo,voltaje,manual));
 
 }
 
 void add_food() {
     limpiar_consola();
+
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    string clasificacion;
+
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca la clasificacion : ";
+    cin>>clasificacion;
+
     food_department.add(new RegistroAlimentos("Pan",2345,"Pan para comer","Uruguay", 34,"solido"));
 }
 
