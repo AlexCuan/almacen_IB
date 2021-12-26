@@ -9,6 +9,8 @@
 
 
 ContainerTextiles textiles_departament;
+ContainerElectrodomesticos appliances_department;
+ContainerAlimentos food_department;
 
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
 
@@ -58,49 +60,107 @@ void sub_menu_d();*/
 
 void add_textiles() {
     limpiar_consola();
-//    RegistroTextiles textiles;
-//    textiles.add_register();
-//
 
-    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", 'M',
-                                                   'L'));
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    string material;
+    char sexo;
+    char talla;
 
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca el material: ";
+    cin >> material;
+    cout << "Introduzca el sexo: ";
+    cin >> sexo;
+    cout << "Introduzca la talla: ";
+    cin >> talla;
 
-    //cout << textiles_departament.counter<<endl;
-    //Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
+    textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
+                                                   talla));
 
 }
 
 void add_appliances() {
-    /*  limpiar_consola();
+    limpiar_consola();
 
-      ofstream salidaAppliances("appliance.dat", ios::app);
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    int tiempo; //tiempo en meses
+    int voltaje;
+    bool manual;
+    string temp;
 
-      if (!salidaAppliances) {
-          cout << "No se pudo crear el archivo";
-      }
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca el tiempo: ";
+    cin >> tiempo;
+    cout << "Introduzca el voltaje: ";
+    cin >> voltaje;
+    cout << "Tiene manual ?: ";
+    cin >> temp;
+    if (temp == "si") {
+        manual = true;
+    } else {
+        manual = false;
+    }
 
-      RegistroElectrodomesticos electrodomestico;
-      electrodomestico.add_register();*/
+    appliances_department.add(new RegistroElectrodomesticos(nombre,codigo, descripcion,paisOrigen, cantidad,tiempo,voltaje,manual));
 
 }
 
 void add_food() {
-    /*limpiar_consola();
+    limpiar_consola();
 
-    ofstream salidaAlimentos("alimentos.dat", ios::app);
+    string nombre;
+    long codigo;
+    string descripcion;
+    string paisOrigen;
+    int cantidad;
+    string clasificacion;
 
-    if (!salidaAlimentos) {
-        cout << "No se pudo crear el archivo";
-    }
-    RegistroAlimentos alimento;
-    alimento.add_register();    No lleva punto y coma eso es para las clases*/
+    cout << "Introduzca el nombre del producto: ";
+    cin >> nombre;
+    cout << "Introduzca el codigo del producto: ";
+    cin >> codigo;
+    cout << "Introduzca la descripcion del producto: ";
+    cin >> descripcion;
+    cout << "Introduzca el pais de origen del producto: ";
+    cin >> paisOrigen;
+    cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
+    cin>> cantidad;
+    cout << "Introduzca la clasificacion : ";
+    cin>>clasificacion;
+
+    food_department.add(new RegistroAlimentos("Pan",2345,"Pan para comer","Uruguay", 34,"solido"));
 }
 
 void extract_textiles(){
     limpiar_consola();
     string nombre_producto;
-    int cantidad = 1;
+    int cantidad;
     cout<<"Introduzca el nombre del producto a extraer: ";
     cin>>nombre_producto;
 
@@ -112,15 +172,53 @@ void extract_textiles(){
     cin >>cantidad;
 
     textiles_departament.extract(indice, cantidad);
-    cout<<textiles_departament.in_memory_warehouse[indice]->cantidad;
+    cout<<"Operacion realizada con exito. Queda "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+}
+
+void extract_appliances(){
+    limpiar_consola();
+    string nombre_producto;
+    int cantidad;
+    cout<<"Introduzca el nombre del producto a extraer: ";
+    cin>>nombre_producto;
+
+    int indice = appliances_department.find_index(nombre_producto);
+
+    cout<<"Hay "<<appliances_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+
+    cout<<"Introduzca la cantidad a extraer: ";
+    cin >>cantidad;
+
+    appliances_department.extract(indice, cantidad);
+    cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+}
+
+void extract_food(){
+    limpiar_consola();
+    string nombre_producto;
+    int cantidad;
+    cout<<"Introduzca el nombre del producto a extraer: ";
+    cin>>nombre_producto;
+
+    int indice = food_department.find_index(nombre_producto);
+
+    cout<<"Hay "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+
+    cout<<"Introduzca la cantidad a extraer: ";
+    cin >>cantidad;
+
+    food_department.extract(indice, cantidad);
+    cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 }
 
 void main_menu() {
 
-    limpiar_consola();
-    cout << "You are at main menu." << endl;
+
 
     while (true) {
+        limpiar_consola();
+        cout << "You are at main menu." << endl;
+
         cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
@@ -190,9 +288,10 @@ void sub_menu_a() {
 
 void sub_menu_b() {
 
-    cout << "You are at sub menu B." << endl;
-
     while (true) {
+        limpiar_consola();
+        cout << "You are at main menu." << endl;
+
         cout << "Seleccione la clasificacion del producto que desea extraer:" << endl;
         cout << "1 -> Textil" << endl;
         cout << "2 -> Electrodomestico" << endl;
@@ -207,15 +306,15 @@ void sub_menu_b() {
             case 1:
                 extract_textiles();
             break;
-//            case 2:
-//                extract_appliances();
-//            break;
-//            case 3:
-//                extract_food();
-//            break;
-//            case 4:
-//                main_menu();
-//            break;
+            case 2:
+                extract_appliances();
+            break;
+            case 3:
+                extract_food();
+            break;
+            case 4:
+                main_menu();
+            break;
             default:
                 cout << "Please insert an integer between 1 and 4." << endl;
             break;
