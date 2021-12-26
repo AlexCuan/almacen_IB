@@ -5,6 +5,10 @@
 
 using namespace std;
 
+void limpiar_consola() {
+    system("clear");
+}
+
 //To-Do : Buscar libreria para formatear fecha y hacer Date clase padre
 class Date {    //clase para almacenar la fecha
 public:
@@ -60,7 +64,7 @@ public:
      virtual void imprimir(ostream &salida){
             salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " " << cantidad;
      }
-    
+    virtual ~RegistroProducto(){};
 
 };
 
