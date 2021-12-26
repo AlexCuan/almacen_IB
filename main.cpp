@@ -7,8 +7,8 @@
 using namespace std;
 
 int main() {
-
     main_menu();
+
     // fstream salida("textiles.dat");
     /*abrir demas archivos
     add_textiles();

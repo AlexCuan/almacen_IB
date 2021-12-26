@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <string>
 
+//RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
+
+
 ContainerTextiles textiles_departament;
 
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
@@ -59,10 +62,7 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
 void main_menu();
 
 void sub_menu_a();
-
-void limpiar_consola() {
-    system("clear");
-}
+void sub_menu_b();
 
 /*void sub_menu_b();
 void sub_menu_c();
@@ -70,11 +70,12 @@ void sub_menu_d();*/
 
 void add_textiles() {
     limpiar_consola();
-    //textiles.add_register();
+//    RegistroTextiles textiles;
+//    textiles.add_register();
     RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
     textiles_departament.add(&textiles);
-    cout << textiles_departament.counter<<endl;
 
+    //cout << textiles_departament.counter<<endl;
     //Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
 
 }
@@ -105,6 +106,30 @@ void add_food() {
     alimento.add_register();    No lleva punto y coma eso es para las clases*/
 }
 
+void extract_textiles(){
+    limpiar_consola();
+
+    string nombre_producto;
+    int cantidad = 1;
+    int indice = 0;
+
+    cout<<"Introduzca el nombre del producto a extraer: ";
+    cin>>nombre_producto;
+
+    //indice = textiles_departament.find_index(nombre_producto);
+    //La funcion esta bien, pero hay conflicto a la hora de usar ContainerTextiles.find_index()
+    //devuelve Process finished with exit code 139 (interrupted by signal 11: SIGSEGV) y
+    //Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
+
+    cout<<"\nHay "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
+
+    cout<<"\nIntroduzca la cantidad a extraer: ";
+    cin >>cantidad;
+
+    textiles_departament.extract(indice, cantidad);
+    cout<<textiles_departament.in_memory_warehouse[indice]->cantidad;
+}
+
 void main_menu() {
 
     limpiar_consola();
@@ -125,15 +150,15 @@ void main_menu() {
             case 1:
                 sub_menu_a();
                 break;
-                /*case 2:
+                case 2:
                     sub_menu_b();
                     break;
-                case 3:
-                    sub_menu_c();
-                    break;
-                case 4:
-                    sub_menu_d();
-                    break;*/
+//                case 3:
+//                    sub_menu_c();
+//                    break;
+//                case 4:
+//                    sub_menu_d();
+//                    break;*/
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -143,10 +168,11 @@ void main_menu() {
 
 void sub_menu_a() {
 
-    limpiar_consola();
-    cout << "You are at sub menu A." << endl;
 
     while (true) {
+        limpiar_consola();
+
+        cout << "You are at sub menu A." << endl;
 
         cout << "Seleccione la clasificacion del producto que desea adicionar:" << endl;
         cout << "1 -> Textil" << endl;
@@ -171,20 +197,22 @@ void sub_menu_a() {
                 main_menu();
                 break;
             default:
-                cout << "Please insert an integer between 1 and 3." << endl;
+                cout << "Please insert an integer between 1 and 4." << endl;
                 break;
         }
     }
 }
 
-/*void sub_menu_b() {
- *
+void sub_menu_b() {
+
     cout << "You are at sub menu B." << endl;
 
     while (true) {
-        cout << "Select one of the following options:" << endl;
-        cout << "1 -> Function C" << endl;
-        cout << "2 -> Back to main menu" << endl;
+        cout << "Seleccione la clasificacion del producto que desea extraer:" << endl;
+        cout << "1 -> Textil" << endl;
+        cout << "2 -> Electrodomestico" << endl;
+        cout << "3 -> Alimenticio" << endl;
+        cout << "4 -> Menu principal" << endl;
 
         int option;
 
@@ -192,14 +220,20 @@ void sub_menu_a() {
 
         switch (option) {
             case 1:
-                function_c();
-                break;
-            case 2:
-                main_menu();
-                break;
+                extract_textiles();
+            break;
+//            case 2:
+//                extract_appliances();
+//            break;
+//            case 3:
+//                extract_food();
+//            break;
+//            case 4:
+//                main_menu();
+//            break;
             default:
-                cout << "Please insert an integer between 1 and 2." << endl;
-                break;
+                cout << "Please insert an integer between 1 and 4." << endl;
+            break;
         }
     }
-}*/
+}

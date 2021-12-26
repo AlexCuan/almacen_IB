@@ -88,7 +88,7 @@ public:
 
     void add_register() {
         RegistroProducto::add_register();
-        cout << "Introduzca el material : ";
+        cout << "Introduzca el material: ";
         cin >> this->material;
         cout << "Introduzca el sexo: ";
         cin >> this->sexo;

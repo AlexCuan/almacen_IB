@@ -42,7 +42,7 @@ public:
         cout << "Esa cantidad no esta disponible en el almacen\n";
 
     }
-        else if(cant < in_memory_warehouse[index]->cantidad){
+        else if(cant < in_memory_warehouse[index]->cantidad){ //Aqui deberia
             in_memory_warehouse[index]->cantidad -= cant;
     }
         else{
