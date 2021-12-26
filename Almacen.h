@@ -121,7 +121,7 @@ public:
         manual = _manual;
     }
 
-    void imprimir(fstream &salida) {
+    void imprimir(ostream &salida) {
         RegistroProducto :: imprimir(salida);
         salida << cantidad << " " << tiempo << " " << voltaje << " ";
 
@@ -168,7 +168,7 @@ public:
 
     }
 
-    void imprimir(fstream &salida) {
+    void imprimir(ostream &salida) {
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " "
                << cantidad <</*<< day << " " << month << " " << year <<*/ " " << clasificacion << " " << empleado
                << " " << codigoEstiba << " " << endl;
