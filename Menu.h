@@ -9,6 +9,8 @@
 
 
 ContainerTextiles textiles_departament;
+ContainerElectrodomesticos appliances_department;
+ContainerAlimentos food_department;
 
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
 
@@ -58,43 +60,22 @@ void sub_menu_d();*/
 
 void add_textiles() {
     limpiar_consola();
-//    RegistroTextiles textiles;
-//    textiles.add_register();
-//
 
     textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", 'M',
                                                    'L'));
 
 
-    //cout << textiles_departament.counter<<endl;
-    //Aqui lo q debe ir es agregar los registror al arreglo de la clase contenedor textiles*/
-
 }
 
 void add_appliances() {
-    /*  limpiar_consola();
-
-      ofstream salidaAppliances("appliance.dat", ios::app);
-
-      if (!salidaAppliances) {
-          cout << "No se pudo crear el archivo";
-      }
-
-      RegistroElectrodomesticos electrodomestico;
-      electrodomestico.add_register();*/
+    limpiar_consola();
+    appliances_department.add(new RegistroElectrodomesticos("Refrigerador",5555, "Refrigerador para hacer hielito","China", 356,1,220,true));
 
 }
 
 void add_food() {
-    /*limpiar_consola();
-
-    ofstream salidaAlimentos("alimentos.dat", ios::app);
-
-    if (!salidaAlimentos) {
-        cout << "No se pudo crear el archivo";
-    }
-    RegistroAlimentos alimento;
-    alimento.add_register();    No lleva punto y coma eso es para las clases*/
+    limpiar_consola();
+    food_department.add(new RegistroAlimentos("Pan",2345,"Pan para comer","Uruguay", 34,"solido"));
 }
 
 void extract_textiles(){
