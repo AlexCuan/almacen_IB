@@ -48,19 +48,6 @@ public:
         cantidad = _cantidad;
 
     }
-
-    virtual void add_register() {
-        cout << "Introduzca el nombre del producto: ";
-        cin >> this->nombre;
-        cout << "Introduzca el codigo del producto: ";
-        cin >> this->codigo;
-        cout << "Introduzca la descripcion del producto: ";
-        cin >> this->descripcion;
-        cout << "Introduzca el pais de origen del producto: ";
-        cin >> this->paisOrigen;
-        cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
-        this->cantidad;
-    };
      virtual void imprimir(ostream &salida){
             salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " " << cantidad;
      }
@@ -71,7 +58,7 @@ public:
 class RegistroTextiles : public RegistroProducto {
 public:
     string material;
-    string sexo;
+    char sexo;
     char talla;
 
     RegistroTextiles() {};
@@ -83,17 +70,6 @@ public:
         material = _material;
         sexo = _sexo;
         talla = _talla;
-
-    }
-
-    void add_register() {
-        RegistroProducto::add_register();
-        cout << "Introduzca el material: ";
-        cin >> this->material;
-        cout << "Introduzca el sexo: ";
-        cin >> this->sexo;
-        cout << "Introduzca la talla: ";
-        cin >> this->talla;
 
     }
 
@@ -129,21 +105,7 @@ public:
 
     }
 
-    void add_register() {
-        RegistroProducto::add_register();
-        string temp;
-        cout << "Introduzca el tiempo: ";
-        cin >> this->tiempo;
-        cout << "Introduzca el voltaje: ";
-        cin >> this->voltaje;
-        cout << "Tiene manual ?: ";
-        cin >> temp;
-        if (temp == "si") {
-            this->manual = true;
-        } else {
-            this->manual = false;
-        }
-    }
+
 };
 
 class RegistroAlimentos : public RegistroProducto { //, public Date
@@ -155,16 +117,11 @@ public:
 
     RegistroAlimentos() {};
 
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen,
-                      int _cantidad, //int _dia, int _mes, int _anio,
-                      string _clasificacion, string _empleado, long _codigoEstiba, bool _eliminado) : RegistroProducto(
-            _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, string _clasificacion)
+    : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
     //Date(_dia, _mes, _anio)
     {
         clasificacion = _clasificacion;
-        empleado = _empleado; //To-Do : Reestructurar este atributo
-        codigoEstiba = _codigoEstiba;
-        eliminado = _eliminado;
 
     }
 
@@ -172,24 +129,6 @@ public:
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " "
                << cantidad <</*<< day << " " << month << " " << year <<*/ " " << clasificacion << " " << empleado
                << " " << codigoEstiba << " " << endl;
-    }
-
-    void add_register() {
-        RegistroProducto::add_register();
-        //string temp; eso va en la parte de la funcion eliminar
-        cout << "Introduzca la clasificacion : ";
-        cin >> this->clasificacion;
-        cout << "Introduzca el empleado : ";
-        cin >> this->empleado;
-        cout << "Introduzca el codigo de estiba: ";
-        cin >> this->codigoEstiba;
-       /* cout << "Esta eliminado? : ";
-        cin >> temp;
-        if (temp == "si") {
-            this->eliminado = true;
-        } else {
-            this->eliminado = false;
-        }*/
     }
 };
 
