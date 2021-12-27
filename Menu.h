@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string>
 
+using namespace  std;
+
 //RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
 
 
@@ -19,6 +21,8 @@ fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
         cerr << "No se pudo crear el archivo";
         exit(1);
     }*/ //da error no se xq
+fstream inOut_appliances("appliances.dat", ios::out);
+fstream inOut_food("food.dat", ios::out);
 
 
 void cargarTextiles() { // funcion para cargar los datos del archivo
@@ -48,6 +52,44 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     }
 
 }
+void cargar_electrodomesticos() {
+    string _nombre;
+    long _codigo;
+    string _descripcion;
+    string _paisOrigen;
+    int _cantidad;
+    int _tiempo;
+    int _voltaje;
+    bool _manual;
+
+    while (!inOut_appliances.eof()) {
+        inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
+                         >> _manual;
+        appliances_department.add(new RegistroElectrodomesticos(_nombre, _codigo,
+                                                                _descripcion, _paisOrigen, _cantidad, _tiempo, _voltaje,
+                                                                _manual));
+    }
+}
+
+void cargar_food(){
+    string _nombre;
+    long _codigo;
+    string _descripcion;
+    string _paisOrigen;
+    int _cantidad;
+    string _clasificacion;
+    string _empleado;
+    long _codigoEstiba;
+
+    while(!inOut_food.eof()){
+        inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion >> _empleado >> _codigoEstiba;
+
+        food_department.add(new RegistroAlimentos(_nombre, _codigo,
+                _descripcion, _paisOrigen, _cantidad, _clasificacion, _empleado, _codigoEstiba)); //flat por agregar al array
+                //empleado y codigoEstba
+    }
+}
+
 
 void main_menu();
 

@@ -68,10 +68,10 @@ public:
         }
         return -1;
     }
-    void list(){
+    void list(ostream &salida){
         for(int i = 0; i < counter; i++)
         {
-           in_memory_warehouse[i]->imprimir(cout);
+           in_memory_warehouse[i]->imprimir(salida);
            // esto sirve para llenar el regitro tambien
         }
     }
@@ -148,10 +148,10 @@ public:
         }
         return -1;
     }
-    void list(){
+    void list(ostream &salida){
         for(int i = 0; i < counter; i++)
         {
-            in_memory_warehouse[i]->imprimir(cout);
+            in_memory_warehouse[i]->imprimir(salida);
             // esto sirve para llenar el regitro tambien
         }
     }
@@ -231,10 +231,10 @@ public:
         }
         return -1;
     }
-    void list(){
+    void list(ostream &salida){
         for(int i = 0; i < counter; i++)
         {
-            in_memory_warehouse[i]->imprimir(cout);
+            in_memory_warehouse[i]->imprimir(salida);
             // esto sirve para llenar el regitro tambien
         }
     }

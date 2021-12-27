@@ -113,12 +113,22 @@ public:
     string clasificacion;
     string empleado;
     long codigoEstiba;
-    bool eliminado;
+   // bool eliminado;
 
     RegistroAlimentos() {};
 
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, string _clasificacion)
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
+            string _clasificacion, string _empleado, long _codigoEstiba)
     : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+    //Date(_dia, _mes, _anio)
+    {
+        clasificacion = _clasificacion;
+        empleado = _empleado;
+        codigoEstiba = _codigoEstiba;
+
+    } // este constructor sera para leer del archivo
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, string _clasificacion)
+            : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
     //Date(_dia, _mes, _anio)
     {
         clasificacion = _clasificacion;
