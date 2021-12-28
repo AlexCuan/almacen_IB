@@ -174,30 +174,47 @@ public:
     {
         if (index == -1) {
             cout << "Producto no encontrado\n";
-        } else if (cant > in_memory_warehouse[index]->cantidad) {
-            cout << "Esa cantidad no esta disponible en el almacen\n";
-
-        } else if (cant <= in_memory_warehouse[index]->cantidad) {
-            in_memory_warehouse[index]->cantidad -= cant;
-            cout << "introduzca su nombre para extraer el producto: ";
-            string nombreEmpleado;
-            cin >> nombreEmpleado;
-            in_memory_warehouse[index]->empleado = nombreEmpleado;
-            cout << "Introduzca su codigo de estiba: ";
-            long codigoEstib;
-            cin >> codigoEstib;
-            in_memory_warehouse[index]->codigoEstiba = codigoEstib;
         }
-        /*else{
-            counter--;
+        else if(obtainDate() <= in_memory_warehouse[index]->fecha){
+            cout << "Este producto ya esta vencido\n";
+            if (cant > in_memory_warehouse[index]->cantidad) {
+                cout << "Esa cantidad no esta disponible en el almacen\n";
 
-            for(int i = index; i < counter; i++)
-            {
-                in_memory_warehouse[i] = in_memory_warehouse[i+1];
             }
-        }*/
+            else if (cant <= in_memory_warehouse[index]->cantidad) {
+                in_memory_warehouse[index]->cantidad -= cant;
+                cout << "introduzca su nombre para extraer el producto: ";
+                string nombreEmpleado;
+                cin >> nombreEmpleado;
+                in_memory_warehouse[index]->empleado = nombreEmpleado;
+                cout << "Introduzca su codigo de estiba: ";
+                long codigoEstib;
+                codigoEstib = validateInput_int(codigoEstib);
+                in_memory_warehouse[index]->codigoEstiba = codigoEstib;
+            }
+        }
+        else {    if (index == -1) {
+                cout << "Producto no encontrado\n";
+            } else if (cant > in_memory_warehouse[index]->cantidad) {
+                cout << "Esa cantidad no esta disponible en el almacen\n";
 
-    }
+            } else if (cant < in_memory_warehouse[index]->cantidad) {
+                in_memory_warehouse[index]->cantidad -= cant;
+            } else {
+                counter--;
+
+                for (int i = index; i < counter; i++) {
+                    in_memory_warehouse[i] = in_memory_warehouse[i + 1];
+                }
+            }
+
+        }
+
+        }
+
+
+
+
 
     int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
  conveniente cambiar la entrada del usuario ya sea todo en mayuscula o en minuysculas*/

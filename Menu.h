@@ -10,6 +10,7 @@ using namespace  std;
 //RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
 
 
+
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
@@ -81,13 +82,15 @@ void cargar_food(){
     string _clasificacion;
     string _empleado;
     long _codigoEstiba;
+    string _day;
+    string _month;
+    string _year;
 
     while(!inOut_food.eof()){
         inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion >> _empleado >> _codigoEstiba;
 
         food_department.add(new RegistroAlimentos(_nombre, _codigo,
-                _descripcion, _paisOrigen, _cantidad, _clasificacion, _empleado, _codigoEstiba)); //flat por agregar al array
-                //empleado y codigoEstba
+                _descripcion, _paisOrigen, _cantidad, _clasificacion, _day, _month, _year, _empleado, _codigoEstiba));
     }
 }
 
@@ -118,13 +121,13 @@ void add_textiles() {
     cout << "Introduzca el nombre del producto: ";
     cin >> nombre;
     cout << "Introduzca el codigo del producto: ";
-    cin >> codigo;
+    codigo = validateInput_int(codigo);
     cout << "Introduzca la descripcion del producto: ";
     cin >> descripcion;
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
-    cin>> cantidad;
+    cantidad = validateInput_int(cantidad);
     cout << "Introduzca el material: ";
     cin >> material;
     cout << "Introduzca el sexo: ";
@@ -153,17 +156,17 @@ void add_appliances() {
     cout << "Introduzca el nombre del producto: ";
     cin >> nombre;
     cout << "Introduzca el codigo del producto: ";
-    cin >> codigo;
+    codigo = validateInput_int(codigo);
     cout << "Introduzca la descripcion del producto: ";
     cin >> descripcion;
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
-    cin>> cantidad;
+    cantidad = validateInput_int(cantidad);
     cout << "Introduzca el tiempo: ";
-    cin >> tiempo;
+    tiempo = validateInput_int(tiempo);
     cout << "Introduzca el voltaje: ";
-    cin >> voltaje;
+    voltaje = validateInput_int(voltaje);
     cout << "Tiene manual ?: ";
     cin >> temp;
     if (temp == "si") {
@@ -185,21 +188,31 @@ void add_food() {
     string paisOrigen;
     int cantidad;
     string clasificacion;
+    string _day;
+    string _month;
+    string _year;
 
     cout << "Introduzca el nombre del producto: ";
     cin >> nombre;
     cout << "Introduzca el codigo del producto: ";
-    cin >> codigo;
+    codigo = validateInput_int(codigo);
     cout << "Introduzca la descripcion del producto: ";
     cin >> descripcion;
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
-    cin>> cantidad;
+    cantidad = validateInput_int(cantidad);
     cout << "Introduzca la clasificacion : ";
     cin>>clasificacion;
+    cout<< "Introduzca la fecha de vencimiento: " <<endl;
+    cout << "Introduzca el dia: ";
+    cin >> _day;
+    cout << "Introduzca el mes: ";
+    cin >> _month;
+    cout << "Introduzca el anio: ";
+    cin >> _year;
 
-    food_department.add(new RegistroAlimentos("Pan",2345,"Pan para comer","Uruguay", 34,"solido"));
+    food_department.add(new RegistroAlimentos("Pan",2345,"Pan para comer","Uruguay", 34,"solido", "10", "12", "30"));
 }
 
 void extract_textiles(){
@@ -214,7 +227,7 @@ void extract_textiles(){
     cout<<"Hay "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 
     cout<<"Introduzca la cantidad a extraer: ";
-    cin >>cantidad;
+    cantidad = validateInput_int(cantidad);
 
     textiles_departament.extract(indice, cantidad);
     cout<<"Operacion realizada con exito. Queda "<<textiles_departament.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
@@ -232,7 +245,7 @@ void extract_appliances(){
     cout<<"Hay "<<appliances_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 
     cout<<"Introduzca la cantidad a extraer: ";
-    cin >>cantidad;
+    cantidad = validateInput_int(cantidad);
 
     appliances_department.extract(indice, cantidad);
     cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
@@ -250,7 +263,7 @@ void extract_food(){
     cout<<"Hay "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 
     cout<<"Introduzca la cantidad a extraer: ";
-    cin >>cantidad;
+    cantidad = validateInput_int(cantidad);
 
     food_department.extract(indice, cantidad);
     cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
@@ -262,6 +275,9 @@ void list_textiles(){
     textiles_departament.list(cout);
     int a;
     cin>>a;
+    //getchar();
+   // system("pause");
+
 }
 
 void list_appliances(){
@@ -287,18 +303,18 @@ void add_dummies(){
     appliances_department.add(new RegistroElectrodomesticos("Lavadora",3756,"Centrifugadoooo","China",34,28,110,false));
     appliances_department.add(new RegistroElectrodomesticos("Arrocera",7682,"ArrozVietnamita","China",34,36,220,true));
 
-    food_department.add(new RegistroAlimentos("Pan",1244,"pancito","Ecuador",23,"Solido"));
-    food_department.add(new RegistroAlimentos("Refresco",4565,"refresquito","Bolivia",42,"Liquido"));
-    food_department.add(new RegistroAlimentos("Pelly",3467,"pellycito","Peru",86,"Solido"));
-    food_department.add(new RegistroAlimentos("Ron",6575,"pancito","Chile",73,"Liquido"));
-    food_department.add(new RegistroAlimentos("Puerco",1693,"pancito","Oriente",74,"Solido"));
+    food_department.add(new RegistroAlimentos("Pan",1244,"pancito","Ecuador",23,"Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("Refresco",4565,"refresquito","Bolivia",42,"Liquido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("Pelly",3467,"pellycito","Peru",86,"Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("Ron",6575,"pancito","Chile",73,"Liquido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("Puerco",1693,"pancito","Oriente",74,"Solido", "10", "12", "30"));
 }
 
 void main_menu() {
+    bool terminar = false;
 
 
-
-    while (true) {
+    while (!terminar) {
         limpiar_consola();
         cout << "You are at main menu." << endl;
 
@@ -308,11 +324,12 @@ void main_menu() {
         cout << "3 -> Listar productos" << endl;
         cout << "4 -> Eliminar producto de tipo alimento" << endl;
         cout <<"5 -> Añadir dummies"<< endl;
+        cout <<"6 -> Salir"<< endl;
 
 
         int option;
 
-        cin >> option;
+        option = validateInput_int(option);
         switch (option) {
             case 1:
                 sub_menu_a();
@@ -329,6 +346,9 @@ void main_menu() {
                 case 5:
                     add_dummies();
                     break;
+                 case 6:
+                     terminar = true;
+                     break;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -352,7 +372,7 @@ void sub_menu_a() {
 
         int option;
 
-        cin >> option;
+        option = validateInput_int(option);
         switch (option) {
             case 1:
                 add_textiles();
@@ -387,7 +407,7 @@ void sub_menu_b() {
 
         int option;
 
-        cin >> option;
+        option = validateInput_int(option);
 
         switch (option) {
             case 1:
@@ -423,7 +443,7 @@ void sub_menu_c() {
 
         int option;
 
-        cin >> option;
+        option = validateInput_int(option);
 
         switch (option) {
             case 1:
