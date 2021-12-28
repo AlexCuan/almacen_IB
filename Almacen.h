@@ -48,10 +48,12 @@ public:
         cantidad = _cantidad;
 
     }
-     virtual void imprimir(ostream &salida){
-            salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " " << cantidad;
-     }
-    virtual ~RegistroProducto(){};
+
+    virtual void imprimir(ostream &salida) {
+        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << endl;
+    }
+
+    virtual ~RegistroProducto() {};
 
 };
 
@@ -98,7 +100,7 @@ public:
     }
 
     void imprimir(ostream &salida) {
-        RegistroProducto :: imprimir(salida);
+        RegistroProducto::imprimir(salida);
         salida << cantidad << " " << tiempo << " " << voltaje << " ";
 
         salida << (manual == true) ? "Manual de usuario incluido\n" : "Sin manual de usuario\n";
@@ -113,13 +115,13 @@ public:
     string clasificacion;
     string empleado;
     long codigoEstiba;
-   // bool eliminado;
+    // bool eliminado;
 
     RegistroAlimentos() {};
 
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-            string _clasificacion, string _empleado, long _codigoEstiba)
-    : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+                      string _clasificacion, string _empleado, long _codigoEstiba)
+            : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
     //Date(_dia, _mes, _anio)
     {
         clasificacion = _clasificacion;
@@ -127,8 +129,9 @@ public:
         codigoEstiba = _codigoEstiba;
 
     } // este constructor sera para leer del archivo
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad, string _clasificacion)
-            : RegistroProducto( _nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
+    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
+                      string _clasificacion)
+            : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad)
     //Date(_dia, _mes, _anio)
     {
         clasificacion = _clasificacion;
@@ -137,8 +140,7 @@ public:
 
     void imprimir(ostream &salida) {
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << " "
-               << cantidad <</*<< day << " " << month << " " << year <<*/ " " << clasificacion << " " << empleado
-               << " " << codigoEstiba << " " << endl;
+               << cantidad << " " << clasificacion << endl;
     }
 };
 
