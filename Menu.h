@@ -15,14 +15,15 @@ ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
 fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
+fstream inOut_appliances("appliances.dat", ios::out);
+fstream inOut_food("food.dat", ios::out);
 
 // se declara aqui para poder acceder desde cualquier bloque
 /* if(!salidaTextiles) {
         cerr << "No se pudo crear el archivo";
         exit(1);
     }*/ //da error no se xq
-fstream inOut_appliances("appliances.dat", ios::out);
-fstream inOut_food("food.dat", ios::out);
+
 
 
 void cargarTextiles() { // funcion para cargar los datos del archivo
@@ -95,6 +96,8 @@ void main_menu();
 
 void sub_menu_a();
 void sub_menu_b();
+void sub_menu_c();
+void sub_menu_d();
 
 /*void sub_menu_b();
 void sub_menu_c();
@@ -253,6 +256,44 @@ void extract_food(){
     cout<<"Operacion realizada con exito. Queda "<<food_department.in_memory_warehouse[indice]->cantidad<<" de "<<nombre_producto<<" en el almacen"<<endl;
 }
 
+void list_textiles(){
+
+    limpiar_consola();
+    textiles_departament.list(cout);
+    int a;
+    cin>>a;
+}
+
+void list_appliances(){
+    limpiar_consola();
+    appliances_department.list(cout);
+}
+
+void list_food(){
+    limpiar_consola();
+    food_department.list(cout);
+}
+
+void add_dummies(){
+    textiles_departament.add(new RegistroTextiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L'));
+    textiles_departament.add(new RegistroTextiles("Camisa",5874,"Descripcion","España",213,"poliester",'M','L'));
+    textiles_departament.add(new RegistroTextiles("Pantalon",2634,"Descripcion","Rusia",234,"mezclilla",'M','L'));
+    textiles_departament.add(new RegistroTextiles("Gorra",7846,"Descripcion","India",875,"rare",'F','L'));
+    textiles_departament.add(new RegistroTextiles("Blusa",2345,"Descripcion","Vietnam",235,"hilo",'F','L'));
+
+    appliances_department.add(new RegistroElectrodomesticos("Refrigerador",2345,"Hielitosbrr","China",34,12,220,true));
+    appliances_department.add(new RegistroElectrodomesticos("Freezer",5746,"Hielitosbrr","China",34,16,110,false));
+    appliances_department.add(new RegistroElectrodomesticos("Microwave",4257,"Calienteuff","China",34,22,220,true));
+    appliances_department.add(new RegistroElectrodomesticos("Lavadora",3756,"Centrifugadoooo","China",34,28,110,false));
+    appliances_department.add(new RegistroElectrodomesticos("Arrocera",7682,"ArrozVietnamita","China",34,36,220,true));
+
+    food_department.add(new RegistroAlimentos("Pan",1244,"pancito","Ecuador",23,"Solido"));
+    food_department.add(new RegistroAlimentos("Refresco",4565,"refresquito","Bolivia",42,"Liquido"));
+    food_department.add(new RegistroAlimentos("Pelly",3467,"pellycito","Peru",86,"Solido"));
+    food_department.add(new RegistroAlimentos("Ron",6575,"pancito","Chile",73,"Liquido"));
+    food_department.add(new RegistroAlimentos("Puerco",1693,"pancito","Oriente",74,"Solido"));
+}
+
 void main_menu() {
 
 
@@ -266,6 +307,7 @@ void main_menu() {
         cout << "2 -> Extraer productos del almacen" << endl;
         cout << "3 -> Listar productos" << endl;
         cout << "4 -> Eliminar producto de tipo alimento" << endl;
+        cout <<"5 -> Añadir dummies"<< endl;
 
 
         int option;
@@ -278,12 +320,15 @@ void main_menu() {
                 case 2:
                     sub_menu_b();
                     break;
-//                case 3:
-//                    sub_menu_c();
-//                    break;
-//                case 4:
-//                    sub_menu_d();
-//                    break;*/
+                case 3:
+                    sub_menu_c();
+                    break;
+                case 4:
+                    sub_menu_d();
+                    break;
+                case 5:
+                    add_dummies();
+                    break;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -332,7 +377,7 @@ void sub_menu_b() {
 
     while (true) {
         limpiar_consola();
-        cout << "You are at main menu." << endl;
+        cout << "You are at sub_menu b." << endl;
 
         cout << "Seleccione la clasificacion del producto que desea extraer:" << endl;
         cout << "1 -> Textil" << endl;
@@ -362,4 +407,45 @@ void sub_menu_b() {
             break;
         }
     }
+
 }
+void sub_menu_c() {
+
+    while (true) {
+        limpiar_consola();
+        cout << "You are at sub_menu c." << endl;
+
+        cout << "Seleccione la clasificacion del producto que desea listar:" << endl;
+        cout << "1 -> Textil" << endl;
+        cout << "2 -> Electrodomestico" << endl;
+        cout << "3 -> Alimenticio" << endl;
+        cout << "4 -> Menu principal" << endl;
+
+        int option;
+
+        cin >> option;
+
+        switch (option) {
+            case 1:
+                list_textiles();
+            break;
+            case 2:
+                list_appliances();
+            break;
+            case 3:
+                list_food();
+            break;
+            case 4:
+                main_menu();
+            break;
+            default:
+                cout << "Please insert an integer between 1 and 4." << endl;
+            break;
+        }
+    }
+}
+void sub_menu_d(){
+    limpiar_consola();
+    cout<<"Hola mundo"<<endl;
+}
+
