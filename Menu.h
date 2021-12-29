@@ -10,7 +10,6 @@ using namespace  std;
 //RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
 
 
-
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
@@ -102,9 +101,6 @@ void sub_menu_b();
 void sub_menu_c();
 void sub_menu_d();
 
-/*void sub_menu_b();
-void sub_menu_c();
-void sub_menu_d();*/
 
 void add_textiles() {
     limpiar_consola();
@@ -310,6 +306,11 @@ void add_dummies(){
     food_department.add(new RegistroAlimentos("Puerco",1693,"pancito","Oriente",74,"Solido", "10", "12", "30"));
 }
 
+void save_to_file(){
+    textiles_departament.list(inOut_Textiles);
+    appliances_department.list(inOut_appliances);
+    food_department.list(inOut_food);
+}
 void main_menu() {
     bool terminar = false;
 
@@ -322,9 +323,9 @@ void main_menu() {
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
         cout << "3 -> Listar productos" << endl;
-        cout << "4 -> Eliminar producto de tipo alimento" << endl;
-        cout <<"5 -> Añadir dummies"<< endl;
-        cout <<"6 -> Salir"<< endl;
+        cout << "4 -> Añadir dummies"<< endl;
+        cout << "5 -> Guardar en archivo"<< endl;
+        cout <<"6 -> Salir"<<endl;
 
 
         int option;
@@ -341,14 +342,13 @@ void main_menu() {
                     sub_menu_c();
                     break;
                 case 4:
-                    sub_menu_d();
-                    break;
-                case 5:
                     add_dummies();
                     break;
-                 case 6:
-                     terminar = true;
-                     break;
+                case 5:
+                    save_to_file();
+                break;
+            case 6:
+                terminar = true;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -464,8 +464,5 @@ void sub_menu_c() {
         }
     }
 }
-void sub_menu_d(){
-    limpiar_consola();
-    cout<<"Hola mundo"<<endl;
-}
+
 
