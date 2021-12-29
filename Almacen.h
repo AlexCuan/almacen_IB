@@ -64,7 +64,7 @@ public:
     }
 
     virtual void imprimir(ostream &salida) {
-        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << endl;
+        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen;
     }
 
     virtual ~RegistroProducto() {};
