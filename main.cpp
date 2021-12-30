@@ -7,16 +7,9 @@
 using namespace std;
 
 int main() {
-    main_menu();
-
-    // fstream salida("textiles.dat");
-    /*abrir demas archivos
-    add_textiles();
-    ContainerTextiles contenedor;
-    RegistroTextiles textil("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
-    contenedor.add(&textil);
-    cout << contenedor.size_of_array;*/
-
+    add_dummies();
+    food_department.in_memory_warehouse[1]->imprimir(cout); //error
+    //cout<< food_department.in_memory_warehouse[3]->nombre;
 
 
     return 0;
