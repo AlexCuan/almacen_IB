@@ -179,11 +179,11 @@ void add_appliances() {
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
-    getline(cin, descripcion);
-    cin.ignore();
+    getline(cin, descripcion, '\n');
+    //cin.ignore();
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
-    cin.ignore();
+    //cin.ignore();
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
