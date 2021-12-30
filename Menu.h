@@ -37,8 +37,8 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _paisOrigen;
     int _cantidad;
     string _material;
-    char _sexo;
-    char _talla;
+    string _sexo;
+    string _talla;
 
     if (!is_file_empty(inOut_Textiles)) {
         while (!inOut_Textiles.eof()) {
@@ -130,8 +130,8 @@ void add_textiles() {
     string paisOrigen;
     int cantidad;
     string material;
-    char sexo;
-    char talla;
+    string sexo;
+    string talla;
 
     cout << "Introduzca el nombre del producto: ";
     cin>>nombre;
@@ -149,10 +149,10 @@ void add_textiles() {
     cin >> material;
     cin.ignore();
     cout << "Introduzca el sexo: ";
-    sexo = cin.get();
+    cin >> sexo;
     cout << "Introduzca la talla: ";
-    cin.ignore();
-    talla = cin.get();
+    //cin.ignore();
+    cin >> talla;
 
     textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
                                                   talla));
@@ -329,12 +329,12 @@ void list_food() {
 }
 
 void add_dummies() {
-    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", 'M', 'L'));
-    textiles_departament.add(new RegistroTextiles("Camisa", 5874, "Descripcion", "España", 213, "poliester", 'M', 'L'));
+    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("Camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
     textiles_departament.add(
-            new RegistroTextiles("Pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", 'M', 'L'));
-    textiles_departament.add(new RegistroTextiles("Gorra", 7846, "Descripcion", "India", 875, "rare", 'F', 'L'));
-    textiles_departament.add(new RegistroTextiles("Blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", 'F', 'L'));
+            new RegistroTextiles("Pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("Gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("Blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
 
     appliances_department.add(new RegistroElectrodomesticos("Refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
     appliances_department.add(new RegistroElectrodomesticos("Freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));

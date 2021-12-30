@@ -10,8 +10,8 @@ int main() {
     //food_department.in_memory_warehouse[1]->imprimir(cout); //error
     //cout<< food_department.in_memory_warehouse[3]->nombre;
     //add_appliances();
-  //  add_textiles();
-    add_food();
+   add_textiles();
+    //add_food();
 
     return 0;
 }
