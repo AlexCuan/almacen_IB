@@ -134,21 +134,25 @@ void add_textiles() {
     char talla;
 
     cout << "Introduzca el nombre del producto: ";
-    cin >> nombre;
+    cin>>nombre;
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
+    cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
-    cin >> descripcion;
+    getline(cin, descripcion, '\n');
     cout << "Introduzca el pais de origen del producto: ";
+    cin.ignore();
     cin >> paisOrigen;
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cout << "Introduzca el material: ";
     cin >> material;
+    cin.ignore();
     cout << "Introduzca el sexo: ";
-    cin >> sexo;
+    sexo = cin.get();
     cout << "Introduzca la talla: ";
-    cin >> talla;
+    cin.ignore();
+    talla = cin.get();
 
     textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
                                                   talla));
@@ -169,21 +173,29 @@ void add_appliances() {
     string temp;
 
     cout << "Introduzca el nombre del producto: ";
-    cin >> nombre;
+    cin>>nombre;
     cout << "Introduzca el codigo del producto: ";
+    cin.ignore();
     codigo = validateInput_int(codigo);
+    cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
-    cin >> descripcion;
+    getline(cin, descripcion);
+    cin.ignore();
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
+    cin.ignore();
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
+    cin.ignore();
     cout << "Introduzca el tiempo: ";
     tiempo = validateInput_int(tiempo);
+    cin.ignore();
     cout << "Introduzca el voltaje: ";
     voltaje = validateInput_int(voltaje);
+    cin.ignore();
     cout << "Tiene manual ?: ";
     cin >> temp;
+    cin.ignore();
     if (temp == "si") {
         manual = true;
     } else {
@@ -208,17 +220,21 @@ void add_food() {
     string _year;
 
     cout << "Introduzca el nombre del producto: ";
-    cin >> nombre;
+    cin>>nombre;
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
+   // cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
-    cin >> descripcion;
+    getline(cin, descripcion, '\n');
+    //cin.ignore();
     cout << "Introduzca el pais de origen del producto: ";
     cin >> paisOrigen;
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
+    //cin.ignore();
     cout << "Introduzca la clasificacion : ";
     cin >> clasificacion;
+   // cin.ignore();
     cout << "Introduzca la fecha de vencimiento: " << endl;
     cout << "Introduzca el dia: ";
     cin >> _day;

@@ -142,15 +142,14 @@ public:
 
 class ContainerAlimentos {
 public:
-    int size_of_array;
-    int counter;
+    int size_of_array = 4;
+    int counter = 0;
     RegistroAlimentos **in_memory_warehouse;
 
-    /*ContainerAlimentos(int size_of_array, int counter) {
-        this->size_of_array = size_of_array;
-        this->counter = counter;
+    ContainerAlimentos() {
+
         in_memory_warehouse = new RegistroAlimentos*[size_of_array];
-    }*/
+    }
     void add(RegistroAlimentos *new_entry) {
         if (counter == size_of_array) {
             size_of_array *= 2;

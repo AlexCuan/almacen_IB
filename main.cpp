@@ -7,9 +7,9 @@ using namespace std;
 
 int main() {
     add_dummies();
-    food_department.in_memory_warehouse[1]->imprimir(cout); //error
+    //food_department.in_memory_warehouse[1]->imprimir(cout); //error
     //cout<< food_department.in_memory_warehouse[3]->nombre;
-
+    add_textiles();
 
     return 0;
 }
