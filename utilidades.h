@@ -88,3 +88,10 @@ bool is_file_empty(fstream& pFile)
 }
 
 
+string minusculas(string cadena){
+
+    for(int i = 0; i < cadena.length(); i++){
+        cadena[i] = tolower(cadena[i]);
+    }
+    return cadena;
+}

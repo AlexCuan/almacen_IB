@@ -127,24 +127,30 @@ void add_textiles() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
+    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
     cin.ignore();
     getline(cin, paisOrigen, '\n');
+    paisOrigen = minusculas(paisOrigen);
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
     cout << "Introduzca el material: ";
     getline(cin, material, '\n');
+    material = minusculas(material);
     cout << "Introduzca el sexo: ";
     getline(cin, sexo, '\n');
+    sexo = minusculas(sexo);
     cout << "Introduzca la talla: ";
     cin.ignore();
     getline(cin, talla, '\n');
+    talla = minusculas(talla);
 
 
     textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
@@ -167,13 +173,15 @@ void add_appliances() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
+    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
-    getline(cin, descripcion, '\n');
+    getline(cin, paisOrigen, '\n');
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
@@ -185,6 +193,7 @@ void add_appliances() {
     cin.ignore();
     cout << "Tiene manual ?: ";
     getline(cin, temp, '\n');
+    temp = minusculas(temp);
     if (temp == "si") {
         manual = true;
     } else {
@@ -210,18 +219,22 @@ void add_food() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre);
+    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
+    paisOrigen = minusculas(paisOrigen);
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
     cout << "Introduzca la clasificacion : ";
     getline(cin, clasificacion, '\n');
+    clasificacion = minusculas(clasificacion);
     cout << "Introduzca la fecha de vencimiento: " << endl;
     cout << "Introduzca el dia: ";
     getline(cin, _day, '\n');
@@ -240,6 +253,7 @@ void extract_textiles() {
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
     cin >> nombre_producto;
+    nombre_producto = minusculas(nombre_producto);
 
     int indice = textiles_departament.find_index(nombre_producto);
 
@@ -260,6 +274,7 @@ void extract_appliances() {
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
     cin >> nombre_producto;
+    nombre_producto = minusculas(nombre_producto);
 
     int indice = appliances_department.find_index(nombre_producto);
 
@@ -280,7 +295,7 @@ void extract_food() {
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
     cin >> nombre_producto;
-
+    nombre_producto = minusculas(nombre_producto);
     int indice = food_department.find_index(nombre_producto);
 
     cout << "Hay " << food_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
