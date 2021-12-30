@@ -223,7 +223,7 @@ void add_food() {
     cin>>nombre;
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
-   // cin.ignore();
+    cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
     //cin.ignore();
