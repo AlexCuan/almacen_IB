@@ -91,7 +91,7 @@ public:
 
     void imprimir(ostream &salida) {
         RegistroProducto::imprimir(salida);
-        salida << material << " " << sexo << " " << talla << endl;
+        salida <<" "<< material << " " << sexo << " " << talla << endl;
     }
 
 };
@@ -115,7 +115,7 @@ public:
 
     void imprimir(ostream &salida) {
         RegistroProducto::imprimir(salida);
-        salida << tiempo << " " << voltaje <<" "<<manual<<endl;
+        salida <<" "<< tiempo << " " << voltaje <<" "<<manual<<endl;
 
         //salida << (manual == true) ? "Manual de usuario incluido\n" : "Sin manual de usuario\n";
         //Aqui realmente no hace falta poner todo eso, el arhivo no lo lee el usuario sino nosotros. Con un bool basta
@@ -127,8 +127,8 @@ public:
 class RegistroAlimentos : public RegistroProducto , public Date{ //, public Date
 public:
     string clasificacion;
-    string empleado;
-    long codigoEstiba;
+    string empleado = "Empleado";
+    long codigoEstiba = 0;
     // bool eliminado;
 
     RegistroAlimentos() {};
@@ -158,7 +158,7 @@ public:
         if(codigoEstiba != 0){
             cout << empleado <<" " << codigoEstiba << " ";
         }
-        cout << day << " " << month << " " << year<<endl;
+        salida << day << " " << month << " " << year<<endl;
 
     }
 };

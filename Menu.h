@@ -14,10 +14,10 @@ ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-fstream inOut_Textiles("textiles.txt", ios::out);
+fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
 
-fstream inOut_appliances("appliances.dat", ios::out);
-fstream inOut_food("food.dat", ios::out);
+fstream inOut_appliances("appliances.dat", ios::out| ios::in);
+fstream inOut_food("food.dat", ios::out| ios::in);
 
 // se declara aqui para poder acceder desde cualquier bloque
 /* if(!salidaTextiles) {
@@ -40,19 +40,17 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _sexo;
     string _talla;
 
-    if (!is_file_empty(inOut_Textiles)) {
-        while (!inOut_Textiles.eof()) {
-            // lectura de un registro del archivo
-            inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
-                           >> _talla;
+    while (!inOut_Textiles.eof()) {
+        // lectura de un registro del archivo
+        inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
+                       >> _talla;
 
 
-            textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
-                                                          _cantidad, _material, _sexo, _talla));
+        textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
+                                                      _cantidad, _material, _sexo, _talla));
 
-            //  con esto en teoria debe quedar todos los elemetos del archivo de textiles
-            //  cargados en el arreglo de la clase Container textiles
-        }
+        //  con esto en teoria debe quedar todos los elemetos del archivo de textiles
+        //  cargados en el arreglo de la clase Container textiles
     }
 
 
@@ -68,14 +66,13 @@ void cargar_electrodomesticos() {
     int _voltaje;
     bool _manual;
 
-    if(!is_file_empty(inOut_appliances)){
-        while (!inOut_appliances.eof()) {
-            inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
-                             >> _manual;
-            appliances_department.add(new RegistroElectrodomesticos(_nombre, _codigo,
-                                                                    _descripcion, _paisOrigen, _cantidad, _tiempo, _voltaje,
-                                                                    _manual));
-        }}
+    while (!inOut_appliances.eof()) {
+        inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
+                         >> _manual;
+        appliances_department.add(new RegistroElectrodomesticos(_nombre, _codigo,
+                                                                _descripcion, _paisOrigen, _cantidad, _tiempo, _voltaje,
+                                                                _manual));
+    }
 
 }
 
@@ -91,17 +88,14 @@ void cargar_food() {
     string _day;
     string _month;
     string _year;
-    if (!is_file_empty(inOut_food)){
-        while (!inOut_food.eof()) {
-            inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion >> _empleado
-                       >> _codigoEstiba;
 
-            food_department.add(new RegistroAlimentos(_nombre, _codigo,
-                                                      _descripcion, _paisOrigen, _cantidad, _clasificacion, _day, _month,
-                                                      _year, _empleado, _codigoEstiba));
-        }
+    while (!inOut_food.eof()) {
+        inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion>>_day>>_month>>_year ;
+
+        food_department.add(new RegistroAlimentos(_nombre, _codigo,
+                                                  _descripcion, _paisOrigen, _cantidad, _clasificacion, _day, _month,
+                                                  _year));
     }
-
 }
 
 void load_info() {
@@ -117,8 +111,6 @@ void sub_menu_a();
 void sub_menu_b();
 
 void sub_menu_c();
-
-void sub_menu_d();
 
 
 void add_textiles() {
@@ -345,9 +337,9 @@ void add_dummies() {
 }
 
 void save_to_file() {
-    //textiles_departament.list(inOut_Textiles);
-    //appliances_department.list(inOut_appliances);
-    food_department.list(cout);
+    textiles_departament.list(inOut_Textiles);
+    appliances_department.list(inOut_appliances);
+    food_department.list(inOut_food);
 }
 
 void main_menu() {
