@@ -82,5 +82,9 @@ T &validateInput_int(T &val)
     return val;
 }
 
+bool is_file_empty(fstream& pFile)
+{
+    return pFile.peek() == fstream::traits_type::eof();
+}
 
 
