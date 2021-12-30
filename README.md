@@ -7,4 +7,4 @@ En un almacén de la Industria Básica se desea automatizar el proceso de gesti�
 - [x] Extraer productos del almacén, la disponibilidad que se tenga de cada producto. En caso que el producto a rebajar del inventario se encuentre agotado, se debe notificar al usuario con un mensaje de no disponibilidad.
 - [x] Listar todos los productos del almacén ordenados por tipo y a partir de un tipo especificado por el usuario.
 - [ ] Eliminar un producto del inventario del almacén por concepto de deterioro o vencimiento (este último solo para el caso de los alimentos). Para este caso en particular se debe registrar el nombre del empleado que realizó la operación y el código de la tarjeta de estiba donde se asentó la rebaja.
-- [ ] La salva y carga de la información gestionada en la aplicación en uno o varios ficheros.
+- [x] La salva y carga de la información gestionada en la aplicación en uno o varios ficheros.
