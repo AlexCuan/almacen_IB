@@ -15,7 +15,8 @@ ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-fstream inOut_Textiles("textiles.dat", ios::out /*| ios::in*/);
+fstream inOut_Textiles("textiles.txt", ios::out);
+
 fstream inOut_appliances("appliances.dat", ios::out);
 fstream inOut_food("food.dat", ios::out);
 
