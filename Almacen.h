@@ -74,13 +74,13 @@ public:
 class RegistroTextiles : public RegistroProducto {
 public:
     string material;
-    char sexo;
-    char talla;
+    string sexo;
+    string talla;
 
     RegistroTextiles() {};
 
     RegistroTextiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                     string _material, char _sexo, char _talla) : RegistroProducto(_nombre, _codigo, _descripcion,
+                     string _material, string _sexo, string _talla) : RegistroProducto(_nombre, _codigo, _descripcion,
                                                                                    _paisOrigen,
                                                                                    _cantidad) {
         material = _material;
