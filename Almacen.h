@@ -64,7 +64,7 @@ public:
     }
 
     virtual void imprimir(ostream &salida) {
-        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen << cantidad;
+        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
     }
 
     virtual ~RegistroProducto() {};
@@ -154,7 +154,7 @@ public:
 
     void imprimir(ostream &salida) {
         RegistroProducto::imprimir(salida);
-        salida << clasificacion << " ";
+        salida<<" " << clasificacion << " ";
         if(codigoEstiba != 0){
             cout << empleado <<" " << codigoEstiba << " ";
         }
