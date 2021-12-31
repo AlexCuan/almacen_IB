@@ -10,13 +10,11 @@ int main() {
     //food_department.in_memory_warehouse[1]->imprimir(cout); //error
     //cout<< food_department.in_memory_warehouse[3]->nombre;
    // add_appliances();
-   //    add_textiles();
+     // add_textiles();
    // add_food();
 
-   string a;
-   cin >> a;
-   a = minusculas(a);
-   cout << a;
+ //extract_appliances();
+ main_menu();
 
     return 0;
 }

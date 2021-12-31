@@ -274,6 +274,7 @@ void extract_appliances() {
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
     cin >> nombre_producto;
+    //getline(cin, nombre_producto, '\n');
     nombre_producto = minusculas(nombre_producto);
 
     int indice = appliances_department.find_index(nombre_producto);
@@ -330,8 +331,8 @@ void list_food() {
     food_department.list(cout);
 }
 
-void add_dummies() {
-    textiles_departament.add(new RegistroTextiles("Pullover", 3456, "Descripcion", "Cuba", 333, "algodon", "M", "L"));
+void add_dummies() { // todo debe estar en minusculas
+    textiles_departament.add(new RegistroTextiles("pullover", 3456, "Descripcion", "Cuba", 333, "algodon", "M", "L"));
     textiles_departament.add(new RegistroTextiles("Camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
     textiles_departament.add(
             new RegistroTextiles("Pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
@@ -419,6 +420,7 @@ void sub_menu_a() {
         int option;
 
         option = validateInput_int(option);
+        cin.ignore();
         switch (option) {
             case 1:
                 add_textiles();
