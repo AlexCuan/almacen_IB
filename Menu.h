@@ -271,7 +271,8 @@ void extract_textiles() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin >> nombre_producto;
+    cin.ignore();
+    getline(cin, nombre_producto);
     nombre_producto = minusculas(nombre_producto);
 
     int indice = textiles_departament.find_index(nombre_producto);
@@ -292,8 +293,8 @@ void extract_appliances() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin >> nombre_producto;
-    //getline(cin, nombre_producto, '\n');
+    cin.ignore();
+    getline(cin, nombre_producto, '\n');
     nombre_producto = minusculas(nombre_producto);
 
     int indice = appliances_department.find_index(nombre_producto);
@@ -314,7 +315,8 @@ void extract_food() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin >> nombre_producto;
+    cin.ignore();
+    getline(cin, nombre_producto, '\n');
     nombre_producto = minusculas(nombre_producto);
     int indice = food_department.find_index(nombre_producto);
 
