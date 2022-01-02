@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <string>
 #include "utilidades.h"
-
+#define COUT 1
+#define ARCH 2
 using namespace std;
 
 void limpiar_consola() {
@@ -152,11 +153,21 @@ public:
 
     }
 
-    void imprimir(ostream &salida) {
+    void imprimir(ostream &salida, int flujo) {
         RegistroProducto::imprimir(salida);
         salida<<" " << clasificacion << " ";
-        salida << day << " " << month << " " << year << " ";
-        salida << empleado <<" " << codigoEstiba << "\n";
+        salida << day << " " << month << " " << year;
+
+        if(flujo == COUT){
+            if(codigoEstiba != 0)
+                salida << " " << empleado <<" " << codigoEstiba << "\n";
+            else
+                cout << endl;
+
+        }
+        else if(flujo == ARCH)
+            salida << " " << empleado <<" " << codigoEstiba << "\n";
+
 
 
 

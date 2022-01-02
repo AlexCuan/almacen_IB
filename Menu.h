@@ -349,7 +349,7 @@ void list_appliances() {
 
 void list_food() {
     limpiar_consola();
-    food_department.list(cout);
+    food_department.list(cout, COUT);
 }
 
 void add_dummies() { // todo debe estar en minusculas
@@ -376,7 +376,7 @@ void add_dummies() { // todo debe estar en minusculas
 void save_to_file() {
     textiles_departament.list(inOut_Textiles);
     appliances_department.list(inOut_appliances);
-    food_department.list(inOut_food);
+    food_department.list(inOut_food, ARCH);
 }
 
 void main_menu() {

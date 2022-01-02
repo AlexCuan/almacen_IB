@@ -34,6 +34,7 @@ public:
     }
 
     void extract(int index, int cant) {
+        cout << "hola";
         if (index == -1) {
             cout << "Producto no encontrado\n";
         } else if (cant > in_memory_warehouse[index]->cantidad) {
@@ -54,9 +55,11 @@ public:
     int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
  conveniente cambiar la entrada del usuario ya sea todo en mayuscula o en minuysculas*/
         for (int i = 0; i < counter; i++) {
+            //cout << i << endl;
             if (in_memory_warehouse[i]->nombre == name) {
                 return i;
             }
+            //cout << i << endl;
         }
         return -1;
     }
@@ -225,9 +228,9 @@ public:
         return -1;
     }
 
-    void list(ostream &salida) {
+    void list(ostream &salida, int flujo) {
         for (int i = 0; i < counter; i++) {
-            in_memory_warehouse[i]->imprimir(salida);
+            in_memory_warehouse[i]->imprimir(salida, flujo);
             // esto sirve para llenar el regitro tambien
         }
     }
