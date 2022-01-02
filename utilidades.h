@@ -95,3 +95,18 @@ string minusculas(string cadena){
     }
     return cadena;
 }
+// hacer una funcion para contarer y otra para extender
+
+string contarer(string cadena){
+    for(int i = 0; i < cadena.size(); i++){
+        if(cadena[i] == 32)
+            cadena[i] = 36;
+    }return cadena;
+}
+string extender(string cadena){
+    for(int i = 0; i < cadena.size(); i++){
+        if(cadena[i] == 36)
+            cadena[i] = 32;
+    }
+    return cadena;
+}

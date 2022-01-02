@@ -14,7 +14,10 @@ int main() {
    // add_food();
 
  //extract_appliances();
- main_menu();
+// main_menu();
+string prueba = "prueba$de$mates";
+prueba = extender(prueba);
+cout << prueba;
 
     return 0;
 }
