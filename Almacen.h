@@ -155,10 +155,10 @@ public:
     void imprimir(ostream &salida) {
         RegistroProducto::imprimir(salida);
         salida<<" " << clasificacion << " ";
-        if(codigoEstiba != 0){
-            cout << empleado <<" " << codigoEstiba << " ";
-        }
-        salida << day << " " << month << " " << year<<endl;
+        salida << day << " " << month << " " << year << " ";
+        salida << empleado <<" " << codigoEstiba << "\n";
+
+
 
     }
 };
