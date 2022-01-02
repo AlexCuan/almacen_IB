@@ -44,7 +44,13 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
         // lectura de un registro del archivo
         inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
                        >> _talla;
-
+       // con esto se separan las palabras
+        _nombre = extender(_nombre);
+        _descripcion = extender(_descripcion);
+        _paisOrigen = extender(_paisOrigen);
+        _material = extender(_material);
+        _sexo = extender(_sexo);
+        _talla = extender(_talla);
 
         textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
                                                       _cantidad, _material, _sexo, _talla));
@@ -69,6 +75,10 @@ void cargar_electrodomesticos() {
     while (!inOut_appliances.eof()) {
         inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
                          >> _manual;
+        _nombre = extender(_nombre);
+        _descripcion = extender(_descripcion);
+        _paisOrigen = extender(_paisOrigen);
+
         appliances_department.add(new RegistroElectrodomesticos(_nombre, _codigo,
                                                                 _descripcion, _paisOrigen, _cantidad, _tiempo, _voltaje,
                                                                 _manual));
@@ -90,11 +100,20 @@ void cargar_food() {
     string _year;
 
     while (!inOut_food.eof()) {
-        inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion>>_day>>_month>>_year ;
+        inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
+        >> _day >> _month >> _year >> _empleado >> _codigoEstiba;
 
+        _nombre = extender(_nombre);
+        _descripcion = extender(_descripcion);
+        _paisOrigen = extender(_paisOrigen);
+        _clasificacion = extender(_clasificacion);
+        _day = extender(_day);
+        _month = extender(_month);
+        _year = extender(_year);
+        _empleado = extender(_empleado);
         food_department.add(new RegistroAlimentos(_nombre, _codigo,
                                                   _descripcion, _paisOrigen, _cantidad, _clasificacion, _day, _month,
-                                                  _year));
+                                                  _year, _empleado, _codigoEstiba));
     }
 }
 
@@ -333,11 +352,11 @@ void list_food() {
 
 void add_dummies() { // todo debe estar en minusculas
     textiles_departament.add(new RegistroTextiles("pullover", 3456, "Descripcion", "Cuba", 333, "algodon", "M", "L"));
-    textiles_departament.add(new RegistroTextiles("Camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
     textiles_departament.add(
-            new RegistroTextiles("Pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
-    textiles_departament.add(new RegistroTextiles("Gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
-    textiles_departament.add(new RegistroTextiles("Blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
+            new RegistroTextiles("pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
+    textiles_departament.add(new RegistroTextiles("blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
 
     appliances_department.add(new RegistroElectrodomesticos("Refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
     appliances_department.add(new RegistroElectrodomesticos("Freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
@@ -513,5 +532,37 @@ void sub_menu_c() {
         }
     }
 }
+/*estas funciones se encargaran de unir las palabras antes de guardar los registros en el ficheros para poder sacrlas con un cin*/
+
+void prepare_textiles_to_save(){
+    for(int i = 0; i < textiles_departament.counter; i++){
+        textiles_departament.in_memory_warehouse[i] ->nombre = contarer(textiles_departament.in_memory_warehouse[i] ->nombre);
+        textiles_departament.in_memory_warehouse[i] ->talla = contarer(textiles_departament.in_memory_warehouse[i] ->talla);
+        textiles_departament.in_memory_warehouse[i] ->material = contarer(textiles_departament.in_memory_warehouse[i] ->material);
+        textiles_departament.in_memory_warehouse[i] ->sexo = contarer(textiles_departament.in_memory_warehouse[i] ->sexo);
+        textiles_departament.in_memory_warehouse[i] ->paisOrigen = contarer(textiles_departament.in_memory_warehouse[i] ->paisOrigen);
+        textiles_departament.in_memory_warehouse[i] ->descripcion = contarer(textiles_departament.in_memory_warehouse[i] ->descripcion);
+
+    }
+
+}
+void prepare_appliances_to_save(){
+    for(int i = 0; i < appliances_department.counter; i++){
+        appliances_department.in_memory_warehouse[i] ->nombre = contarer(appliances_department.in_memory_warehouse[i] ->nombre);
+        appliances_department.in_memory_warehouse[i] ->descripcion = contarer(appliances_department.in_memory_warehouse[i] ->descripcion);
+        appliances_department.in_memory_warehouse[i] ->paisOrigen = contarer(appliances_department.in_memory_warehouse[i] ->paisOrigen);
 
 
+    }
+}
+void prepare_food_to_save(){
+    for(int i = 0; i < food_department.counter; i++) {
+        food_department.in_memory_warehouse[i] ->empleado = contarer(food_department.in_memory_warehouse[i] ->empleado);
+        food_department.in_memory_warehouse[i] ->clasificacion = contarer(food_department.in_memory_warehouse[i] ->clasificacion);
+        food_department.in_memory_warehouse[i] ->paisOrigen = contarer(food_department.in_memory_warehouse[i] ->paisOrigen);
+        food_department.in_memory_warehouse[i] ->descripcion = contarer(food_department.in_memory_warehouse[i] ->descripcion);
+        food_department.in_memory_warehouse[i] ->nombre = contarer(food_department.in_memory_warehouse[i] ->nombre);
+
+
+    }
+    }
