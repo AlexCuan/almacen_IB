@@ -6,18 +6,7 @@
 using namespace std;
 
 int main() {
-    add_dummies();
-    //food_department.in_memory_warehouse[1]->imprimir(cout); //error
-    //cout<< food_department.in_memory_warehouse[3]->nombre;
-   // add_appliances();
-     // add_textiles();
-   // add_food();
-
- //extract_appliances();
-// main_menu();
-string prueba = "prueba$de$mates";
-prueba = extender(prueba);
-cout << prueba;
+    main_menu();
 
     return 0;
 }
