@@ -16,8 +16,8 @@ ContainerAlimentos food_department;
 
 fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
 
-fstream inOut_appliances("appliances.dat", ios::out| ios::in);
-fstream inOut_food("food.dat", ios::out| ios::in);
+fstream inOut_appliances("appliances.dat", ios::out | ios::in);
+fstream inOut_food("food.dat", ios::out | ios::in);
 
 // se declara aqui para poder acceder desde cualquier bloque
 /* if(!salidaTextiles) {
@@ -44,7 +44,7 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
         // lectura de un registro del archivo
         inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
                        >> _talla;
-       // con esto se separan las palabras
+        // con esto se separan las palabras
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
         _paisOrigen = extender(_paisOrigen);
@@ -101,7 +101,7 @@ void cargar_food() {
 
     while (!inOut_food.eof()) {
         inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
-        >> _day >> _month >> _year >> _empleado >> _codigoEstiba;
+                   >> _day >> _month >> _year >> _empleado >> _codigoEstiba;
 
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
@@ -219,7 +219,8 @@ void add_appliances() {
         manual = false;
     }
 
-    appliances_department.add(new RegistroElectrodomesticos(nombre, codigo, descripcion, paisOrigen, cantidad, tiempo, voltaje, manual));
+    appliances_department.add(
+            new RegistroElectrodomesticos(nombre, codigo, descripcion, paisOrigen, cantidad, tiempo, voltaje, manual));
 
 }
 
@@ -260,10 +261,11 @@ void add_food() {
     cout << "Introduzca el mes: ";
     getline(cin, _month, '\n');
     cout << "Introduzca el anio: ";
-   getline(cin, _year, '\n');
+    getline(cin, _year, '\n');
 
     food_department.add(
-            new RegistroAlimentos(nombre, codigo, descripcion, paisOrigen, cantidad, clasificacion, _day, _month, _year));
+            new RegistroAlimentos(nombre, codigo, descripcion, paisOrigen, cantidad, clasificacion, _day, _month,
+                                  _year));
 }
 
 void extract_textiles() {
@@ -277,15 +279,23 @@ void extract_textiles() {
 
     int indice = textiles_departament.find_index(nombre_producto);
 
-    cout << "Hay " << textiles_departament.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
-         << " en el almacen" << endl;
+    if (indice != -1) {
+        cout << "Hay " << textiles_departament.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
+             << " en el almacen" << endl;
 
-    cout << "Introduzca la cantidad a extraer: ";
-    cantidad = validateInput_int(cantidad);
+        cout << "Introduzca la cantidad a extraer: ";
+        cantidad = validateInput_int(cantidad);
 
-    textiles_departament.extract(indice, cantidad);
-    cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
-         << " de " << nombre_producto << " en el almacen" << endl;
+        textiles_departament.extract(indice, cantidad);
+        cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
+             << " de " << nombre_producto << " en el almacen" << endl;
+
+    } else {
+        cout << "Producto no encontrado\n";
+        int a;
+        cin >> a;
+    }
+
 }
 
 void extract_appliances() {
@@ -299,15 +309,22 @@ void extract_appliances() {
 
     int indice = appliances_department.find_index(nombre_producto);
 
-    cout << "Hay " << appliances_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
-         << " en el almacen" << endl;
+    if (indice = !-1) {
+        cout << "Hay " << appliances_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
+             << " en el almacen" << endl;
 
-    cout << "Introduzca la cantidad a extraer: ";
-    cantidad = validateInput_int(cantidad);
+        cout << "Introduzca la cantidad a extraer: ";
+        cantidad = validateInput_int(cantidad);
 
-    appliances_department.extract(indice, cantidad);
-    cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad << " de "
-         << nombre_producto << " en el almacen" << endl;
+        appliances_department.extract(indice, cantidad);
+        cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
+             << " de "
+             << nombre_producto << " en el almacen" << endl;
+    } else {
+        cout << "Producto no encontrado\n";
+        int a;
+        cin >> a;
+    }
 }
 
 void extract_food() {
@@ -320,15 +337,22 @@ void extract_food() {
     nombre_producto = minusculas(nombre_producto);
     int indice = food_department.find_index(nombre_producto);
 
-    cout << "Hay " << food_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
-         << " en el almacen" << endl;
+    if (indice != -1) {
+        cout << "Hay " << food_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
+             << " en el almacen" << endl;
 
-    cout << "Introduzca la cantidad a extraer: ";
-    cantidad = validateInput_int(cantidad);
+        cout << "Introduzca la cantidad a extraer: ";
+        cantidad = validateInput_int(cantidad);
 
-    food_department.extract(indice, cantidad);
-    cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad << " de "
-         << nombre_producto << " en el almacen" << endl;
+        food_department.extract(indice, cantidad);
+        cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
+             << " de "
+             << nombre_producto << " en el almacen" << endl;
+    } else {
+        cout << "Producto no encontrado\n";
+        int a;
+        cin >> a;
+    }
 }
 
 void list_textiles() {
@@ -360,14 +384,20 @@ void add_dummies() { // todo debe estar en minusculas
     textiles_departament.add(new RegistroTextiles("gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
     textiles_departament.add(new RegistroTextiles("blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
 
-    appliances_department.add(new RegistroElectrodomesticos("refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
-    appliances_department.add(new RegistroElectrodomesticos("freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
-    appliances_department.add(new RegistroElectrodomesticos("microwave", 4257, "Calienteuff", "Corea", 34, 22, 220, true));
-    appliances_department.add(new RegistroElectrodomesticos("lavadora", 3756, "Centrifugadoooo", "Taiwan", 34, 28, 110, false));
-    appliances_department.add(new RegistroElectrodomesticos("arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
+    appliances_department.add(
+            new RegistroElectrodomesticos("refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
+    appliances_department.add(
+            new RegistroElectrodomesticos("freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
+    appliances_department.add(
+            new RegistroElectrodomesticos("microwave", 4257, "Calienteuff", "Corea", 34, 22, 220, true));
+    appliances_department.add(
+            new RegistroElectrodomesticos("lavadora", 3756, "Centrifugadoooo", "Taiwan", 34, 28, 110, false));
+    appliances_department.add(
+            new RegistroElectrodomesticos("arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
 
     food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "30"));
+    food_department.add(
+            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "30"));
     food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "30"));
     food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "30"));
     food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "30"));

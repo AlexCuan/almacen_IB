@@ -34,10 +34,7 @@ public:
     }
 
     void extract(int index, int cant) {
-        cout << "hola";
-        if (index == -1) {
-            cout << "Producto no encontrado\n";
-        } else if (cant > in_memory_warehouse[index]->cantidad) {
+        if (cant > in_memory_warehouse[index]->cantidad) {
             cout << "Esa cantidad no esta disponible en el almacen\n";
 
         } else if (cant < in_memory_warehouse[index]->cantidad) { //Aqui deberia
