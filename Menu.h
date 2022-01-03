@@ -334,7 +334,7 @@ void extract_food() {
 void list_textiles() {
 
     limpiar_consola();
-    textiles_departament.list(cout);
+    textiles_departament.list(cout, COUT);
     int a;
     cin >> a;
     //getchar();
@@ -344,7 +344,7 @@ void list_textiles() {
 
 void list_appliances() {
     limpiar_consola();
-    appliances_department.list(cout);
+    appliances_department.list(cout, COUT);
 }
 
 void list_food() {
@@ -360,22 +360,22 @@ void add_dummies() { // todo debe estar en minusculas
     textiles_departament.add(new RegistroTextiles("gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
     textiles_departament.add(new RegistroTextiles("blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
 
-    appliances_department.add(new RegistroElectrodomesticos("Refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
-    appliances_department.add(new RegistroElectrodomesticos("Freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
-    appliances_department.add(new RegistroElectrodomesticos("Microwave", 4257, "Calienteuff", "Corea", 34, 22, 220, true));
-    appliances_department.add(new RegistroElectrodomesticos("Lavadora", 3756, "Centrifugadoooo", "Taiwan", 34, 28, 110, false));
-    appliances_department.add(new RegistroElectrodomesticos("Arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos("refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos("freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
+    appliances_department.add(new RegistroElectrodomesticos("microwave", 4257, "Calienteuff", "Corea", 34, 22, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos("lavadora", 3756, "Centrifugadoooo", "Taiwan", 34, 28, 110, false));
+    appliances_department.add(new RegistroElectrodomesticos("arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
 
-    food_department.add(new RegistroAlimentos("Pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("Refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("Pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("Ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("Puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "30"));
 }
 
 void save_to_file() {
-    textiles_departament.list(inOut_Textiles);
-    appliances_department.list(inOut_appliances);
+    textiles_departament.list(inOut_Textiles, ARCH);
+    appliances_department.list(inOut_appliances, ARCH);
     food_department.list(inOut_food, ARCH);
 }
 
@@ -535,7 +535,7 @@ void sub_menu_c() {
     }
 }
 /*estas funciones se encargaran de unir las palabras antes de guardar los registros en el ficheros para poder sacrlas con un cin*/
-
+/*
 void prepare_textiles_to_save(){
     for(int i = 0; i < textiles_departament.counter; i++){
         textiles_departament.in_memory_warehouse[i] ->nombre = contarer(textiles_departament.in_memory_warehouse[i] ->nombre);
@@ -568,3 +568,4 @@ void prepare_food_to_save(){
 
     }
     }
+*/

@@ -64,9 +64,9 @@ public:
         return -1;
     }
 
-    void list(ostream &salida) {
+    void list(ostream &salida, int flujo) {
         for (int i = 0; i < counter; i++) {
-            in_memory_warehouse[i]->imprimir(salida);
+            in_memory_warehouse[i]->imprimir(salida, flujo);
             // esto sirve para llenar el regitro tambien
         }
     }
@@ -134,9 +134,9 @@ public:
         return -1;
     }
 
-    void list(ostream &salida) {
+    void list(ostream &salida, int flujo) {
         for (int i = 0; i < counter; i++) {
-            in_memory_warehouse[i]->imprimir(salida);
+            in_memory_warehouse[i]->imprimir(salida, flujo);
             // esto sirve para llenar el regitro tambien
         }
     }

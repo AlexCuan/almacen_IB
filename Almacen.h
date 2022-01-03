@@ -64,7 +64,13 @@ public:
 
     }
 
-    virtual void imprimir(ostream &salida) {
+    virtual void imprimir(ostream &salida, int flujo) {
+        if(flujo == ARCH){ // convierte las cadenas en una palabra sin espacio
+            nombre = contarer(nombre);
+            descripcion = contarer(descripcion);
+            paisOrigen = contarer(paisOrigen);
+        }
+
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
     }
 
@@ -90,8 +96,13 @@ public:
 
     }
 
-    void imprimir(ostream &salida) {
-        RegistroProducto::imprimir(salida);
+    void imprimir(ostream &salida, int flujo) {
+        RegistroProducto::imprimir(salida, flujo);
+        if(flujo == ARCH){
+            material = contarer(material);
+            sexo = contarer(sexo);
+            talla = contarer(talla);
+        }
         salida <<" "<< material << " " << sexo << " " << talla << endl;
     }
 
@@ -114,8 +125,8 @@ public:
         manual = _manual;
     }
 
-    void imprimir(ostream &salida) {
-        RegistroProducto::imprimir(salida);
+    void imprimir(ostream &salida, int flujo) {
+        RegistroProducto::imprimir(salida, flujo);
         salida <<" "<< tiempo << " " << voltaje <<" "<<manual<<endl;
 
         //salida << (manual == true) ? "Manual de usuario incluido\n" : "Sin manual de usuario\n";
@@ -154,7 +165,14 @@ public:
     }
 
     void imprimir(ostream &salida, int flujo) {
-        RegistroProducto::imprimir(salida);
+        RegistroProducto::imprimir(salida, flujo);
+        if(flujo == ARCH){
+            clasificacion = contarer(clasificacion);
+            empleado = contarer(empleado);
+            day = contarer(day);
+            month = contarer(month);
+            year = contarer(year);
+        }
         salida<<" " << clasificacion << " ";
         salida << day << " " << month << " " << year;
 
@@ -165,8 +183,10 @@ public:
                 cout << endl;
 
         }
-        else if(flujo == ARCH)
+        else if(flujo == ARCH) {
             salida << " " << empleado <<" " << codigoEstiba << "\n";
+        }
+
 
 
 
