@@ -66,9 +66,9 @@ public:
 
     virtual void imprimir(ostream &salida, int flujo) {
         if(flujo == ARCH){ // convierte las cadenas en una palabra sin espacio
-            nombre = contarer(nombre);
-            descripcion = contarer(descripcion);
-            paisOrigen = contarer(paisOrigen);
+            nombre = contraer(nombre);
+            descripcion = contraer(descripcion);
+            paisOrigen = contraer(paisOrigen);
         }
 
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
@@ -99,9 +99,9 @@ public:
     void imprimir(ostream &salida, int flujo) {
         RegistroProducto::imprimir(salida, flujo);
         if(flujo == ARCH){
-            material = contarer(material);
-            sexo = contarer(sexo);
-            talla = contarer(talla);
+            material = contraer(material);
+            sexo = contraer(sexo);
+            talla = contraer(talla);
         }
         salida <<" "<< material << " " << sexo << " " << talla << endl;
     }
@@ -167,11 +167,11 @@ public:
     void imprimir(ostream &salida, int flujo) {
         RegistroProducto::imprimir(salida, flujo);
         if(flujo == ARCH){
-            clasificacion = contarer(clasificacion);
-            empleado = contarer(empleado);
-            day = contarer(day);
-            month = contarer(month);
-            year = contarer(year);
+            clasificacion = contraer(clasificacion);
+            empleado = contraer(empleado);
+            day = contraer(day);
+            month = contraer(month);
+            year = contraer(year);
         }
         salida<<" " << clasificacion << " ";
         salida << day << " " << month << " " << year;

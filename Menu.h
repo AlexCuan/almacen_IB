@@ -538,32 +538,40 @@ void sub_menu_c() {
 /*
 void prepare_textiles_to_save(){
     for(int i = 0; i < textiles_departament.counter; i++){
-        textiles_departament.in_memory_warehouse[i] ->nombre = contarer(textiles_departament.in_memory_warehouse[i] ->nombre);
-        textiles_departament.in_memory_warehouse[i] ->talla = contarer(textiles_departament.in_memory_warehouse[i] ->talla);
-        textiles_departament.in_memory_warehouse[i] ->material = contarer(textiles_departament.in_memory_warehouse[i] ->material);
-        textiles_departament.in_memory_warehouse[i] ->sexo = contarer(textiles_departament.in_memory_warehouse[i] ->sexo);
-        textiles_departament.in_memory_warehouse[i] ->paisOrigen = contarer(textiles_departament.in_memory_warehouse[i] ->paisOrigen);
-        textiles_departament.in_memory_warehouse[i] ->descripcion = contarer(textiles_departament.in_memory_warehouse[i] ->descripcion);
+        textiles_departament.in_memory_warehouse[i] ->nombre = contraer(
+                textiles_departament.in_memory_warehouse[i]->nombre);
+        textiles_departament.in_memory_warehouse[i] ->talla = contraer(
+                textiles_departament.in_memory_warehouse[i]->talla);
+        textiles_departament.in_memory_warehouse[i] ->material = contraer(
+                textiles_departament.in_memory_warehouse[i]->material);
+        textiles_departament.in_memory_warehouse[i] ->sexo = contraer(textiles_departament.in_memory_warehouse[i]->sexo);
+        textiles_departament.in_memory_warehouse[i] ->paisOrigen = contraer(
+                textiles_departament.in_memory_warehouse[i]->paisOrigen);
+        textiles_departament.in_memory_warehouse[i] ->descripcion = contraer(
+                textiles_departament.in_memory_warehouse[i]->descripcion);
 
     }
 
 }
 void prepare_appliances_to_save(){
     for(int i = 0; i < appliances_department.counter; i++){
-        appliances_department.in_memory_warehouse[i] ->nombre = contarer(appliances_department.in_memory_warehouse[i] ->nombre);
-        appliances_department.in_memory_warehouse[i] ->descripcion = contarer(appliances_department.in_memory_warehouse[i] ->descripcion);
-        appliances_department.in_memory_warehouse[i] ->paisOrigen = contarer(appliances_department.in_memory_warehouse[i] ->paisOrigen);
+        appliances_department.in_memory_warehouse[i] ->nombre = contraer(
+                appliances_department.in_memory_warehouse[i]->nombre);
+        appliances_department.in_memory_warehouse[i] ->descripcion = contraer(
+                appliances_department.in_memory_warehouse[i]->descripcion);
+        appliances_department.in_memory_warehouse[i] ->paisOrigen = contraer(
+                appliances_department.in_memory_warehouse[i]->paisOrigen);
 
 
     }
 }
 void prepare_food_to_save(){
     for(int i = 0; i < food_department.counter; i++) {
-        food_department.in_memory_warehouse[i] ->empleado = contarer(food_department.in_memory_warehouse[i] ->empleado);
-        food_department.in_memory_warehouse[i] ->clasificacion = contarer(food_department.in_memory_warehouse[i] ->clasificacion);
-        food_department.in_memory_warehouse[i] ->paisOrigen = contarer(food_department.in_memory_warehouse[i] ->paisOrigen);
-        food_department.in_memory_warehouse[i] ->descripcion = contarer(food_department.in_memory_warehouse[i] ->descripcion);
-        food_department.in_memory_warehouse[i] ->nombre = contarer(food_department.in_memory_warehouse[i] ->nombre);
+        food_department.in_memory_warehouse[i] ->empleado = contraer(food_department.in_memory_warehouse[i] ->empleado);
+        food_department.in_memory_warehouse[i] ->clasificacion = contraer(food_department.in_memory_warehouse[i] ->clasificacion);
+        food_department.in_memory_warehouse[i] ->paisOrigen = contraer(food_department.in_memory_warehouse[i] ->paisOrigen);
+        food_department.in_memory_warehouse[i] ->descripcion = contraer(food_department.in_memory_warehouse[i] ->descripcion);
+        food_department.in_memory_warehouse[i] ->nombre = contraer(food_department.in_memory_warehouse[i] ->nombre);
 
 
     }
