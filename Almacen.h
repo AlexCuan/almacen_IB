@@ -45,7 +45,7 @@ public:
 
 };
 
-class RegistroProducto {     // superclase prodcuto
+class RegistroProducto {     // superclase producto
 public:
     string nombre;
     long codigo;
@@ -154,6 +154,7 @@ public:
         codigoEstiba = _codigoEstiba;
 
     } // este constructor sera para leer del archivo
+
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                       string _clasificacion, string _day, string _month, string _year)
             : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
@@ -181,7 +182,7 @@ public:
             if(codigoEstiba != 0)
                 salida << " " << empleado <<" " << codigoEstiba << endl;
             else
-                cout << endl;
+                salida << endl;
 
         }
     }
