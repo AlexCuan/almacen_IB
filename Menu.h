@@ -152,7 +152,6 @@ void add_textiles() {
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
     cout << "Introduzca el pais de origen del producto: ";
-    cin.ignore();
     getline(cin, paisOrigen, '\n');
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
@@ -162,7 +161,6 @@ void add_textiles() {
     cout << "Introduzca el sexo: ";
     getline(cin, sexo, '\n');
     cout << "Introduzca la talla: ";
-    cin.ignore();
     getline(cin, talla, '\n');
 
 
@@ -368,7 +366,7 @@ void list_food() {
 }
 
 void add_dummies() { // todo debe estar en minusculas
-    textiles_departament.add(new RegistroTextiles("pullover", 3456, "Descripcion", "Cuba", 333, "algodon", "M", "L"));
+    textiles_departament.add(new RegistroTextiles(minusculas("Pullover con espacios"), 3456, minusculas("Descripcion con espacios"), minusculas("Cuba"), 333, minusculas("algodon suave"), minusculas("Masculino"), minusculas("Large")));
     textiles_departament.add(new RegistroTextiles("camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
     textiles_departament.add(
             new RegistroTextiles("pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
