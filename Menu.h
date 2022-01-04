@@ -146,34 +146,30 @@ void add_textiles() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
-    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
-    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
     cin.ignore();
     getline(cin, paisOrigen, '\n');
-    paisOrigen = minusculas(paisOrigen);
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
     cout << "Introduzca el material: ";
     getline(cin, material, '\n');
-    material = minusculas(material);
     cout << "Introduzca el sexo: ";
     getline(cin, sexo, '\n');
-    sexo = minusculas(sexo);
     cout << "Introduzca la talla: ";
     cin.ignore();
     getline(cin, talla, '\n');
-    talla = minusculas(talla);
 
 
-    textiles_departament.add(new RegistroTextiles(nombre, codigo, descripcion, paisOrigen, cantidad, material, sexo,
-                                                  talla));
+    textiles_departament.add(
+            new RegistroTextiles(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen), cantidad,
+                                 minusculas(material), minusculas(sexo),
+                                 minusculas(talla)));
 
 }
 
@@ -192,13 +188,11 @@ void add_appliances() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
-    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
-    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
@@ -212,7 +206,6 @@ void add_appliances() {
     cin.ignore();
     cout << "Tiene manual ?: ";
     getline(cin, temp, '\n');
-    temp = minusculas(temp);
     if (temp == "si") {
         manual = true;
     } else {
@@ -220,7 +213,8 @@ void add_appliances() {
     }
 
     appliances_department.add(
-            new RegistroElectrodomesticos(nombre, codigo, descripcion, paisOrigen, cantidad, tiempo, voltaje, manual));
+            new RegistroElectrodomesticos(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen),
+                                          cantidad, tiempo, voltaje, manual));
 
 }
 
@@ -239,22 +233,18 @@ void add_food() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre);
-    nombre = minusculas(nombre);
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
-    descripcion = minusculas(descripcion);
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
-    paisOrigen = minusculas(paisOrigen);
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
     cout << "Introduzca la clasificacion : ";
     getline(cin, clasificacion, '\n');
-    clasificacion = minusculas(clasificacion);
     cout << "Introduzca la fecha de vencimiento: " << endl;
     cout << "Introduzca el dia: ";
     getline(cin, _day, '\n');
@@ -264,7 +254,8 @@ void add_food() {
     getline(cin, _year, '\n');
 
     food_department.add(
-            new RegistroAlimentos(nombre, codigo, descripcion, paisOrigen, cantidad, clasificacion, _day, _month,
+            new RegistroAlimentos(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen), cantidad,
+                                  minusculas(clasificacion), _day, _month,
                                   _year));
 }
 

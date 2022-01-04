@@ -129,8 +129,7 @@ public:
         RegistroProducto::imprimir(salida, flujo);
         salida <<" "<< tiempo << " " << voltaje <<" "<<manual<<endl;
 
-        //salida << (manual == true) ? "Manual de usuario incluido\n" : "Sin manual de usuario\n";
-        //Aqui realmente no hace falta poner todo eso, el arhivo no lo lee el usuario sino nosotros. Con un bool basta
+
     }
 
 
