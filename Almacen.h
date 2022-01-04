@@ -171,25 +171,19 @@ public:
             day = contraer(day);
             month = contraer(month);
             year = contraer(year);
-        }
-        salida<<" " << clasificacion << " ";
-        salida << day << " " << month << " " << year;
 
-        if(flujo == COUT){
+            salida<<" " << clasificacion << " " << day << " " << month << " " << year<< " " << empleado <<" " << codigoEstiba << endl;
+        }
+
+
+        else if(flujo == COUT){
+            salida<<" " << clasificacion << " " << day << " " << month << " " << year;
             if(codigoEstiba != 0)
-                salida << " " << empleado <<" " << codigoEstiba << "\n";
+                salida << " " << empleado <<" " << codigoEstiba << endl;
             else
                 cout << endl;
 
         }
-        else if(flujo == ARCH) {
-            salida << " " << empleado <<" " << codigoEstiba << "\n";
-        }
-
-
-
-
-
     }
 };
 
