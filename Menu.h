@@ -358,11 +358,15 @@ void list_textiles() {
 void list_appliances() {
     limpiar_consola();
     appliances_department.list(cout, COUT);
+    int a;
+    cin >> a;
 }
 
 void list_food() {
     limpiar_consola();
     food_department.list(cout, COUT);
+    int a;
+    cin >> a;
 }
 
 void add_dummies() { // todo debe estar en minusculas
