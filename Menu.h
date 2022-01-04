@@ -298,7 +298,7 @@ void extract_appliances() {
 
     int indice = appliances_department.find_index(nombre_producto);
 
-    if (indice = !-1) {
+    if (indice != -1) {
         cout << "Hay " << appliances_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
              << " en el almacen" << endl;
 
