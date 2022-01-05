@@ -2,7 +2,7 @@
 #include "Containers.h"
 #include "iostream"
 #include <fstream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 
 using namespace std;
@@ -18,12 +18,6 @@ fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
 
 fstream inOut_appliances("appliances.dat", ios::out | ios::in);
 fstream inOut_food("food.dat", ios::out | ios::in);
-
-// se declara aqui para poder acceder desde cualquier bloque
-/* if(!salidaTextiles) {
-        cerr << "No se pudo crear el archivo";
-        exit(1);
-    }*/ //da error no se xq
 
 
 
@@ -52,6 +46,7 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
         _sexo = extender(_sexo);
         _talla = extender(_talla);
 
+        //To-Do Hacer minusculas los atributos
         textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
                                                       _cantidad, _material, _sexo, _talla));
 
@@ -402,6 +397,15 @@ void save_to_file() {
     food_department.list(inOut_food, ARCH);
 }
 
+void show_stats(){
+    limpiar_consola();
+    cout<< "Textiles_department.counter = "<<textiles_departament.counter<<endl;
+    cout<<"Appliances_department.counter = "<<appliances_department.counter<<endl;
+    cout<<"Food_department.counter = "<<food_department.counter<<endl;
+    int a;
+    cin >>a;
+}
+
 void main_menu() {
     bool terminar = false;
 
@@ -417,6 +421,7 @@ void main_menu() {
         cout << "4 -> Añadir dummies" << endl;
         cout << "5 -> Guardar en archivo" << endl;
         cout << "6 -> Salir" << endl;
+        cout <<" 7 -> Show stats"<<endl;
 
 
         int option;
@@ -440,6 +445,9 @@ void main_menu() {
                 break;
             case 6:
                 terminar = true;
+            case 7:
+                show_stats();
+                break;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;
@@ -557,46 +565,3 @@ void sub_menu_c() {
         }
     }
 }
-/*estas funciones se encargaran de unir las palabras antes de guardar los registros en el ficheros para poder sacrlas con un cin*/
-/*
-void prepare_textiles_to_save(){
-    for(int i = 0; i < textiles_departament.counter; i++){
-        textiles_departament.in_memory_warehouse[i] ->nombre = contraer(
-                textiles_departament.in_memory_warehouse[i]->nombre);
-        textiles_departament.in_memory_warehouse[i] ->talla = contraer(
-                textiles_departament.in_memory_warehouse[i]->talla);
-        textiles_departament.in_memory_warehouse[i] ->material = contraer(
-                textiles_departament.in_memory_warehouse[i]->material);
-        textiles_departament.in_memory_warehouse[i] ->sexo = contraer(textiles_departament.in_memory_warehouse[i]->sexo);
-        textiles_departament.in_memory_warehouse[i] ->paisOrigen = contraer(
-                textiles_departament.in_memory_warehouse[i]->paisOrigen);
-        textiles_departament.in_memory_warehouse[i] ->descripcion = contraer(
-                textiles_departament.in_memory_warehouse[i]->descripcion);
-
-    }
-
-}
-void prepare_appliances_to_save(){
-    for(int i = 0; i < appliances_department.counter; i++){
-        appliances_department.in_memory_warehouse[i] ->nombre = contraer(
-                appliances_department.in_memory_warehouse[i]->nombre);
-        appliances_department.in_memory_warehouse[i] ->descripcion = contraer(
-                appliances_department.in_memory_warehouse[i]->descripcion);
-        appliances_department.in_memory_warehouse[i] ->paisOrigen = contraer(
-                appliances_department.in_memory_warehouse[i]->paisOrigen);
-
-
-    }
-}
-void prepare_food_to_save(){
-    for(int i = 0; i < food_department.counter; i++) {
-        food_department.in_memory_warehouse[i] ->empleado = contraer(food_department.in_memory_warehouse[i] ->empleado);
-        food_department.in_memory_warehouse[i] ->clasificacion = contraer(food_department.in_memory_warehouse[i] ->clasificacion);
-        food_department.in_memory_warehouse[i] ->paisOrigen = contraer(food_department.in_memory_warehouse[i] ->paisOrigen);
-        food_department.in_memory_warehouse[i] ->descripcion = contraer(food_department.in_memory_warehouse[i] ->descripcion);
-        food_department.in_memory_warehouse[i] ->nombre = contraer(food_department.in_memory_warehouse[i] ->nombre);
-
-
-    }
-    }
-*/

@@ -1,6 +1,6 @@
 #include "iostream"
 #include <fstream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 
 class ContainerTextiles {
@@ -37,7 +37,7 @@ public:
         if (cant > in_memory_warehouse[index]->cantidad) {
             cout << "Esa cantidad no esta disponible en el almacen\n";
 
-        } else if (cant < in_memory_warehouse[index]->cantidad) { //Aqui deberia
+        } else if (cant < in_memory_warehouse[index]->cantidad) {
             in_memory_warehouse[index]->cantidad -= cant;
         } else {
             counter--;
@@ -104,9 +104,7 @@ public:
     }
 
     void extract(int index, int cant) {
-        if (index == -1) {
-            cout << "Producto no encontrado\n";
-        } else if (cant > in_memory_warehouse[index]->cantidad) {
+        if (cant > in_memory_warehouse[index]->cantidad) {
             cout << "Esa cantidad no esta disponible en el almacen\n";
 
         } else if (cant < in_memory_warehouse[index]->cantidad) {
@@ -148,8 +146,9 @@ public:
 
     ContainerAlimentos() {
 
-        in_memory_warehouse = new RegistroAlimentos*[size_of_array];
+        in_memory_warehouse = new RegistroAlimentos *[size_of_array];
     }
+
     void add(RegistroAlimentos *new_entry) {
         if (counter == size_of_array) {
             size_of_array *= 2;
@@ -171,16 +170,12 @@ public:
     void extract(int index, int cant) /* se debe poner una condicional para comprobar que el producto esta
  vencido mediante la fcha de vencimiento*/
     {
-        if (index == -1) {
-            cout << "Producto no encontrado\n";
-        }
-        else if(obtainDate() <= in_memory_warehouse[index]->fecha){
+        if (obtainDate() <= in_memory_warehouse[index]->fecha) {
             cout << "Este producto ya esta vencido\n";
             if (cant > in_memory_warehouse[index]->cantidad) {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
 
-            }
-            else if (cant <= in_memory_warehouse[index]->cantidad) {
+            } else if (cant <= in_memory_warehouse[index]->cantidad) {
                 in_memory_warehouse[index]->cantidad -= cant;
                 cout << "introduzca su nombre para extraer el producto: ";
                 string nombreEmpleado;
@@ -191,10 +186,8 @@ public:
                 codigoEstib = validateInput_int(codigoEstib);
                 in_memory_warehouse[index]->codigoEstiba = codigoEstib;
             }
-        }
-        else {    if (index == -1) {
-                cout << "Producto no encontrado\n";
-            } else if (cant > in_memory_warehouse[index]->cantidad) {
+        } else {
+            if (cant > in_memory_warehouse[index]->cantidad) {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
 
             } else if (cant < in_memory_warehouse[index]->cantidad) {
@@ -209,10 +202,7 @@ public:
 
         }
 
-        }
-
-
-
+    }
 
 
     int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
