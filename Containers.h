@@ -1,6 +1,6 @@
 #include "iostream"
 #include <fstream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 
 class ContainerTextiles {
