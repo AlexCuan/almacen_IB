@@ -110,3 +110,7 @@ void pause() {
     char a;
     cin>>a;
 }
+
+void limpiar_consola() {
+    system("clear");
+}

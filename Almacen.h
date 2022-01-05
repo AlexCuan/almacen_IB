@@ -7,9 +7,6 @@
 #define ARCH 2
 using namespace std;
 
-void limpiar_consola() {
-    system("clear");
-}
 
 class Date {    //clase para almacenar la fecha
 public:
