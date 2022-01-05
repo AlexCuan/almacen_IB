@@ -317,9 +317,12 @@ void extract_food() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, nombre_producto, '\n');
+    //cin.ignore();
+
     nombre_producto = minusculas(nombre_producto);
+
     int indice = food_department.find_index(nombre_producto);
 
     if (indice != -1) {
