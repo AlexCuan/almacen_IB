@@ -18,7 +18,7 @@ public:
     string month;
     string year;
 
-    int fecha = fechaEntera();
+  //  int fecha = fechaEntera();
 
     Date(string _day, string _month, string _year){
         day = _day;
