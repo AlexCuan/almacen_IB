@@ -130,9 +130,11 @@ public:
     }
 
     void list(ostream &salida, int flujo) {
+        /*
+         * Funcion hibrida para escribir en archivo y en consola
+         */
         for (int i = 0; i < counter; i++) {
             in_memory_warehouse[i]->imprimir(salida, flujo);
-            // esto sirve para llenar el regitro tambien
         }
     }
 

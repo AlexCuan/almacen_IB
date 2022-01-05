@@ -105,3 +105,8 @@ string extender(string cadena){
     }
     return cadena;
 }
+
+void pause() {
+    char a;
+    cin>>a;
+}

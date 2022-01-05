@@ -11,7 +11,6 @@ void limpiar_consola() {
     system("clear");
 }
 
-//To-Do : Buscar libreria para formatear fecha y hacer Date clase padre
 class Date {    //clase para almacenar la fecha
 public:
     string day;
@@ -65,6 +64,9 @@ public:
     }
 
     virtual void imprimir(ostream &salida, int flujo) {
+        /*Salida representa el valor en consola del flujo de datos, puede ser cout o un archivo abierto
+         * ARCH y COUT  es una constante para manualmente reconocer el flujo
+         */
         if(flujo == ARCH){ // convierte las cadenas en una palabra sin espacio
             nombre = contraer(nombre);
             descripcion = contraer(descripcion);
@@ -140,25 +142,28 @@ public:
     string clasificacion;
     string empleado = "Empleado";
     long codigoEstiba = 0;
-    // bool eliminado;
 
     RegistroAlimentos() {};
+
+    //Constructor para leer informacion de un archivo
 
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                       string _clasificacion, string _day, string _month, string _year, string _empleado, long _codigoEstiba)
             : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
-    //Date(_dia, _mes, _anio)
+
     {
         clasificacion = _clasificacion;
         empleado = _empleado;
         codigoEstiba = _codigoEstiba;
 
-    } // este constructor sera para leer del archivo
+    }
+
+    //Constructor para crear objetos introducidos por el usuario
 
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                       string _clasificacion, string _day, string _month, string _year)
             : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
-    //Date(_dia, _mes, _anio)
+
     {
         clasificacion = _clasificacion;
 

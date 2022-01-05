@@ -7,19 +7,14 @@
 
 using namespace std;
 
-//RegistroTextiles textiles("Pullover",3456,"Descripcion","Cuba",333,"algodon",'M','L');
-
-
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-//ofstream Out_Textiles("textiles.dat");
-//ifstream in_Textiles("textiles.dat", ios :: in);
+
 fstream inOut_Textiles("textiles.dat", ios :: out | ios :: in);
 fstream inOut_appliances("appliances.dat", ios::out | ios::in);
 fstream inOut_food("food.dat", ios::out | ios::in);
-
 
 
 void cargarTextiles() { // funcion para cargar los datos del archivo
@@ -344,25 +339,19 @@ void list_textiles() {
 
     limpiar_consola();
     textiles_departament.list(cout, COUT);
-    //int a;
-   // cin >> a;
-    //getchar();
-    // system("pause");
-
+    pause();
 }
 
 void list_appliances() {
     limpiar_consola();
     appliances_department.list(cout, COUT);
-    //int a;
-    //cin >> a;
+    pause();
 }
 
 void list_food() {
     limpiar_consola();
     food_department.list(cout, COUT);
-    //int a;
-   // cin >> a;
+    pause();
 }
 
 void add_dummies() { // todo debe estar en minusculas
@@ -398,11 +387,13 @@ void save_to_file() {
     food_department.list(inOut_food, ARCH);
 }
 
+//quitar
 void show_stats(){
     limpiar_consola();
     cout<< "Textiles_department.counter = "<<textiles_departament.counter<<endl;
     cout<<"Appliances_department.counter = "<<appliances_department.counter<<endl;
     cout<<"Food_department.counter = "<<food_department.counter<<endl;
+    cout<<"Food date"<<food_department.in_memory_warehouse[0]->fecha<<endl;
     int a;
     cin >>a;
 }
@@ -422,7 +413,7 @@ void main_menu() {
         cout << "4 -> Añadir dummies" << endl;
         cout << "5 -> Guardar en archivo" << endl;
         cout << "6 -> Salir" << endl;
-        cout <<" 7 -> Show stats"<<endl;
+        cout << "7 -> Show stats"<<endl;
 
 
         int option;
@@ -446,6 +437,7 @@ void main_menu() {
                 break;
             case 6:
                 terminar = true;
+                break;
             case 7:
                 show_stats();
                 break;
