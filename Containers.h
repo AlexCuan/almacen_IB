@@ -172,7 +172,7 @@ public:
     void extract(int index, int cant) /* se debe poner una condicional para comprobar que el producto esta
  vencido mediante la fcha de vencimiento*/
     {
-        if (obtainDate() <= in_memory_warehouse[index]->fecha) {
+        if (obtainDate() <= in_memory_warehouse[index]->fechaEntera()) {
             cout << "Este producto ya esta vencido\n";
             if (cant > in_memory_warehouse[index]->cantidad) {
                 cout << "Esa cantidad no esta disponible en el almacen\n";

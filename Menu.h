@@ -65,7 +65,7 @@ void cargar_electrodomesticos() {
 
     while (inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
                             >> _manual) {
-        
+
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
         _paisOrigen = extender(_paisOrigen);
@@ -312,9 +312,12 @@ void extract_food() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, nombre_producto, '\n');
+    //cin.ignore();
+
     nombre_producto = minusculas(nombre_producto);
+
     int indice = food_department.find_index(nombre_producto);
 
     if (indice != -1) {
@@ -373,12 +376,12 @@ void add_dummies() { // todo debe estar en minusculas
     appliances_department.add(
             new RegistroElectrodomesticos("arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
 
-    food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "30"));
+    food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "2030"));
     food_department.add(
-            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "30"));
-    food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "30"));
+            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "2020"));
+    food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "2030"));
 }
 
 void save_to_file() {
