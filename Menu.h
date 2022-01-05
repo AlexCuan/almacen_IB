@@ -262,7 +262,7 @@ void extract_textiles() {
     string nombre_producto;
     int cantidad;
     cout << "Introduzca el nombre del producto a extraer: ";
-    cin.ignore();
+   // cin.ignore();
     getline(cin, nombre_producto);
     nombre_producto = minusculas(nombre_producto);
 
@@ -281,8 +281,8 @@ void extract_textiles() {
 
     } else {
         cout << "Producto no encontrado\n";
-        int a;
-        cin >> a;
+        //int a;
+        //cin >> a;
     }
 
 }
@@ -348,8 +348,8 @@ void list_textiles() {
 
     limpiar_consola();
     textiles_departament.list(cout, COUT);
-    int a;
-    cin >> a;
+    //int a;
+   // cin >> a;
     //getchar();
     // system("pause");
 
@@ -358,15 +358,15 @@ void list_textiles() {
 void list_appliances() {
     limpiar_consola();
     appliances_department.list(cout, COUT);
-    int a;
-    cin >> a;
+    //int a;
+    //cin >> a;
 }
 
 void list_food() {
     limpiar_consola();
     food_department.list(cout, COUT);
-    int a;
-    cin >> a;
+    //int a;
+   // cin >> a;
 }
 
 void add_dummies() { // todo debe estar en minusculas
