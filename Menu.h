@@ -14,8 +14,9 @@ ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-fstream inOut_Textiles("textiles.dat", ios::out | ios::in);
-
+//ofstream Out_Textiles("textiles.dat");
+//ifstream in_Textiles("textiles.dat", ios :: in);
+fstream inOut_Textiles("textiles.dat", ios :: out | ios :: in);
 fstream inOut_appliances("appliances.dat", ios::out | ios::in);
 fstream inOut_food("food.dat", ios::out | ios::in);
 
@@ -34,10 +35,10 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _sexo;
     string _talla;
 
-    while (!inOut_Textiles.eof()) {
+    while ( inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
+                           >> _talla) {
         // lectura de un registro del archivo
-        inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
-                       >> _talla;
+
         // con esto se separan las palabras
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
@@ -67,9 +68,9 @@ void cargar_electrodomesticos() {
     int _voltaje;
     bool _manual;
 
-    while (!inOut_appliances.eof()) {
-        inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
-                         >> _manual;
+    while (inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
+                            >> _manual) {
+        
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
         _paisOrigen = extender(_paisOrigen);
@@ -94,9 +95,9 @@ void cargar_food() {
     string _month;
     string _year;
 
-    while (!inOut_food.eof()) {
-        inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
-                   >> _day >> _month >> _year >> _empleado >> _codigoEstiba;
+    while (inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
+                      >> _day >> _month >> _year >> _empleado >> _codigoEstiba) {
+
 
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
