@@ -7,20 +7,24 @@
 
 using namespace std;
 
+//Se crean de manera global las instancias de la clase container
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-
+//Se abren los archivos
 fstream inOut_Textiles("textiles.dat", ios :: out | ios :: in);
 fstream inOut_appliances("appliances.dat", ios::out | ios::in);
 fstream inOut_food("food.dat", ios::out | ios::in);
 
-
-void cargarTextiles() { // funcion para cargar los datos del archivo
-
-    // atributos de la clase textiles
-
+/*
+ * Funcion para cargar archivos del fichero externo. Recorre el archivo linea a linea, guarda los elementos segun un orden
+ * preestablecido en las variables declaradas y por cada iteracion crea en su respectivo container y en memoria un objeto
+ * que tenga por atributos estos elementos
+ */
+void cargarTextiles()
+{
+    // Atributos de la clase textiles
     string _nombre;
     long _codigo;
     string _descripcion;
@@ -30,11 +34,11 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
     string _sexo;
     string _talla;
 
+    // Lectura de un registro del archivo con el mismo formato guardado
     while ( inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
                            >> _talla) {
-        // lectura de un registro del archivo
 
-        // con esto se separan las palabras
+        // Separacion de las palabras que tienen caracteres $ en sus espacios vacios
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
         _paisOrigen = extender(_paisOrigen);
@@ -42,18 +46,16 @@ void cargarTextiles() { // funcion para cargar los datos del archivo
         _sexo = extender(_sexo);
         _talla = extender(_talla);
 
-        //To-Do Hacer minusculas los atributos
+        //Creacion dinamica de objetos al leerlos del archivo
         textiles_departament.add(new RegistroTextiles(_nombre, _codigo, _descripcion, _paisOrigen,
                                                       _cantidad, _material, _sexo, _talla));
-
-        //  con esto en teoria debe quedar todos los elemetos del archivo de textiles
-        //  cargados en el arreglo de la clase Container textiles
     }
 
 
 }
 
-void cargar_electrodomesticos() {
+void cargar_electrodomesticos()
+{
     string _nombre;
     long _codigo;
     string _descripcion;
@@ -77,7 +79,8 @@ void cargar_electrodomesticos() {
 
 }
 
-void cargar_food() {
+void cargar_food()
+{
     string _nombre;
     long _codigo;
     string _descripcion;
@@ -93,7 +96,6 @@ void cargar_food() {
     while (inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
                       >> _day >> _month >> _year >> _empleado >> _codigoEstiba) {
 
-
         _nombre = extender(_nombre);
         _descripcion = extender(_descripcion);
         _paisOrigen = extender(_paisOrigen);
@@ -108,12 +110,16 @@ void cargar_food() {
     }
 }
 
-void load_info() {
+//Centralizar las 3 funciones de cargar archivos
+void load_info()
+{
     cargarTextiles();
     cargar_electrodomesticos();
     cargar_food();
 }
-
+/*
+ * Predeclaracion de menus y submenus para poder llamarlos entre si debajo
+ */
 void main_menu();
 
 void sub_menu_a();
@@ -123,7 +129,13 @@ void sub_menu_b();
 void sub_menu_c();
 
 
-void add_textiles() {
+/*
+ * Funcion que añade objetos tipo RegistroTextiles. Se declaran las variables analogas a los atributos, se capturan los
+ * datos con getline(para leer la linea entera, con espacios incluidos) y se crea dinamicamente un objeto en memoria y
+ * se añade al container correspondiente
+ */
+void add_textiles()
+{
     limpiar_consola();
 
     string nombre;
@@ -137,24 +149,31 @@ void add_textiles() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
+
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
+
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
+
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
+
     cout << "Introduzca el material: ";
     getline(cin, material, '\n');
+
     cout << "Introduzca el sexo: ";
     getline(cin, sexo, '\n');
+
     cout << "Introduzca la talla: ";
     getline(cin, talla, '\n');
 
-
+    //En vez de declarar una variable y pasarla al metodo, se pasa como argumento la creacion del objeto
     textiles_departament.add(
             new RegistroTextiles(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen), cantidad,
                                  minusculas(material), minusculas(sexo),
@@ -162,7 +181,8 @@ void add_textiles() {
 
 }
 
-void add_appliances() {
+void add_appliances()
+{
     limpiar_consola();
 
     string nombre;
@@ -170,34 +190,43 @@ void add_appliances() {
     string descripcion;
     string paisOrigen;
     int cantidad;
-    int tiempo; //tiempo en meses
+    int tiempo;
     int voltaje;
     bool manual;
     string temp;
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre, '\n');
+
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
+
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
+
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
-    cout << "Introduzca el tiempo: ";
+
+    cout << "Introduzca el tiempo de garantia (en meses): ";
     tiempo = validateInput_int(tiempo);
     cin.ignore();
+
     cout << "Introduzca el voltaje: ";
     voltaje = validateInput_int(voltaje);
     cin.ignore();
+
     cout << "Tiene manual ?: ";
     getline(cin, temp, '\n');
-    if (temp == "si") {
+    if (temp == "si")
+    {
         manual = true;
-    } else {
+    } else
+        {
         manual = false;
     }
 
@@ -207,7 +236,8 @@ void add_appliances() {
 
 }
 
-void add_food() {
+void add_food()
+{
     limpiar_consola();
 
     string nombre;
@@ -222,44 +252,60 @@ void add_food() {
 
     cout << "Introduzca el nombre del producto: ";
     getline(cin, nombre);
+
     cout << "Introduzca el codigo del producto: ";
     codigo = validateInput_int(codigo);
     cin.ignore();
+
     cout << "Introduzca la descripcion del producto: ";
     getline(cin, descripcion, '\n');
+
     cout << "Introduzca el pais de origen del producto: ";
     getline(cin, paisOrigen, '\n');
+
     cout << "Introduzca la cantidad de elementos que va a tener el producto: ";
     cantidad = validateInput_int(cantidad);
     cin.ignore();
+
     cout << "Introduzca la clasificacion : ";
     getline(cin, clasificacion, '\n');
+
     cout << "Introduzca la fecha de vencimiento: " << endl;
+
     cout << "Introduzca el dia: ";
     getline(cin, _day, '\n');
+
     cout << "Introduzca el mes: ";
     getline(cin, _month, '\n');
+
     cout << "Introduzca el anio: ";
     getline(cin, _year, '\n');
 
     food_department.add(
-            new RegistroAlimentos(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen), cantidad,
-                                  minusculas(clasificacion), _day, _month,
-                                  _year));
+            new RegistroAlimentos(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen),
+                    cantidad, minusculas(clasificacion), _day, _month, _year));
 }
 
-void extract_textiles() {
+/*
+ * Extraer elementos de un contenedor. Se hace una busqueda por nombre que retorna el indice y dependiendo del resultado
+ * que indica existencia se procede o no a extraer el producto
+ */
+void extract_textiles()
+{
     limpiar_consola();
+
     string nombre_producto;
     int cantidad;
+
     cout << "Introduzca el nombre del producto a extraer: ";
-   // cin.ignore();
+    cin.ignore();
     getline(cin, nombre_producto);
     nombre_producto = minusculas(nombre_producto);
 
     int indice = textiles_departament.find_index(nombre_producto);
 
-    if (indice != -1) {
+    if (indice != -1)
+    {
         cout << "Hay " << textiles_departament.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
              << " en el almacen" << endl;
 
@@ -270,18 +316,21 @@ void extract_textiles() {
         cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
              << " de " << nombre_producto << " en el almacen" << endl;
 
-    } else {
+    } else
+        {
         cout << "Producto no encontrado\n";
-        //int a;
-        //cin >> a;
+        pause();
     }
 
 }
 
-void extract_appliances() {
+void extract_appliances()
+{
     limpiar_consola();
+
     string nombre_producto;
     int cantidad;
+
     cout << "Introduzca el nombre del producto a extraer: ";
     cin.ignore();
     getline(cin, nombre_producto, '\n');
@@ -289,7 +338,8 @@ void extract_appliances() {
 
     int indice = appliances_department.find_index(nombre_producto);
 
-    if (indice != -1) {
+    if (indice != -1)
+    {
         cout << "Hay " << appliances_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
              << " en el almacen" << endl;
 
@@ -300,27 +350,30 @@ void extract_appliances() {
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "
              << nombre_producto << " en el almacen" << endl;
-    } else {
+    } else
+        {
         cout << "Producto no encontrado\n";
-        int a;
-        cin >> a;
+        pause();
     }
 }
 
-void extract_food() {
+void extract_food()
+{
     limpiar_consola();
+
     string nombre_producto;
     int cantidad;
+
     cout << "Introduzca el nombre del producto a extraer: ";
-    //cin.ignore();
+    cin.ignore();
     getline(cin, nombre_producto, '\n');
-    //cin.ignore();
 
     nombre_producto = minusculas(nombre_producto);
 
     int indice = food_department.find_index(nombre_producto);
 
-    if (indice != -1) {
+    if (indice != -1)
+    {
         cout << "Hay " << food_department.in_memory_warehouse[indice]->cantidad << " de " << nombre_producto
              << " en el almacen" << endl;
 
@@ -329,35 +382,46 @@ void extract_food() {
 
         food_department.extract(indice, cantidad);
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
-             << " de "
-             << nombre_producto << " en el almacen" << endl;
-    } else {
+             << " de "<< nombre_producto << " en el almacen" << endl;
+    } else
+        {
         cout << "Producto no encontrado\n";
         int a;
         cin >> a;
     }
 }
-
-void list_textiles() {
-
+/*
+ * Funcion hibrida. Dependiendo del flujo del primer argumento escribe en consola o en el archivo
+ */
+void list_textiles()
+{
     limpiar_consola();
+
     textiles_departament.list(cout, COUT);
     pause();
 }
 
-void list_appliances() {
+void list_appliances()
+{
     limpiar_consola();
+
     appliances_department.list(cout, COUT);
     pause();
 }
 
-void list_food() {
+void list_food()
+{
     limpiar_consola();
+
     food_department.list(cout, COUT);
     pause();
 }
 
-void add_dummies() { // todo debe estar en minusculas
+/*
+ * Añadir datos predeterminados para trabajar de manera mas comoda
+ */
+void add_dummies()
+{
     textiles_departament.add(new RegistroTextiles(minusculas("Pullover con espacios"), 3456, minusculas("Descripcion con espacios"), minusculas("Cuba"), 333, minusculas("algodon suave"), minusculas("Masculino"), minusculas("Large")));
     textiles_departament.add(new RegistroTextiles("camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
     textiles_departament.add(
@@ -384,29 +448,33 @@ void add_dummies() { // todo debe estar en minusculas
     food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "2030"));
 }
 
-void save_to_file() {
+//Guardar elementos en un archivo pasandoles como primer parametro el nombre del flujo relacionado con el fichero
+void save_to_file()
+{
     textiles_departament.list(inOut_Textiles, ARCH);
     appliances_department.list(inOut_appliances, ARCH);
     food_department.list(inOut_food, ARCH);
 }
 
 //quitar
-void show_stats(){
+void show_stats()
+{
     limpiar_consola();
+
     cout<< "Textiles_department.counter = "<<textiles_departament.counter<<endl;
     cout<<"Appliances_department.counter = "<<appliances_department.counter<<endl;
     cout<<"Food_department.counter = "<<food_department.counter<<endl;
-    cout<<"Food date"<<food_department.in_memory_warehouse[0]->fecha<<endl;
-    int a;
-    cin >>a;
+    pause();
 }
 
+//Menus
 void main_menu() {
     bool terminar = false;
 
 
     while (!terminar) {
         limpiar_consola();
+
         cout << "You are at main menu." << endl;
 
         cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
