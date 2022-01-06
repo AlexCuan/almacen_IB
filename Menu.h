@@ -12,11 +12,6 @@ ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
 
-//Se abren los archivos
-fstream inOut_Textiles("textiles.dat", ios :: out | ios :: in);
-fstream inOut_appliances("appliances.dat", ios::out | ios::in);
-fstream inOut_food("food.dat", ios::out | ios::in);
-
 /*
  * Funcion para cargar archivos del fichero externo. Recorre el archivo linea a linea, guarda los elementos segun un orden
  * preestablecido en las variables declaradas y por cada iteracion crea en su respectivo container y en memoria un objeto
@@ -24,6 +19,8 @@ fstream inOut_food("food.dat", ios::out | ios::in);
  */
 void cargarTextiles()
 {
+    fstream inOut_Textiles("textiles.dat", ios :: in);
+
     // Atributos de la clase textiles
     string _nombre;
     long _codigo;
@@ -56,6 +53,8 @@ void cargarTextiles()
 
 void cargar_electrodomesticos()
 {
+    fstream inOut_appliances("appliances.dat", ios::in);
+
     string _nombre;
     long _codigo;
     string _descripcion;
@@ -81,6 +80,8 @@ void cargar_electrodomesticos()
 
 void cargar_food()
 {
+    fstream inOut_food("food.dat", ios::in);
+
     string _nombre;
     long _codigo;
     string _descripcion;
@@ -451,21 +452,16 @@ void add_dummies()
 //Guardar elementos en un archivo pasandoles como primer parametro el nombre del flujo relacionado con el fichero
 void save_to_file()
 {
+    fstream inOut_Textiles("textiles.dat", ios :: out);
+    fstream inOut_appliances("appliances.dat", ios::out);
+    fstream inOut_food("food.dat", ios::out);
+
     textiles_departament.list(inOut_Textiles, ARCH);
     appliances_department.list(inOut_appliances, ARCH);
     food_department.list(inOut_food, ARCH);
 }
 
-//quitar
-void show_stats()
-{
-    limpiar_consola();
 
-    cout<< "Textiles_department.counter = "<<textiles_departament.counter<<endl;
-    cout<<"Appliances_department.counter = "<<appliances_department.counter<<endl;
-    cout<<"Food_department.counter = "<<food_department.counter<<endl;
-    pause();
-}
 
 //Menus
 void main_menu() {
@@ -484,7 +480,6 @@ void main_menu() {
         cout << "4 -> Añadir dummies" << endl;
         cout << "5 -> Guardar en archivo" << endl;
         cout << "6 -> Salir" << endl;
-        cout << "7 -> Show stats"<<endl;
 
 
         int option;
@@ -508,9 +503,6 @@ void main_menu() {
                 break;
             case 6:
                 terminar = true;
-                break;
-            case 7:
-                show_stats();
                 break;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
