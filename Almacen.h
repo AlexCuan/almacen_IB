@@ -7,14 +7,15 @@
 #define ARCH 2
 using namespace std;
 
-
-class Date {    //clase para almacenar la fecha
+/*
+ * Clase padre de la que hereda RegistroAlimentos. Por problemas de abstraccion y encapsulamiento se separa de RegistroAlimentos
+ */
+class Date {
 public:
     string day;
     string month;
     string year;
 
-  //  int fecha = fechaEntera();
 
     Date(string _day, string _month, string _year){
         day = _day;
@@ -24,6 +25,7 @@ public:
     }
     Date(){}
 
+    //Devuelve la fecha en el mismo formato de la computadora
     int fechaEntera(){
         if(atoi(day.c_str())<10)
             day = "0" + day;
@@ -37,11 +39,12 @@ public:
     void mostrarFecha() { //metodo para mostrar la fecha
         cout << day << "-" << month << "-" << year;
     }
-
-
 };
 
-class RegistroProducto {     // superclase producto
+/*
+ *Clase padre de la que heredan los diferentes tipos de productos
+ */
+class RegistroProducto {
 public:
     string nombre;
     long codigo;
@@ -60,21 +63,24 @@ public:
 
     }
 
-    virtual void imprimir(ostream &salida, int flujo) {
-        /*Salida representa el valor en consola del flujo de datos, puede ser cout o un archivo abierto
-         * ARCH y COUT  es una constante para manualmente reconocer el flujo
-         */
-        if(flujo == ARCH){ // convierte las cadenas en una palabra sin espacio
+    /*
+    * Funcion base hibrida para imprimir tanto en consola como en archivo
+    * Salida representa el valor en consola del flujo de datos, puede ser cout o un archivo abierto
+    * ARCH y COUT  es una constante para manualmente reconocer el flujo
+    */
+    virtual void imprimir(ostream &salida, int flujo)
+    {
+        // Si el flujo es hacia un archivo convierte las cadenas en una palabra sin espacio
+        if(flujo == ARCH)
+        {
             nombre = contraer(nombre);
             descripcion = contraer(descripcion);
             paisOrigen = contraer(paisOrigen);
         }
-
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
     }
 
-    virtual ~RegistroProducto() {};
-
+    virtual ~RegistroProducto() {}; //Es necesario?
 };
 
 class RegistroTextiles : public RegistroProducto {
@@ -87,17 +93,18 @@ public:
 
     RegistroTextiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                      string _material, string _sexo, string _talla) : RegistroProducto(_nombre, _codigo, _descripcion,
-                                                                                   _paisOrigen,
-                                                                                   _cantidad) {
+                                                                                   _paisOrigen, _cantidad){
         material = _material;
         sexo = _sexo;
         talla = _talla;
 
     }
 
-    void imprimir(ostream &salida, int flujo) {
+    void imprimir(ostream &salida, int flujo)
+    {
         RegistroProducto::imprimir(salida, flujo);
-        if(flujo == ARCH){
+        if(flujo == ARCH)
+        {
             material = contraer(material);
             sexo = contraer(sexo);
             talla = contraer(talla);
@@ -124,17 +131,19 @@ public:
         manual = _manual;
     }
 
-    void imprimir(ostream &salida, int flujo) {
+    void imprimir(ostream &salida, int flujo)
+    {
         RegistroProducto::imprimir(salida, flujo);
         salida <<" "<< tiempo << " " << voltaje <<" "<<manual<<endl;
-
-
     }
-
-
 };
 
-class RegistroAlimentos : public RegistroProducto , public Date{ //, public Date
+/*
+ * Clase alimentos que tiene 2 atributos por default para trabajar mas comodos. Si estos dejan de tener su valor por defecto
+ * se listaran en consola, de no ser asi no se listaran. En cambio, sea cual sea su valor se escribira y leera de un archivo,
+ * para eso 2 constructores
+ */
+class RegistroAlimentos : public RegistroProducto , public Date{
 public:
     string clasificacion;
     string empleado = "Empleado";
@@ -143,7 +152,6 @@ public:
     RegistroAlimentos() {};
 
     //Constructor para leer informacion de un archivo
-
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                       string _clasificacion, string _day, string _month, string _year, string _empleado, long _codigoEstiba)
             : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
@@ -155,8 +163,8 @@ public:
 
     }
 
-    //Constructor para crear objetos introducidos por el usuario
-
+    //Constructor para crear objetos introducidos por el usuario. No se pasa como argumento empleado y codigo de estiba
+    //que no estan concebidos para la creacion del objeto, sino para la extraccion(ver biblioteca Container.h)
     RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
                       string _clasificacion, string _day, string _month, string _year)
             : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
@@ -166,9 +174,12 @@ public:
 
     }
 
-    void imprimir(ostream &salida, int flujo) {
+    void imprimir(ostream &salida, int flujo)
+    {
         RegistroProducto::imprimir(salida, flujo);
-        if(flujo == ARCH){
+
+        if(flujo == ARCH)
+        {
             clasificacion = contraer(clasificacion);
             empleado = contraer(empleado);
             day = contraer(day);
@@ -179,7 +190,8 @@ public:
         }
 
 
-        else if(flujo == COUT){
+        else if(flujo == COUT)
+        {
             salida<<" " << clasificacion << " " << day << " " << month << " " << year;
             if(codigoEstiba != 0)
                 salida << " " << empleado <<" " << codigoEstiba << endl;
