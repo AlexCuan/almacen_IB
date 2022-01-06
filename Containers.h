@@ -2,25 +2,38 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
-
-class ContainerTextiles {
+/*
+ * Clase contenedor. Actuara como almacen temporal en memoria. Se inicializa con un tamaño predeterminado que no tiene
+ * ninguna especifidad, puede ser cualquier numero. El contador debera ser inicializado en 0 debido a su naturaleza. El
+ * tercer atributo es un arreglo de punteros el cual guardara punteros hacia las posiciones en memoria de los objetos
+ * creados.
+ */
+class ContainerTextiles{
 public:
     int size_of_array = 4;
     int counter = 0;
     RegistroTextiles **in_memory_warehouse;
 
 
-    ContainerTextiles() {
+    ContainerTextiles()
+    {
         in_memory_warehouse = new RegistroTextiles *[size_of_array];
     }
 
-    void add(RegistroTextiles *new_entry) {
-        if (counter == size_of_array) {
+    /*
+     * Agregar nuevos objetos. Al llegar al tope se creara un array nuevo con el doble de tamaño, se copiara la informacion,
+     * se borrara el array viejo y se renombrara el nuevo
+     */
+    void add(RegistroTextiles *new_entry)
+    {
+        if (counter == size_of_array)
+        {
 
             size_of_array *= 2;
             RegistroTextiles **new_array = new RegistroTextiles *[size_of_array];
 
-            for (int i = 0; i < size_of_array / 2; i++) {
+            for (int i = 0; i < size_of_array / 2; i++)
+            {
                 new_array[i] = in_memory_warehouse[i];
             }
 
@@ -33,38 +46,49 @@ public:
         counter++;
     }
 
+    /*
+     * Eliminar un elemnto del array. Si llega a 0 se reposiciona el arreglo y se elimina por completo el objeto
+     */
     void extract(int index, int cant) {
-        if (cant > in_memory_warehouse[index]->cantidad) {
+        if (cant > in_memory_warehouse[index]->cantidad)
+        {
             cout << "Esa cantidad no esta disponible en el almacen\n";
-
-        } else if (cant < in_memory_warehouse[index]->cantidad) {
+        } else if (cant < in_memory_warehouse[index]->cantidad)
+        {
             in_memory_warehouse[index]->cantidad -= cant;
-        } else {
+        } else
+            {
             counter--;
 
-            for (int i = index; i < counter; i++) {
+            for (int i = index; i < counter; i++)
+            {
                 in_memory_warehouse[i] = in_memory_warehouse[i + 1];
             }
         }
 
     }
 
-    int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
- conveniente cambiar la entrada del usuario ya sea todo en mayuscula o en minuysculas*/
-        for (int i = 0; i < counter; i++) {
-            //cout << i << endl;
-            if (in_memory_warehouse[i]->nombre == name) {
+    //Buscar indice de objeto por nombre. De no existir retorna -1
+    int find_index(string name)
+    {
+        for (int i = 0; i < counter; i++)
+        {
+            if (in_memory_warehouse[i]->nombre == name)
+            {
                 return i;
             }
-            //cout << i << endl;
         }
         return -1;
     }
 
-    void list(ostream &salida, int flujo) {
-        for (int i = 0; i < counter; i++) {
+    /*
+     * Funcion hibrida. Lista o escribe en archivo dependiendo del flujo
+     */
+    void list(ostream &salida, int flujo)
+    {
+        for (int i = 0; i < counter; i++)
+        {
             in_memory_warehouse[i]->imprimir(salida, flujo);
-            // esto sirve para llenar el regitro tambien
         }
     }
 };
@@ -75,22 +99,20 @@ public:
     int counter = 0;
     RegistroElectrodomesticos **in_memory_warehouse;
 
-    ContainerElectrodomesticos() {
+    ContainerElectrodomesticos()
+    {
         in_memory_warehouse = new RegistroElectrodomesticos *[size_of_array];
     }
 
-    /*ContainerElectrodomesticos(int size_of_array, int counter) {
-        this->size_of_array = size_of_array;
-        this->counter = counter;
-        in_memory_warehouse = new RegistroElectrodomesticos*[size_of_array];
-    }*/
-    /*Los parametros deben quedar inicializados, esta operacion no puede depender del usuario*/
-    void add(RegistroElectrodomesticos *new_entry) {
-        if (counter == size_of_array) {
+    void add(RegistroElectrodomesticos *new_entry)
+    {
+        if (counter == size_of_array)
+        {
             size_of_array *= 2;
             RegistroElectrodomesticos **new_array = new RegistroElectrodomesticos *[size_of_array];
 
-            for (int i = 0; i < size_of_array / 2; i++) {
+            for (int i = 0; i < size_of_array / 2; i++)
+            {
                 new_array[i] = in_memory_warehouse[i];
             }
 
@@ -103,7 +125,8 @@ public:
         counter++;
     }
 
-    void extract(int index, int cant) {
+    void extract(int index, int cant)
+    {
         if (cant > in_memory_warehouse[index]->cantidad) {
             cout << "Esa cantidad no esta disponible en el almacen\n";
 
@@ -119,9 +142,10 @@ public:
 
     }
 
-    int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
- conveniente cambiar la entrada del usuario ya sea todo en mayuscula o en minuysculas*/
-        for (int i = 0; i < counter; i++) {
+    int find_index(string name)
+    {
+        for (int i = 0; i < counter; i++)
+        {
             if (in_memory_warehouse[i]->nombre == name) {
                 return i;
             }
@@ -129,10 +153,8 @@ public:
         return -1;
     }
 
-    void list(ostream &salida, int flujo) {
-        /*
-         * Funcion hibrida para escribir en archivo y en consola
-         */
+    void list(ostream &salida, int flujo)
+    {
         for (int i = 0; i < counter; i++) {
             in_memory_warehouse[i]->imprimir(salida, flujo);
         }
@@ -146,17 +168,20 @@ public:
     int counter = 0;
     RegistroAlimentos **in_memory_warehouse;
 
-    ContainerAlimentos() {
-
+    ContainerAlimentos()
+    {
         in_memory_warehouse = new RegistroAlimentos *[size_of_array];
     }
 
-    void add(RegistroAlimentos *new_entry) {
-        if (counter == size_of_array) {
+    void add(RegistroAlimentos *new_entry)
+    {
+        if (counter == size_of_array)
+        {
             size_of_array *= 2;
             RegistroAlimentos **new_array = new RegistroAlimentos *[size_of_array];
 
-            for (int i = 0; i < size_of_array / 2; i++) {
+            for (int i = 0; i < size_of_array / 2; i++)
+            {
                 new_array[i] = in_memory_warehouse[i];
             }
 
@@ -169,35 +194,50 @@ public:
         counter++;
     }
 
-    void extract(int index, int cant) /* se debe poner una condicional para comprobar que el producto esta
- vencido mediante la fcha de vencimiento*/
+    /*
+     * Extraer alimentos. Adicionalmente se identifica si esta vencido y el metodo de extraccion pasa a requerir 2 elementos
+     * adicionales y no se borra por completo
+     */
+    void extract(int index, int cant)
     {
-        if (obtainDate() <= in_memory_warehouse[index]->fechaEntera()) {
+        if (obtainDate() <= in_memory_warehouse[index]->fechaEntera())
+        {
             cout << "Este producto ya esta vencido\n";
-            if (cant > in_memory_warehouse[index]->cantidad) {
+
+            if (cant > in_memory_warehouse[index]->cantidad)
+            {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
 
-            } else if (cant <= in_memory_warehouse[index]->cantidad) {
+            } else if (cant <= in_memory_warehouse[index]->cantidad)
+            {
                 in_memory_warehouse[index]->cantidad -= cant;
-                cout << "introduzca su nombre para extraer el producto: ";
+
                 string nombreEmpleado;
+                cout << "Introduzca su nombre para extraer el producto: ";
                 cin >> nombreEmpleado;
+
                 in_memory_warehouse[index]->empleado = nombreEmpleado;
-                cout << "Introduzca su codigo de estiba: ";
+
                 long codigoEstib;
+                cout << "Introduzca su codigo de estiba: ";
                 codigoEstib = validateInput_int(codigoEstib);
+
                 in_memory_warehouse[index]->codigoEstiba = codigoEstib;
             }
-        } else {
-            if (cant > in_memory_warehouse[index]->cantidad) {
+        } else
+            {
+            if (cant > in_memory_warehouse[index]->cantidad)
+            {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
-
-            } else if (cant < in_memory_warehouse[index]->cantidad) {
+            } else if (cant < in_memory_warehouse[index]->cantidad)
+            {
                 in_memory_warehouse[index]->cantidad -= cant;
-            } else {
+            } else
+                {
                 counter--;
 
-                for (int i = index; i < counter; i++) {
+                for (int i = index; i < counter; i++)
+                {
                     in_memory_warehouse[i] = in_memory_warehouse[i + 1];
                 }
             }
@@ -207,20 +247,23 @@ public:
     }
 
 
-    int find_index(string name) { /*debe tenerse en cuenta que el usuario puede emplera lo mismo mayuscuka q minucula por lo q es
- conveniente cambiar la entrada del usuario ya sea todo en mayuscula o en minuysculas*/
-        for (int i = 0; i < counter; i++) {
-            if (in_memory_warehouse[i]->nombre == name) {
+    int find_index(string name)
+    {
+        for (int i = 0; i < counter; i++)
+        {
+            if (in_memory_warehouse[i]->nombre == name)
+            {
                 return i;
             }
         }
         return -1;
     }
 
-    void list(ostream &salida, int flujo) {
-        for (int i = 0; i < counter; i++) {
+    void list(ostream &salida, int flujo)
+    {
+        for (int i = 0; i < counter; i++)
+        {
             in_memory_warehouse[i]->imprimir(salida, flujo);
-            // esto sirve para llenar el regitro tambien
         }
     }
 };
