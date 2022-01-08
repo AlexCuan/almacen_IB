@@ -114,3 +114,29 @@ void pause() {
 void limpiar_consola() {
     system("clear");
 }
+
+bool stringDigit(string cadena){
+    bool digit = true;
+    for(int i = 0; i < cadena.size(); i++){
+        if(!(isdigit(cadena[i]))){
+            digit = false;
+            break;
+        }
+    }
+    return digit;
+}
+
+
+string visoi(string cadena){
+    while(true){
+        if(cin >> cadena && stringDigit(cadena))
+            break;
+        else{
+            cout << "Enter a valid integer value:\n";
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+
+        }
+    }
+    return cadena;
+}
