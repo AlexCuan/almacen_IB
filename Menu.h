@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
+#include <ncurses.h>
 
 using namespace std;
 
@@ -316,11 +317,13 @@ void extract_textiles()
         textiles_departament.extract(indice, cantidad);
         cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
              << " de " << nombre_producto << " en el almacen" << endl;
+        pause();
+
 
     } else
         {
         cout << "Producto no encontrado\n";
-        pause();
+        getchar();
     }
 
 }
@@ -351,10 +354,11 @@ void extract_appliances()
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "
              << nombre_producto << " en el almacen" << endl;
+        pause();
     } else
         {
         cout << "Producto no encontrado\n";
-        pause();
+        getchar();
     }
 }
 
@@ -384,11 +388,11 @@ void extract_food()
         food_department.extract(indice, cantidad);
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "<< nombre_producto << " en el almacen" << endl;
+        pause();
     } else
         {
         cout << "Producto no encontrado\n";
-        int a;
-        cin >> a;
+        getchar();
     }
 }
 /*
@@ -400,6 +404,7 @@ void list_textiles()
 
     textiles_departament.list(cout, COUT);
     pause();
+
 }
 
 void list_appliances()

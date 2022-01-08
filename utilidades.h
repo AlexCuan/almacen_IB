@@ -107,8 +107,9 @@ string extender(string cadena){
 }
 
 void pause() {
-    char a;
-    cin>>a;
+   getchar();
+   getchar();
+
 }
 
 void limpiar_consola() {
