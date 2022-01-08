@@ -317,7 +317,8 @@ void extract_textiles()
         textiles_departament.extract(indice, cantidad);
         cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
              << " de " << nombre_producto << " en el almacen" << endl;
-        pause();
+        cin.ignore();
+        getchar();
 
 
     } else
@@ -354,7 +355,8 @@ void extract_appliances()
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "
              << nombre_producto << " en el almacen" << endl;
-        pause();
+        cin.ignore();
+        getchar();
     } else
         {
         cout << "Producto no encontrado\n";
@@ -388,7 +390,8 @@ void extract_food()
         food_department.extract(indice, cantidad);
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "<< nombre_producto << " en el almacen" << endl;
-        pause();
+        cin.ignore();
+        getchar();
     } else
         {
         cout << "Producto no encontrado\n";
@@ -403,7 +406,8 @@ void list_textiles()
     limpiar_consola();
 
     textiles_departament.list(cout, COUT);
-    pause();
+    cin.ignore();
+    getchar();
 
 }
 
@@ -412,7 +416,8 @@ void list_appliances()
     limpiar_consola();
 
     appliances_department.list(cout, COUT);
-    pause();
+    cin.ignore();
+    getchar();
 }
 
 void list_food()
@@ -420,7 +425,8 @@ void list_food()
     limpiar_consola();
 
     food_department.list(cout, COUT);
-    pause();
+    cin.ignore();
+    getchar();
 }
 
 /*

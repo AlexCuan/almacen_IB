@@ -106,11 +106,7 @@ string extender(string cadena){
     return cadena;
 }
 
-void pause() {
-   getchar();
-   getchar();
 
-}
 
 void limpiar_consola() {
     system("clear");
