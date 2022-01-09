@@ -80,7 +80,6 @@ public:
         salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
     }
 
-    virtual ~RegistroProducto() {}; //Es necesario?
 };
 
 class RegistroTextiles : public RegistroProducto {
