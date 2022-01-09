@@ -5,13 +5,18 @@
 #include <cstdlib>
 #include <limits>
 #include <vector>
+
+
+
+
+
+
 using namespace std;
 
 string getDate()
 {
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
-
     stringstream ss_year;
     ss_year << timePtr->tm_year+1900;
     string Year = ss_year.str();
@@ -62,9 +67,7 @@ int obtainDate(){
 
 
 
-/*using std::string; using std::vector;
-using std::cout; using std::endl;
-using std::cin; using std::numeric_limits;*/
+
 
 template<typename T>
 T &validateInput_int(T &val)
@@ -136,4 +139,10 @@ string visoi(string cadena){
         }
     }
     return cadena;
+}
+
+void pause(){
+    cout << "Press any key to continue ...";
+    getchar();
+
 }

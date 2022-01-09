@@ -6,21 +6,26 @@
 #include <string>
 #include <ncurses.h>
 
+
 using namespace std;
 
 //Se crean de manera global las instancias de la clase container
+
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
+
+
 
 /*
  * Funcion para cargar archivos del fichero externo. Recorre el archivo linea a linea, guarda los elementos segun un orden
  * preestablecido en las variables declaradas y por cada iteracion crea en su respectivo container y en memoria un objeto
  * que tenga por atributos estos elementos
  */
+
 void cargarTextiles()
 {
-    fstream inOut_Textiles("textiles.dat", ios :: in);
+    ifstream in_Textiles("textiles.dat", ios :: in);
 
     // Atributos de la clase textiles
     string _nombre;
@@ -33,7 +38,7 @@ void cargarTextiles()
     string _talla;
 
     // Lectura de un registro del archivo con el mismo formato guardado
-    while ( inOut_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
+    while ( in_Textiles >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _material >> _sexo
                            >> _talla) {
 
         // Separacion de las palabras que tienen caracteres $ en sus espacios vacios
@@ -49,12 +54,12 @@ void cargarTextiles()
                                                       _cantidad, _material, _sexo, _talla));
     }
 
-
+ cout << "cargado con exito\n";
 }
 
 void cargar_electrodomesticos()
 {
-    fstream inOut_appliances("appliances.dat", ios::in);
+   ifstream in_appliances("appliances.dat", ios::in);
 
     string _nombre;
     long _codigo;
@@ -65,7 +70,7 @@ void cargar_electrodomesticos()
     int _voltaje;
     bool _manual;
 
-    while (inOut_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
+    while (in_appliances >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _tiempo >> _voltaje
                             >> _manual) {
 
         _nombre = extender(_nombre);
@@ -81,7 +86,7 @@ void cargar_electrodomesticos()
 
 void cargar_food()
 {
-    fstream inOut_food("food.dat", ios::in);
+    ifstream in_food("food.dat", ios::in);
 
     string _nombre;
     long _codigo;
@@ -95,7 +100,7 @@ void cargar_food()
     string _month;
     string _year;
 
-    while (inOut_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
+    while (in_food >> _nombre >> _codigo >> _descripcion >> _paisOrigen >> _cantidad >> _clasificacion
                       >> _day >> _month >> _year >> _empleado >> _codigoEstiba) {
 
         _nombre = extender(_nombre);
@@ -112,13 +117,20 @@ void cargar_food()
     }
 }
 
+void load_info(){
+    cargarTextiles();
+    cargar_electrodomesticos();
+    cargar_food();
+}
+
 //Centralizar las 3 funciones de cargar archivos
+/*
 void load_info()
 {
     cargarTextiles();
     cargar_electrodomesticos();
     cargar_food();
-}
+}*/
 /*
  * Predeclaracion de menus y submenus para poder llamarlos entre si debajo
  */
@@ -138,7 +150,7 @@ void sub_menu_c();
  */
 void add_textiles()
 {
-    limpiar_consola();
+   limpiar_consola();
 
     string nombre;
     long codigo;
@@ -271,17 +283,19 @@ void add_food()
 
     cout << "Introduzca la clasificacion : ";
     getline(cin, clasificacion, '\n');
-
+   // cin.ignore();
     cout << "Introduzca la fecha de vencimiento: " << endl;
 
     cout << "Introduzca el dia: ";
-    getline(cin, _day, '\n');
-
+   // getline(cin, _day, '\n');
+    _day = visoi(_day);
     cout << "Introduzca el mes: ";
-    getline(cin, _month, '\n');
+    //getline(cin, _month, '\n');
+    _month = visoi(_month);
 
     cout << "Introduzca el anio: ";
-    getline(cin, _year, '\n');
+    //getline(cin, _year, '\n');
+    _year = visoi(_year);
 
     food_department.add(
             new RegistroAlimentos(minusculas(nombre), codigo, minusculas(descripcion), minusculas(paisOrigen),
@@ -318,13 +332,13 @@ void extract_textiles()
         cout << "Operacion realizada con exito. Queda " << textiles_departament.in_memory_warehouse[indice]->cantidad
              << " de " << nombre_producto << " en el almacen" << endl;
         cin.ignore();
-        getchar();
+        pause();
 
 
     } else
         {
         cout << "Producto no encontrado\n";
-        getchar();
+            pause();
     }
 
 }
@@ -356,11 +370,11 @@ void extract_appliances()
              << " de "
              << nombre_producto << " en el almacen" << endl;
         cin.ignore();
-        getchar();
+        pause();
     } else
         {
         cout << "Producto no encontrado\n";
-        getchar();
+        pause();
     }
 }
 
@@ -391,11 +405,11 @@ void extract_food()
         cout << "Operacion realizada con exito. Queda " << food_department.in_memory_warehouse[indice]->cantidad
              << " de "<< nombre_producto << " en el almacen" << endl;
         cin.ignore();
-        getchar();
+        pause();
     } else
         {
         cout << "Producto no encontrado\n";
-        getchar();
+        pause();
     }
 }
 /*
@@ -407,7 +421,8 @@ void list_textiles()
 
     textiles_departament.list(cout, COUT);
     cin.ignore();
-    getchar();
+    pause();
+    //getchar();
 
 }
 
@@ -417,7 +432,7 @@ void list_appliances()
 
     appliances_department.list(cout, COUT);
     cin.ignore();
-    getchar();
+    pause();
 }
 
 void list_food()
@@ -426,7 +441,7 @@ void list_food()
 
     food_department.list(cout, COUT);
     cin.ignore();
-    getchar();
+    pause();
 }
 
 /*
@@ -454,22 +469,23 @@ void add_dummies()
 
     food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "2030"));
     food_department.add(
-            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "2020"));
+            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "2000"));
     food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "2030"));
     food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "2030"));
     food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "2030"));
 }
 
 //Guardar elementos en un archivo pasandoles como primer parametro el nombre del flujo relacionado con el fichero
+
 void save_to_file()
 {
-    fstream inOut_Textiles("textiles.dat", ios :: out);
-    fstream inOut_appliances("appliances.dat", ios::out);
-    fstream inOut_food("food.dat", ios::out);
+    ofstream out_Textiles("textiles.dat", ios :: out);
+    ofstream out_appliances("appliances.dat", ios::out);
+    ofstream out_food("food.dat", ios::out);
 
-    textiles_departament.list(inOut_Textiles, ARCH);
-    appliances_department.list(inOut_appliances, ARCH);
-    food_department.list(inOut_food, ARCH);
+    textiles_departament.list(out_Textiles, ARCH);
+    appliances_department.list(out_appliances, ARCH);
+    food_department.list(out_food, ARCH);
 }
 
 
@@ -484,13 +500,11 @@ void main_menu() {
 
         cout << "You are at main menu." << endl;
 
-        cout << "Bienvenido al almacen rosca izquierda:" << endl << "Que desea hacer" << endl;
+        cout << "Bienvenido al almacen Rosca Izquierda:" << endl << "Que desea hacer?: " << endl;
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
         cout << "3 -> Listar productos" << endl;
-        cout << "4 -> Añadir dummies" << endl;
-        cout << "5 -> Guardar en archivo" << endl;
-        cout << "6 -> Salir" << endl;
+        cout << "4 -> Salir" << endl;
 
 
         int option;
@@ -507,14 +521,9 @@ void main_menu() {
                 sub_menu_c();
                 break;
             case 4:
-                add_dummies();
-                break;
-            case 5:
-                save_to_file();
-                break;
-            case 6:
-                terminar = true;
-                break;
+               save_to_file();
+               terminar = true;
+               break;
             default:
                 cout << "Por favor inserte un numero entre 1 y 4." << endl;
                 break;

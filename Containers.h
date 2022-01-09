@@ -200,7 +200,7 @@ public:
      */
     void extract(int index, int cant)
     {
-        if (obtainDate() <= in_memory_warehouse[index]->fechaEntera())
+        if (obtainDate() > in_memory_warehouse[index]->fechaEntera())
         {
             cout << "Este producto ya esta vencido\n";
 
@@ -214,7 +214,8 @@ public:
 
                 string nombreEmpleado;
                 cout << "Introduzca su nombre para extraer el producto: ";
-                cin >> nombreEmpleado;
+                cin.ignore();
+                getline(cin, nombreEmpleado);
 
                 in_memory_warehouse[index]->empleado = nombreEmpleado;
 
