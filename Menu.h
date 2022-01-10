@@ -477,8 +477,6 @@ void main_menu() {
     while (!terminar) {
         limpiar_consola();
 
-        cout << "You are at main menu." << endl;
-
         cout << "Bienvenido al almacen Rosca Izquierda:" << endl << "Que desea hacer?: " << endl;
         cout << "1 -> Adicionar nuevos productos al almacen" << endl;
         cout << "2 -> Extraer productos del almacen" << endl;
@@ -516,8 +514,6 @@ void sub_menu_a() {
     while (true) {
         limpiar_consola();
 
-        cout << "You are at sub menu A." << endl;
-
         cout << "Seleccione la clasificacion del producto que desea adicionar:" << endl;
         cout << "1 -> Textil" << endl;
         cout << "2 -> Electrodomestico" << endl;
@@ -552,7 +548,6 @@ void sub_menu_b() {
 
     while (true) {
         limpiar_consola();
-        cout << "You are at sub_menu b." << endl;
 
         cout << "Seleccione la clasificacion del producto que desea extraer:" << endl;
         cout << "1 -> Textil" << endl;
@@ -589,7 +584,6 @@ void sub_menu_c() {
 
     while (true) {
         limpiar_consola();
-        cout << "You are at sub_menu c." << endl;
 
         cout << "Seleccione la clasificacion del producto que desea listar:" << endl;
         cout << "1 -> Textil" << endl;
