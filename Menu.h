@@ -6,23 +6,18 @@
 #include <string>
 #include <ncurses.h>
 
-
 using namespace std;
 
 //Se crean de manera global las instancias de la clase container
-
 ContainerTextiles textiles_departament;
 ContainerElectrodomesticos appliances_department;
 ContainerAlimentos food_department;
-
-
 
 /*
  * Funcion para cargar archivos del fichero externo. Recorre el archivo linea a linea, guarda los elementos segun un orden
  * preestablecido en las variables declaradas y por cada iteracion crea en su respectivo container y en memoria un objeto
  * que tenga por atributos estos elementos
  */
-
 void cargarTextiles()
 {
     ifstream in_Textiles("textiles.dat", ios :: in);
@@ -117,20 +112,13 @@ void cargar_food()
     }
 }
 
-void load_info(){
-    cargarTextiles();
-    cargar_electrodomesticos();
-    cargar_food();
-}
-
 //Centralizar las 3 funciones de cargar archivos
-/*
 void load_info()
 {
     cargarTextiles();
     cargar_electrodomesticos();
     cargar_food();
-}*/
+}
 /*
  * Predeclaracion de menus y submenus para poder llamarlos entre si debajo
  */
@@ -150,7 +138,7 @@ void sub_menu_c();
  */
 void add_textiles()
 {
-   limpiar_consola();
+    limpiar_consola();
 
     string nombre;
     long codigo;
@@ -283,7 +271,7 @@ void add_food()
 
     cout << "Introduzca la clasificacion : ";
     getline(cin, clasificacion, '\n');
-   // cin.ignore();
+
     cout << "Introduzca la fecha de vencimiento: " << endl;
 
     cout << "Introduzca el dia: ";
@@ -422,7 +410,6 @@ void list_textiles()
     textiles_departament.list(cout, COUT);
     cin.ignore();
     pause();
-    //getchar();
 
 }
 
@@ -449,34 +436,26 @@ void list_food()
  */
 void add_dummies()
 {
-    textiles_departament.add(new RegistroTextiles(minusculas("Pullover con espacios"), 3456, minusculas("Descripcion con espacios"), minusculas("Cuba"), 333, minusculas("algodon suave"), minusculas("Masculino"), minusculas("Large")));
-    textiles_departament.add(new RegistroTextiles("camisa", 5874, "Descripcion", "España", 213, "poliester", "M", "L"));
-    textiles_departament.add(
-            new RegistroTextiles("pantalon", 2634, "Descripcion", "Rusia", 234, "mezclilla", "M", "L"));
-    textiles_departament.add(new RegistroTextiles("gorra", 7846, "Descripcion", "India", 875, "rare", "M", "L"));
-    textiles_departament.add(new RegistroTextiles("blusa", 2345, "Descripcion", "Vietnam", 235, "hilo", "M", "L"));
+    textiles_departament.add(new RegistroTextiles(minusculas("Pullover"), 3456, minusculas("Descripcion con espacios"), minusculas("Cuba"), 333, minusculas("algodon suave"), minusculas("Masculino"), minusculas("Large")));
+    textiles_departament.add(new RegistroTextiles(minusculas("camisa"), 5874, minusculas("Descripcion"), minusculas("España"), 213, minusculas(minusculas("poliester")), minusculas("M"), minusculas("L")));
+    textiles_departament.add(new RegistroTextiles(minusculas("pantalon"), 2634, minusculas("Descripcion"), minusculas("Rusia"), 234, minusculas("mezclilla"), minusculas("M"), minusculas("L")));
+    textiles_departament.add(new RegistroTextiles(minusculas("gorra"), 7846, minusculas("Descripcion"), minusculas("India"), 875, minusculas("rare"), minusculas("M"), minusculas("L")));
+    textiles_departament.add(new RegistroTextiles(minusculas("blusa"), 2345, minusculas("Descripcion"), minusculas("Vietnam"), 235, minusculas("hilo"), minusculas("M"), minusculas("L")));
 
-    appliances_department.add(
-            new RegistroElectrodomesticos("refrigerador", 2345, "Hielitosbrr", "China", 34, 12, 220, true));
-    appliances_department.add(
-            new RegistroElectrodomesticos("freezer", 5746, "Hielitosbrr", "Rusia", 34, 16, 110, false));
-    appliances_department.add(
-            new RegistroElectrodomesticos("microwave", 4257, "Calienteuff", "Corea", 34, 22, 220, true));
-    appliances_department.add(
-            new RegistroElectrodomesticos("lavadora", 3756, "Centrifugadoooo", "Taiwan", 34, 28, 110, false));
-    appliances_department.add(
-            new RegistroElectrodomesticos("arrocera", 7682, "ArrozVietnamita", "Vietnam", 34, 36, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos(minusculas("refrigerador"), 2345, minusculas("Hielitosbrr"), minusculas("China"), 34, 12, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos(minusculas("freezer"), 5746, minusculas("Hielitosbrr"), minusculas("Rusia"), 34, 16, 110, false));
+    appliances_department.add(new RegistroElectrodomesticos(minusculas("microwave"), 4257, minusculas("Calienteuff"), minusculas("Corea"), 34, 22, 220, true));
+    appliances_department.add(new RegistroElectrodomesticos(minusculas("lavadora"), 3756, minusculas("Centrifugadoooo"), minusculas("Taiwan"), 34, 28, 110, false));
+    appliances_department.add(new RegistroElectrodomesticos(minusculas("arrocera"), 7682, minusculas("ArrozVietnamita"), minusculas("Vietnam"), 34, 36, 220, true));
 
-    food_department.add(new RegistroAlimentos("pan", 1244, "pancito", "Ecuador", 23, "Solido", "10", "12", "2030"));
-    food_department.add(
-            new RegistroAlimentos("refresco", 4565, "refresquito", "Bolivia", 42, "Liquido", "10", "12", "2000"));
-    food_department.add(new RegistroAlimentos("pelly", 3467, "pellycito", "Peru", 86, "Solido", "10", "12", "2030"));
-    food_department.add(new RegistroAlimentos("ron", 6575, "pancito", "Chile", 73, "Liquido", "10", "12", "2030"));
-    food_department.add(new RegistroAlimentos("puerco", 1693, "pancito", "Oriente", 74, "Solido", "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos(minusculas("pan"), 1244, minusculas("pancito"), minusculas("Ecuador"), 23, minusculas("Solido"), "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos(minusculas("refresco"), 4565, minusculas("refresquito"), minusculas("Bolivia"), 42, minusculas("Liquido"), "10", "12", "2020"));
+    food_department.add(new RegistroAlimentos(minusculas("pelly"), 3467, minusculas("pellycito"), minusculas("Peru"), 86, minusculas("Solido"), "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos(minusculas("ron"), 6575, minusculas("pancito"), minusculas("Chile"), 73, minusculas("Liquido"), "10", "12", "2030"));
+    food_department.add(new RegistroAlimentos(minusculas("puerco"), 1693, minusculas("pancito"), minusculas("Oriente"), 74, minusculas("Solido"), "10", "12", "2030"));
 }
 
 //Guardar elementos en un archivo pasandoles como primer parametro el nombre del flujo relacionado con el fichero
-
 void save_to_file()
 {
     ofstream out_Textiles("textiles.dat", ios :: out);
