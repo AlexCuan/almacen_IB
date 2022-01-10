@@ -75,40 +75,41 @@ T &validateInput_int(T &val) {
 }
 
 
-string minusculas(string cadena) {
+string str_to_lower(string used_str) {
 
-    for (int i = 0; i < cadena.length(); i++) {
-        cadena[i] = tolower(cadena[i]);
+    for (int i = 0; i < used_str.length(); i++) {
+        used_str[i] = tolower(used_str[i]);
     }
-    return cadena;
+    return used_str;
 }
+
 // hacer una funcion para contraer y otra para extender
 
-string contraer(string cadena) {
-    for (int i = 0; i < cadena.size(); i++) {
-        if (cadena[i] == 32)
-            cadena[i] = 36;
+string contract(string used_str) {
+    for (int i = 0; i < used_str.size(); i++) {
+        if (used_str[i] == 32)
+            used_str[i] = 36;
     }
-    return cadena;
+    return used_str;
 }
 
-string extender(string cadena) {
-    for (int i = 0; i < cadena.size(); i++) {
-        if (cadena[i] == 36)
-            cadena[i] = 32;
+string extend(string used_str) {
+    for (int i = 0; i < used_str.size(); i++) {
+        if (used_str[i] == 36)
+            used_str[i] = 32;
     }
-    return cadena;
+    return used_str;
 }
 
 
-void limpiar_consola() {
+void clean_console() {
     system("clear");
 }
 
-bool stringDigit(string cadena) {
+bool stringDigit(string used_str) {
     bool digit = true;
-    for (int i = 0; i < cadena.size(); i++) {
-        if (!(isdigit(cadena[i]))) {
+    for (int i = 0; i < used_str.size(); i++) {
+        if (!(isdigit(used_str[i]))) {
             digit = false;
             break;
         }
@@ -117,21 +118,21 @@ bool stringDigit(string cadena) {
 }
 
 
-string visoi(string cadena) {
+string visoi(string used_str) {
     while (true) {
-        if (cin >> cadena && stringDigit(cadena))
+        if (cin >> used_str && stringDigit(used_str))
             break;
         else {
-            cout << "Enter a valid integer value:\n";
+            cout << "Introduzca un numero entero valido: ";
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
 
         }
     }
-    return cadena;
+    return used_str;
 }
 
 void pause() {
-    cout << "Press enter to continue ...";
+    cout << "Presione enter para continuar ...";
     getchar();
 }

@@ -8,29 +8,29 @@
  * tercer atributo es un arreglo de punteros el cual guardara punteros hacia las posiciones en memoria de los objetos
  * creados.
  */
-class ContainerTextiles{
+class TextilesContainer{
 public:
     int size_of_array = 4;
     int counter = 0;
-    RegistroTextiles **in_memory_warehouse;
+    TextilesRegister **in_memory_warehouse;
 
 
-    ContainerTextiles()
+    TextilesContainer()
     {
-        in_memory_warehouse = new RegistroTextiles *[size_of_array];
+        in_memory_warehouse = new TextilesRegister *[size_of_array];
     }
 
     /*
      * Agregar nuevos objetos. Al llegar al tope se creara un array nuevo con el doble de tamaño, se copiara la informacion,
      * se borrara el array viejo y se renombrara el nuevo
      */
-    void add(RegistroTextiles *new_entry)
+    void add(TextilesRegister *new_entry)
     {
         if (counter == size_of_array)
         {
 
             size_of_array *= 2;
-            RegistroTextiles **new_array = new RegistroTextiles *[size_of_array];
+            TextilesRegister **new_array = new TextilesRegister *[size_of_array];
 
             for (int i = 0; i < size_of_array / 2; i++)
             {
@@ -49,13 +49,13 @@ public:
     /*
      * Eliminar un elemnto del array. Si llega a 0 se reposiciona el arreglo y se elimina por completo el objeto
      */
-    void extract(int index, int cant) {
-        if (cant > in_memory_warehouse[index]->cantidad)
+    void extract(int index, int quantity) {
+        if (quantity > in_memory_warehouse[index]->quantity)
         {
             cout << "Esa cantidad no esta disponible en el almacen\n";
-        } else if (cant < in_memory_warehouse[index]->cantidad)
+        } else if (quantity < in_memory_warehouse[index]->quantity)
         {
-            in_memory_warehouse[index]->cantidad -= cant;
+            in_memory_warehouse[index]->quantity -= quantity;
         } else
             {
             counter--;
@@ -73,7 +73,7 @@ public:
     {
         for (int i = 0; i < counter; i++)
         {
-            if (in_memory_warehouse[i]->nombre == name)
+            if (in_memory_warehouse[i]->name == name)
             {
                 return i;
             }
@@ -84,32 +84,32 @@ public:
     /*
      * Funcion hibrida. Lista o escribe en archivo dependiendo del flujo
      */
-    void list(ostream &salida, int flujo)
+    void list(ostream &output, int stream)
     {
         for (int i = 0; i < counter; i++)
         {
-            in_memory_warehouse[i]->imprimir(salida, flujo);
+            in_memory_warehouse[i]->print(output, stream);
         }
     }
 };
 
-class ContainerElectrodomesticos {
+class AppliancesContainer {
 public:
     int size_of_array = 4;
     int counter = 0;
-    RegistroElectrodomesticos **in_memory_warehouse;
+    ApplianceRegister **in_memory_warehouse;
 
-    ContainerElectrodomesticos()
+    AppliancesContainer()
     {
-        in_memory_warehouse = new RegistroElectrodomesticos *[size_of_array];
+        in_memory_warehouse = new ApplianceRegister *[size_of_array];
     }
 
-    void add(RegistroElectrodomesticos *new_entry)
+    void add(ApplianceRegister *new_entry)
     {
         if (counter == size_of_array)
         {
             size_of_array *= 2;
-            RegistroElectrodomesticos **new_array = new RegistroElectrodomesticos *[size_of_array];
+            ApplianceRegister **new_array = new ApplianceRegister *[size_of_array];
 
             for (int i = 0; i < size_of_array / 2; i++)
             {
@@ -125,13 +125,13 @@ public:
         counter++;
     }
 
-    void extract(int index, int cant)
+    void extract(int index, int quantity)
     {
-        if (cant > in_memory_warehouse[index]->cantidad) {
+        if (quantity > in_memory_warehouse[index]->quantity) {
             cout << "Esa cantidad no esta disponible en el almacen\n";
 
-        } else if (cant < in_memory_warehouse[index]->cantidad) {
-            in_memory_warehouse[index]->cantidad -= cant;
+        } else if (quantity < in_memory_warehouse[index]->quantity) {
+            in_memory_warehouse[index]->quantity -= quantity;
         } else {
             counter--;
 
@@ -146,39 +146,39 @@ public:
     {
         for (int i = 0; i < counter; i++)
         {
-            if (in_memory_warehouse[i]->nombre == name) {
+            if (in_memory_warehouse[i]->name == name) {
                 return i;
             }
         }
         return -1;
     }
 
-    void list(ostream &salida, int flujo)
+    void list(ostream &output, int stream)
     {
         for (int i = 0; i < counter; i++) {
-            in_memory_warehouse[i]->imprimir(salida, flujo);
+            in_memory_warehouse[i]->print(output, stream);
         }
     }
 
 };
 
-class ContainerAlimentos {
+class FoodContainer {
 public:
     int size_of_array = 4;
     int counter = 0;
-    RegistroAlimentos **in_memory_warehouse;
+    FoodRegister **in_memory_warehouse;
 
-    ContainerAlimentos()
+    FoodContainer()
     {
-        in_memory_warehouse = new RegistroAlimentos *[size_of_array];
+        in_memory_warehouse = new FoodRegister *[size_of_array];
     }
 
-    void add(RegistroAlimentos *new_entry)
+    void add(FoodRegister *new_entry)
     {
         if (counter == size_of_array)
         {
             size_of_array *= 2;
-            RegistroAlimentos **new_array = new RegistroAlimentos *[size_of_array];
+            FoodRegister **new_array = new FoodRegister *[size_of_array];
 
             for (int i = 0; i < size_of_array / 2; i++)
             {
@@ -198,41 +198,41 @@ public:
      * Extraer alimentos. Adicionalmente se identifica si esta vencido y el metodo de extraccion pasa a requerir 2 elementos
      * adicionales y no se borra por completo
      */
-    void extract(int index, int cant)
+    void extract(int index, int quantity)
     {
-        if (obtainDate() >= in_memory_warehouse[index]->fechaEntera())
+        if (obtainDate() >= in_memory_warehouse[index]->entire_date())
         {
             cout << "Este producto ya esta vencido\n";
 
-            if (cant > in_memory_warehouse[index]->cantidad)
+            if (quantity > in_memory_warehouse[index]->quantity)
             {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
 
-            } else if (cant <= in_memory_warehouse[index]->cantidad)
+            } else if (quantity <= in_memory_warehouse[index]->quantity)
             {
-                in_memory_warehouse[index]->cantidad -= cant;
+                in_memory_warehouse[index]->quantity -= quantity;
 
-                string nombreEmpleado;
+                string employee_name;
                 cout << "Introduzca su nombre para extraer el producto: ";
                 cin.ignore();
-                getline(cin, nombreEmpleado);
+                getline(cin, employee_name);
 
-                in_memory_warehouse[index]->empleado = nombreEmpleado;
+                in_memory_warehouse[index]->employee = employee_name;
 
-                long codigoEstib;
+                long stowage_code;
                 cout << "Introduzca su codigo de estiba: ";
-                codigoEstib = validateInput_int(codigoEstib);
+                stowage_code = validateInput_int(stowage_code);
 
-                in_memory_warehouse[index]->codigoEstiba = codigoEstib;
+                in_memory_warehouse[index]->stowage_code = stowage_code;
             }
         } else
             {
-            if (cant > in_memory_warehouse[index]->cantidad)
+            if (quantity > in_memory_warehouse[index]->quantity)
             {
                 cout << "Esa cantidad no esta disponible en el almacen\n";
-            } else if (cant < in_memory_warehouse[index]->cantidad)
+            } else if (quantity < in_memory_warehouse[index]->quantity)
             {
-                in_memory_warehouse[index]->cantidad -= cant;
+                in_memory_warehouse[index]->quantity -= quantity;
             } else
                 {
                 counter--;
@@ -252,7 +252,7 @@ public:
     {
         for (int i = 0; i < counter; i++)
         {
-            if (in_memory_warehouse[i]->nombre == name)
+            if (in_memory_warehouse[i]->name == name)
             {
                 return i;
             }
@@ -260,11 +260,11 @@ public:
         return -1;
     }
 
-    void list(ostream &salida, int flujo)
+    void list(ostream &output, int stream)
     {
         for (int i = 0; i < counter; i++)
         {
-            in_memory_warehouse[i]->imprimir(salida, flujo);
+            in_memory_warehouse[i]->print(output, stream);
         }
     }
 };

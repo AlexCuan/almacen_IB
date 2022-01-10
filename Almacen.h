@@ -26,17 +26,17 @@ public:
     Date(){}
 
     //Devuelve la fecha en el mismo formato de la computadora
-    int fechaEntera(){
+    int entire_date(){
         if(atoi(day.c_str())<10)
             day = "0" + day;
         if (atoi(month.c_str())<10)
             month = "0"+ month;
-        string fechaCadena = year + month + day;
-        int fecha = atoi(fechaCadena.c_str());
-        return fecha;
+        string dateString = year + month + day;
+        int date = atoi(dateString.c_str());
+        return date;
     }
 
-    void mostrarFecha() { //metodo para mostrar la fecha
+    void print_date() { //metodo para mostrar la fecha
         cout << day << "-" << month << "-" << year;
     }
 };
@@ -44,22 +44,22 @@ public:
 /*
  *Clase padre de la que heredan los diferentes tipos de productos
  */
-class RegistroProducto {
+class ProductRegister {
 public:
-    string nombre;
-    long codigo;
-    string descripcion;
-    string paisOrigen;
-    int cantidad;
+    string name;
+    long code;
+    string description;
+    string country;
+    int quantity;
 
-    RegistroProducto() {};
+    ProductRegister() {};
 
-    RegistroProducto(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad) {
-        nombre = _nombre;
-        codigo = _codigo;
-        descripcion = _descripcion;
-        paisOrigen = _paisOrigen;
-        cantidad = _cantidad;
+    ProductRegister(string _name, long _code, string _description, string _country, int _quantity) {
+        name = _name;
+        code = _code;
+        description = _description;
+        country = _country;
+        quantity = _quantity;
 
     }
 
@@ -68,72 +68,72 @@ public:
     * Salida representa el valor en consola del flujo de datos, puede ser cout o un archivo abierto
     * ARCH y COUT  es una constante para manualmente reconocer el flujo
     */
-    virtual void imprimir(ostream &salida, int flujo)
+    virtual void print(ostream &output, int stream)
     {
         // Si el flujo es hacia un archivo convierte las cadenas en una palabra sin espacio
-        if(flujo == ARCH)
+        if(stream == ARCH)
         {
-            nombre = contraer(nombre);
-            descripcion = contraer(descripcion);
-            paisOrigen = contraer(paisOrigen);
+            name = contract(name);
+            description = contract(description);
+            country = contract(country);
         }
-        salida << nombre << " " << codigo << " " << descripcion << " " << paisOrigen <<" "<< cantidad;
+        output << name << " " << code << " " << description << " " << country << " " << quantity;
     }
 
 };
 
-class RegistroTextiles : public RegistroProducto {
+class TextilesRegister : public ProductRegister {
 public:
     string material;
-    string sexo;
-    string talla;
+    string gender;
+    string size;
 
-    RegistroTextiles() {};
+    TextilesRegister() {};
 
-    RegistroTextiles(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                     string _material, string _sexo, string _talla) : RegistroProducto(_nombre, _codigo, _descripcion,
-                                                                                   _paisOrigen, _cantidad){
+    TextilesRegister(string _name, long _code, string _description, string _country, int _quantity,
+                     string _material, string _gender, string _size) : ProductRegister(_name, _code, _description,
+                                                                                       _country, _quantity){
         material = _material;
-        sexo = _sexo;
-        talla = _talla;
+        gender = _gender;
+        size = _size;
 
     }
 
-    void imprimir(ostream &salida, int flujo)
+    void print(ostream &output, int stream)
     {
-        RegistroProducto::imprimir(salida, flujo);
-        if(flujo == ARCH)
+        ProductRegister::print(output, stream);
+        if(stream == ARCH)
         {
-            material = contraer(material);
-            sexo = contraer(sexo);
-            talla = contraer(talla);
+            material = contract(material);
+            gender = contract(gender);
+            size = contract(size);
         }
-        salida <<" "<< material << " " << sexo << " " << talla << endl;
+        output << " " << material << " " << gender << " " << size << endl;
     }
 
 };
 
-class RegistroElectrodomesticos : public RegistroProducto {
+class ApplianceRegister : public ProductRegister {
 public:
-    int tiempo; //tiempo en meses
-    int voltaje;
+    int warranty; //tiempo en meses
+    int voltage;
     bool manual;
 
-    RegistroElectrodomesticos() {};
+    ApplianceRegister() {};
 
-    RegistroElectrodomesticos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                              int _tiempo, int _voltaje, bool _manual) : RegistroProducto(_nombre, _codigo,
-                                                                                          _descripcion, _paisOrigen,
-                                                                                          _cantidad) {
-        tiempo = _tiempo;
-        voltaje = _voltaje;
+    ApplianceRegister(string _name, long _code, string _description, string _country, int _quantity,
+                      int _time, int _voltage, bool _manual) : ProductRegister(_name, _code,
+                                                                               _description, _country,
+                                                                               _quantity) {
+        warranty = _time;
+        voltage = _voltage;
         manual = _manual;
     }
 
-    void imprimir(ostream &salida, int flujo)
+    void print(ostream &output, int stream)
     {
-        RegistroProducto::imprimir(salida, flujo);
-        salida <<" "<< tiempo << " " << voltaje <<" "<<manual<<endl;
+        ProductRegister::print(output, stream);
+        output << " " << warranty << " " << voltage << " " << manual << endl;
     }
 };
 
@@ -142,60 +142,60 @@ public:
  * se listaran en consola, de no ser asi no se listaran. En cambio, sea cual sea su valor se escribira y leera de un archivo,
  * para eso 2 constructores
  */
-class RegistroAlimentos : public RegistroProducto , public Date{
+class FoodRegister : public ProductRegister , public Date{
 public:
-    string clasificacion;
-    string empleado = "Empleado";
-    long codigoEstiba = 0;
+    string classification;
+    string employee = "Empleado";
+    long stowage_code = 0;
 
-    RegistroAlimentos() {};
+    FoodRegister() {};
 
     //Constructor para leer informacion de un archivo
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                      string _clasificacion, string _day, string _month, string _year, string _empleado, long _codigoEstiba)
-            : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
+    FoodRegister(string _name, long _code, string _description, string _country, int _quantity,
+                 string _classification, string _day, string _month, string _year, string _employee, long _stowage_code)
+            : ProductRegister(_name, _code, _description, _country, _quantity), Date(_day, _month, _year)
 
     {
-        clasificacion = _clasificacion;
-        empleado = _empleado;
-        codigoEstiba = _codigoEstiba;
+        classification = _classification;
+        employee = _employee;
+        stowage_code = _stowage_code;
 
     }
 
     //Constructor para crear objetos introducidos por el usuario. No se pasa como argumento empleado y codigo de estiba
     //que no estan concebidos para la creacion del objeto, sino para la extraccion(ver biblioteca Container.h)
-    RegistroAlimentos(string _nombre, long _codigo, string _descripcion, string _paisOrigen, int _cantidad,
-                      string _clasificacion, string _day, string _month, string _year)
-            : RegistroProducto(_nombre, _codigo, _descripcion, _paisOrigen, _cantidad), Date(_day, _month, _year)
+    FoodRegister(string _name, long _code, string _description, string _country, int _quantity,
+                 string _classification, string _day, string _month, string _year)
+            : ProductRegister(_name, _code, _description, _country, _quantity), Date(_day, _month, _year)
 
     {
-        clasificacion = _clasificacion;
+        classification = _classification;
 
     }
 
-    void imprimir(ostream &salida, int flujo)
+    void print(ostream &output, int stream)
     {
-        RegistroProducto::imprimir(salida, flujo);
+        ProductRegister::print(output, stream);
 
-        if(flujo == ARCH)
+        if(stream == ARCH)
         {
-            clasificacion = contraer(clasificacion);
-            empleado = contraer(empleado);
-            day = contraer(day);
-            month = contraer(month);
-            year = contraer(year);
+            classification = contract(classification);
+            employee = contract(employee);
+            day = contract(day);
+            month = contract(month);
+            year = contract(year);
 
-            salida<<" " << clasificacion << " " << day << " " << month << " " << year<< " " << empleado <<" " << codigoEstiba << endl;
+            output << " " << classification << " " << day << " " << month << " " << year << " " << employee << " " << stowage_code << endl;
         }
 
 
-        else if(flujo == COUT)
+        else if(stream == COUT)
         {
-            salida<<" " << clasificacion << " " << day << " " << month << " " << year;
-            if(codigoEstiba != 0)
-                salida << " " << empleado <<" " << codigoEstiba << endl;
+            output << " " << classification << " " << day << " " << month << " " << year;
+            if(stowage_code != 0)
+                output << " " << employee << " " << stowage_code << endl;
             else
-                salida << endl;
+                output << endl;
 
         }
     }

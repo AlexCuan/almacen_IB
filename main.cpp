@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+    load_info();
     main_menu();
 
     return 0;
